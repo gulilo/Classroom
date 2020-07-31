@@ -17,8 +17,8 @@ class App extends Component {
     return (
       <Router>
         <div>
-          <NavLink to="/classrooms">classrooms</NavLink>
-          <NavLink to="/classroom/new">new class</NavLink>
+          <NavLink to="/classrooms">classrooms </NavLink>
+          <NavLink to="/classroom/new">new class </NavLink>
           <NavLink to="/options">options</NavLink>
           <Switch>
             <Route path="/" exact component={Home} />
