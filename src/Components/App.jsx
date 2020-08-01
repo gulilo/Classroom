@@ -11,15 +11,19 @@ import Home from "./Home";
 import NewClass from "./NewClass";
 import Options from "./Options";
 
+import "../menuBar.module.css"
+
 class App extends Component {
   state = {};
   render() {
     return (
       <Router>
         <div>
-          <NavLink to="/classrooms">classrooms</NavLink>
-          <NavLink to="/classroom/new">new class</NavLink>
+          <topMenuBar>
+          <menuItem><NavLink to="/classrooms">classrooms</NavLink></menuItem>
+          <NavLink to="/classroom/new">new class</NavLink>  
           <NavLink to="/options">options</NavLink>
+          </topMenuBar>
           <Switch>
             <Route path="/" exact component={Home} />
             <Route path="/classrooms" exact component={ChooseClass} />

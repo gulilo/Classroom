@@ -1,0 +1,22 @@
+
+
+.topMenuBar {
+    background-color: black;
+}
+
+topMenuBar {
+    display: grid;
+    background-color: lightblue;
+    grid-template-columns: auto auto auto 70%;
+    padding: 10px;
+    
+    border-style: solid;
+    border-color: navy;
+    border-width: 4px;
+
+    font-size: 28px;
+    font-family: sans-serif;
+}
+topmenubar > menuItem{
+    border: 2px solid navy 
+}
