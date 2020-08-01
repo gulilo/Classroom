@@ -11,7 +11,7 @@ import Home from "./Home";
 import NewClass from "./NewClass";
 import Options from "./Options";
 
-import "../menuBar.module.css"
+import styles_topMenu from "../menuBar.module.css";
 
 class App extends Component {
   state = {};
@@ -19,11 +19,11 @@ class App extends Component {
     return (
       <Router>
         <div>
-          <topMenuBar>
-          <menuItem><NavLink to="/classrooms">classrooms</NavLink></menuItem>
-          <NavLink to="/classroom/new">new class</NavLink>  
-          <NavLink to="/options">options</NavLink>
-          </topMenuBar>
+          <menuBar className={styles_topMenu.topMenuBar}>
+          <NavLink to="/classrooms" className={styles_topMenu.topMenuItem}>classrooms</NavLink>
+          <NavLink to="/classroom/new" className={styles_topMenu.topMenuItem}>new class</NavLink>  
+          <NavLink to="/options" className={styles_topMenu.topMenuItem}>options</NavLink>
+          </menuBar>
           <Switch>
             <Route path="/" exact component={Home} />
             <Route path="/classrooms" exact component={ChooseClass} />
