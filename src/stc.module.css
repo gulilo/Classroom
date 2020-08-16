@@ -1,0 +1,27 @@
+
+.listStyle{
+    list-style-type: none;
+    color: orange;
+}
+
+.listStyle > .lineStyle{
+    font-size: 30px;
+    font-weight: bold;
+    text-transform: capitalize;
+    
+    margin: 2px;
+    border : 2px navy solid;
+    border-radius: 50px;
+    background-color: rgb(165, 243, 239);
+
+    width: 5%;
+    padding: 5px 0px;
+    text-align: center;
+}
+
+.listStyle > .lineStyle :visited {
+    color : navy;
+}
+.listStyle > .lineStyle :active {
+    color : red;
+}

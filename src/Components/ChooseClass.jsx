@@ -1,6 +1,9 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 
+import CLStyles from "../stc.module.css";
+
+
 class ChooseClass extends Component {
   state = {
     classRooms: [
@@ -42,9 +45,9 @@ class ChooseClass extends Component {
   render() {
     return (
       <div>
-        <ul>
+        <ul className={CLStyles.listStyle}>
           {this.state.classRooms.map((room) => (
-            <li key={room.id}>
+            <li className={CLStyles.lineStyle}>
               <Link to={`/classroom/${room.name}`}>{room.name} </Link>
             </li>
           ))}

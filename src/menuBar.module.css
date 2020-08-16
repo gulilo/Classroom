@@ -4,29 +4,37 @@
 
     border : 2px navy double;
     border-radius: 500px;
+    background-color: lightskyblue ;
 
     color : black;
+    font-size: 2vw;
     font-weight: bolder;
     text-decoration: none;
+    font-family: sans-serif;
 
     margin : 0px 3px 0px 3px;
     
 }
+
 .topMenuBar > .topMenuItem:hover{
-    text-shadow: 0px 0px 5px red ;
+    text-shadow: 0px 0px 5px darkblue ;
 }
+
 
 .topMenuBar {
     display: grid;
     background-color: lightblue;
-    grid-template-columns: auto auto auto 70%;
+    grid-template-columns: 15% 15% 15% auto;
     padding: 1px;
     
     border-style: solid;
     border-color: navy;
     border-width: 4px;
 
-    font-size: 28px;
-    font-family: sans-serif;
     
 }
+
+body{
+    background-color: rgb(30, 249, 255);
+}
+
