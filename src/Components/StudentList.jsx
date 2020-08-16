@@ -1,19 +1,18 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
+import StudentComponent from "./StudentComponent";
 
 class StudentList extends Component {
   state = {};
-
-  onAdd = () => {
-    this.props.onAdd(this.nameInput.value);
-    this.nameInput.value = "";
-  };
 
   render() {
     return (
       <div>
         <ul>
           {this.props.students.map((student) => (
-            <li key={student.id}>{student.name}</li>
+            <li key={student.id}>
+              <Link to={`/student/${student.id}`}>{student.name}</Link>
+            </li>
           ))}
         </ul>
       </div>
