@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import buttonStyles from "../simpleButtons.module.css"
 
 class StudentComponent extends Component {
   state = {
@@ -49,7 +50,7 @@ class StudentComponent extends Component {
       <li key={`${id2}`}>
         <span>
           {this.students.find(({ id }) => id == id2).name}
-          <button onClick={(e) => this.HandleDelete(id2, list)}>delete</button>
+          <button className={buttonStyles.deleteButton} onClick={(e) => this.HandleDelete(id2, list)}></button>
         </span>
       </li>
     ));
@@ -65,17 +66,17 @@ class StudentComponent extends Component {
               ref={this.nameInput}
               defaultValue={this.state.student.name}
             ></input>
-            <button onClick={this.HundleDone}>done</button>
+            <button className={buttonStyles.saveButton} onClick={this.HundleDone}></button>
           </span>
         ) : (
           <span>
             {this.state.student.name}
-            <button
+            <button className={buttonStyles.editButton}
               onClick={(e) => {
                 this.setState({ nameEdit: true });
               }}
             >
-              edit
+              
             </button>
           </span>
         )}
@@ -86,12 +87,12 @@ class StudentComponent extends Component {
 
           {this.state.student.likes.length < 3 && !this.state.likeAdd ? (
             <li key="addButton">
-              <button
+              <button className={buttonStyles.plusButton}
                 onClick={(e) => {
                   this.setState({ likeAdd: true });
                 }}
               >
-                add
+                
               </button>
             </li>
           ) : this.state.likeAdd ? (
@@ -102,7 +103,7 @@ class StudentComponent extends Component {
                     <option value={id}>{name}</option>
                   ))}
                 </select>
-                <button
+                <button className={buttonStyles.saveButton}
                   onClick={(e) => {
                     this.HandleSave(
                       this.likeAdd.current.value,
@@ -111,7 +112,7 @@ class StudentComponent extends Component {
                     this.setState({ likeAdd: false });
                   }}
                 >
-                  save
+                  
                 </button>
               </span>
             </li>
@@ -124,12 +125,12 @@ class StudentComponent extends Component {
 
           {this.state.student.dislike.length < 3 && !this.state.dislikeAdd ? (
             <li key="addButton">
-              <button
+              <button className={buttonStyles.plusButton}
                 onClick={(e) => {
                   this.setState({ dislikeAdd: true });
                 }}
               >
-                add
+                
               </button>
             </li>
           ) : this.state.dislikeAdd ? (
@@ -140,7 +141,7 @@ class StudentComponent extends Component {
                     <option value={id}>{name}</option>
                   ))}
                 </select>
-                <button
+                <button className={buttonStyles.saveButton}
                   onClick={(e) => {
                     this.HandleSave(
                       this.dislikeAdd.current.value,
@@ -149,7 +150,7 @@ class StudentComponent extends Component {
                     this.setState({ dislikeAdd: false });
                   }}
                 >
-                  save
+                  
                 </button>
               </span>
             </li>
