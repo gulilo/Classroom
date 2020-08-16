@@ -6,12 +6,14 @@ class StudentComponent extends Component {
 
     nameEdit: false,
     likeAdd: false,
+    dislikeAdd: false,
   };
 
   constructor(props) {
     super(props);
     this.nameInput = React.createRef();
     this.likeAdd = React.createRef();
+    this.dislikeAdd = React.createRef();
   }
 
   componentDidMount() {
@@ -34,20 +36,39 @@ class StudentComponent extends Component {
   HandleDeleteLike = (id, e) => {
     const student = this.state.student;
     const index = student.likes.indexOf(id);
-    student.likes.splice(index, 1);
+    if (index > -1) {
+      student.likes.splice(index, 1);
+    }
     this.setState({ student: student });
   };
 
   HandleLikeAdd = () => {
-    console.log("bla");
     this.setState({ likeAdd: true });
   };
 
   HandleLikeSave = () => {
-    console.log(this.likeAdd.current.value);
     let student = this.state.student;
     student.likes.push(this.likeAdd.current.value);
     this.setState({ student: student, likeAdd: false });
+  };
+
+  HandleDislikeAdd = () => {
+    this.setState({ dislikeAdd: true });
+  };
+
+  HandleDislikeSave = () => {
+    let student = this.state.student;
+    student.dislike.push(this.dislikeAdd.current.value);
+    this.setState({ student: student, dislikeAdd: false });
+  };
+
+  HandleDeleteDislike = (id, e) => {
+    const student = this.state.student;
+    const index = student.dislike.indexOf(id);
+    if (index > -1) {
+      student.dislike.splice(index, 1);
+    }
+    this.setState({ student: student });
   };
 
   render() {
@@ -74,7 +95,7 @@ class StudentComponent extends Component {
           {this.state.student.likes.map((id2) => (
             <li key={`${id2}`}>
               <span>
-                {this.students.find(({ id }) => id == id2).name}{" "}
+                {this.students.find(({ id }) => id == id2).name}
                 <button onClick={(e) => this.HandleDeleteLike(id2, e)}>
                   delete
                 </button>
@@ -104,9 +125,28 @@ class StudentComponent extends Component {
         <ul>
           {this.state.student.dislike.map((id2) => (
             <li key={`${id2}`}>
-              {this.students.find(({ id }) => id === id2).name}
+              {this.students.find(({ id }) => id == id2).name}
+              <button onClick={(e) => this.HandleDeleteDislike(id2, e)}>
+                delete
+              </button>
             </li>
           ))}
+          {this.state.student.dislike.length < 3 && !this.state.dislikeAdd ? (
+            <li key="addButton">
+              <button onClick={this.HandleDislikeAdd}>add</button>
+            </li>
+          ) : this.state.dislikeAdd ? (
+            <li key="new">
+              <span>
+                <select ref={this.dislikeAdd}>
+                  {this.students.map(({ id, name }) => (
+                    <option value={id}>{name}</option>
+                  ))}
+                </select>
+                <button onClick={this.HandleDislikeSave}>save</button>
+              </span>
+            </li>
+          ) : null}
         </ul>
       </div>
     );
