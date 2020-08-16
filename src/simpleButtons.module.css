@@ -4,8 +4,10 @@
     
     width: 50px;
     height: 50px;
+    border-radius: 15px;
+    outline: none;
     background-color: lightblue;
-    background-image: url("./icons1/toolPencil.png");
+    background-image: url("/icons1/create-24px.svg");
     background-repeat: no-repeat;
     background-size: 100% 100%;
     
@@ -14,8 +16,10 @@
 .saveButton{
     width: 50px;
     height: 50px;
+    border-radius: 15px;
+    outline: none;
     background-color: lightblue;
-    background-image: url("./icons1/save.png");
+    background-image: url("/icons1/save-black-18dp.svg");
     background-repeat: no-repeat;
     background-size: 100% 100%;
 }
@@ -23,8 +27,40 @@
 .deleteButton{
     width: 50px;
     height: 50px;
+    border-radius: 15px;
+    outline: none;
     background-color: lightblue;
-    background-image: url("./icons1/trashcanOpen.png");
+    background-image: url("/icons1/delete_outline-24x.svg");
     background-repeat: no-repeat;
     background-size: 100% 100%;
+}
+
+.plusButton{
+    width: 50px;
+    height: 50px;
+    border-radius: 15px;
+    outline: none;
+    background-color: lightblue;
+    background-image: url("/icons1/add-24px.svg");
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+.iconAdd{
+    width: 50px;
+    height: 50px;
+    border-radius: 15px;
+    outline: none;
+    background-color: lightblue;
+    background-image: url("/icons1/create-24px.svg");
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+
+.ops{
+    background-image: url("/icons1/create-24px.svg");
+    background-repeat: no-repeat;
+    background-position: left;
+    padding-left: 30px;
+    background-size: 30px 30px;
+    font-size: 30px;
 }
