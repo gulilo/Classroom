@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 
-import listStyle from "../ClassroomStyle.module.css";
-import Buttons from "../simpleButtons.module.css";
+import listStyle from "../cssFiles/ClassroomStyle.module.css";
+import Buttons from "../cssFiles/simpleButtons.module.css";
 
 class StudentList extends Component {
   state = {};

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import buttonStyles from "../simpleButtons.module.css";
+import buttonStyles from "../cssFiles/simpleButtons.module.css";
 
 class StudentEdit extends Component {
   state = {
@@ -93,7 +93,7 @@ class StudentEdit extends Component {
           {this.state.student.likes.length < 3 && !this.state.likeAdd ? (
             <li key="addButton">
               <button
-                className={buttonStyles.plusButton}
+                className={buttonStyles.addButton}
                 onClick={(e) => {
                   this.setState({ likeAdd: true });
                 }}
@@ -129,7 +129,7 @@ class StudentEdit extends Component {
           {this.state.student.dislike.length < 3 && !this.state.dislikeAdd ? (
             <li key="addButton">
               <button
-                className={buttonStyles.plusButton}
+                className={buttonStyles.addButton}
                 onClick={(e) => {
                   this.setState({ dislikeAdd: true });
                 }}

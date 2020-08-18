@@ -14,7 +14,7 @@ import NewStudent from "./NewStudent";
 import StudentEdit from "./StudentEdit";
 import StudentInfo from "./StudentInfo";
 
-import styles_topMenu from "../menuBar.module.css";
+import styles_topMenu from "../cssFiles/menuBar.module.css";
 
 
 class App extends Component {

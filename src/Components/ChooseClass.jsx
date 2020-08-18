@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 
-import CLStyles from "../stc.module.css";
+import CLStyles from "../cssFiles/classroomList.module.css";
 
 
 class ChooseClass extends Component {
