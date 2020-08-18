@@ -10,8 +10,9 @@ import ClassRoomComponent from "./ClassRoomComponent";
 import Home from "./Home";
 import NewClass from "./NewClass";
 import Options from "./Options";
-import StudentComponent from "./StudentComponent";
 import NewStudent from "./NewStudent";
+import StudentEdit from "./StudentEdit";
+import StudentInfo from "./StudentInfo";
 
 import styles_topMenu from "../menuBar.module.css";
 
@@ -34,7 +35,8 @@ class App extends Component {
             <Route path="/classroom/:name" component={ClassRoomComponent} />
             <Route path="/options" component={Options} />
             <Route path="/student/new" exact component={NewStudent} />
-            <Route path="/student/:id" component={StudentComponent} />
+            <Route path="/student/:id" exact component={StudentInfo} />
+            <Route path="/student/:id/edit" exact component={StudentEdit} />
           </Switch>
         </div>
       </Router>
