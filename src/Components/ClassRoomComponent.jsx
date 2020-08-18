@@ -57,7 +57,7 @@ class ClassRoomComponent extends Component {
   render() {
     return (
       <div>
-        <h2>class number: {this.state.classRooms[0].name}</h2>
+        <h2>class name: {this.state.classRooms[0].name}</h2>
         <StudentList
           key={123}
           students={this.state.classRooms[0].students}
