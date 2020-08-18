@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import buttonStyles from "../simpleButtons.module.css"
+import buttonStyles from "../simpleButtons.module.css";
 
-class StudentComponent extends Component {
+class StudentEdit extends Component {
   state = {
     student: { id: 0, name: "temp", likes: [], dislike: [] },
 
@@ -50,7 +50,10 @@ class StudentComponent extends Component {
       <li key={`${id2}`}>
         <span>
           {this.students.find(({ id }) => id == id2).name}
-          <button className={buttonStyles.deleteButton} onClick={(e) => this.HandleDelete(id2, list)}></button>
+          <button
+            className={buttonStyles.deleteButton}
+            onClick={(e) => this.HandleDelete(id2, list)}
+          ></button>
         </span>
       </li>
     ));
@@ -66,18 +69,20 @@ class StudentComponent extends Component {
               ref={this.nameInput}
               defaultValue={this.state.student.name}
             ></input>
-            <button className={buttonStyles.saveButton} onClick={this.HundleDone}></button>
+            <button
+              className={buttonStyles.saveButton}
+              onClick={this.HundleDone}
+            ></button>
           </span>
         ) : (
           <span>
             {this.state.student.name}
-            <button className={buttonStyles.editButton}
+            <button
+              className={buttonStyles.editButton}
               onClick={(e) => {
                 this.setState({ nameEdit: true });
               }}
-            >
-              
-            </button>
+            ></button>
           </span>
         )}
         <br />
@@ -87,13 +92,12 @@ class StudentComponent extends Component {
 
           {this.state.student.likes.length < 3 && !this.state.likeAdd ? (
             <li key="addButton">
-              <button className={buttonStyles.plusButton}
+              <button
+                className={buttonStyles.plusButton}
                 onClick={(e) => {
                   this.setState({ likeAdd: true });
                 }}
-              >
-                
-              </button>
+              ></button>
             </li>
           ) : this.state.likeAdd ? (
             <li key="new">
@@ -103,7 +107,8 @@ class StudentComponent extends Component {
                     <option value={id}>{name}</option>
                   ))}
                 </select>
-                <button className={buttonStyles.saveButton}
+                <button
+                  className={buttonStyles.saveButton}
                   onClick={(e) => {
                     this.HandleSave(
                       this.likeAdd.current.value,
@@ -111,9 +116,7 @@ class StudentComponent extends Component {
                     );
                     this.setState({ likeAdd: false });
                   }}
-                >
-                  
-                </button>
+                ></button>
               </span>
             </li>
           ) : null}
@@ -125,13 +128,12 @@ class StudentComponent extends Component {
 
           {this.state.student.dislike.length < 3 && !this.state.dislikeAdd ? (
             <li key="addButton">
-              <button className={buttonStyles.plusButton}
+              <button
+                className={buttonStyles.plusButton}
                 onClick={(e) => {
                   this.setState({ dislikeAdd: true });
                 }}
-              >
-                
-              </button>
+              ></button>
             </li>
           ) : this.state.dislikeAdd ? (
             <li key="new">
@@ -141,7 +143,8 @@ class StudentComponent extends Component {
                     <option value={id}>{name}</option>
                   ))}
                 </select>
-                <button className={buttonStyles.saveButton}
+                <button
+                  className={buttonStyles.saveButton}
                   onClick={(e) => {
                     this.HandleSave(
                       this.dislikeAdd.current.value,
@@ -149,9 +152,7 @@ class StudentComponent extends Component {
                     );
                     this.setState({ dislikeAdd: false });
                   }}
-                >
-                  
-                </button>
+                ></button>
               </span>
             </li>
           ) : null}
@@ -179,4 +180,4 @@ class StudentComponent extends Component {
   ];
 }
 
-export default StudentComponent;
+export default StudentEdit;
