@@ -1,12 +1,24 @@
+:root{
+    
+--burnt-sienna: #de6b48ff;
+--middle-yellow-red: #e5b181ff;
+--melon: #f4b9b2ff;
+--tea-green: #daedbdff;
+--middle-blue: #7dbbc3ff;
+--onyx: #36393bff;
+--platinum: #e9eceaff;
+}
+
+
 
 .topMenuBar > .topMenuItem {
     text-align: center;
 
     border : 2px navy double;
     border-radius: 500px;
-    background-color: lightskyblue ;
+    background-color: var(--burnt-sienna) ;
 
-    color : black;
+    color: darkslategray;
     font-size: 2vw;
     font-weight: bolder;
     text-decoration: none;
@@ -23,13 +35,15 @@
 
 .topMenuBar {
     display: grid;
-    background-color: lightblue;
+    background-color: var(--middle-yellow-red);
     grid-template-columns: 15% 15% 15% auto;
     padding: 1px;
     
     border-style: solid;
     border-color: navy;
     border-width: 4px;
+
+    margin-bottom: 1em;
 
     
 }

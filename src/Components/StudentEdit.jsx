@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import buttonStyles from "../cssFiles/simpleButtons.module.css";
+import labelStyles from "../cssFiles/StudentEdit.module.css";
 
 class StudentEdit extends Component {
   state = {
@@ -75,8 +76,8 @@ class StudentEdit extends Component {
             ></button>
           </span>
         ) : (
-          <span>
-            {this.state.student.name}
+          <span className={labelStyles.StudentNameBracket}>
+              {this.state.student.name}
             <button
               className={buttonStyles.editButton}
               onClick={(e) => {
