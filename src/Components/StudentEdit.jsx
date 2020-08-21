@@ -3,7 +3,7 @@ import buttonStyles from "../simpleButtons.module.css";
 import { classes } from "../mockedData/classes";
 import { students } from "../mockedData/Students";
 
-class StudentComponent extends Component {
+class StudentEdit extends Component {
   state = {
     student: { id: -1, name: "", likes: [], dislike: [] },
     otherStudents: [{ id: -1, name: "" }],
@@ -228,4 +228,4 @@ class StudentComponent extends Component {
   }
 }
 
-export default StudentComponent;
+export default StudentEdit;

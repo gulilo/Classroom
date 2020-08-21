@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 
 import { students as StudentsList } from "../mockedData/Students";
+import listStyle from "../ClassroomStyle.module.css";
+import Buttons from "../simpleButtons.module.css";
 
 class StudentList extends Component {
   state = { students: [{ id: -1, name: "" }] };
@@ -18,12 +20,16 @@ class StudentList extends Component {
     if (this.state.students[0].id === -1) return null;
     return (
       <div>
-        <ul>
+        <ul className={listStyle.studentList}>
           {this.state.students.map((student) => (
-            <li key={student.id}>
+            <li className={listStyle.studentItem} key={student.id}>
               <Link to={`${this.props.classId}/student/${student.id}`}>
                 {student.name}
               </Link>
+              <Link
+                className={Buttons.editButton}
+                to={`/student/${student.id}/edit`}
+              ></Link>
             </li>
           ))}
         </ul>

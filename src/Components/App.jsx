@@ -10,8 +10,9 @@ import ClassRoomComponent from "./ClassRoomComponent";
 import Home from "./Home";
 import NewClass from "./NewClass";
 import Options from "./Options";
-import StudentComponent from "./StudentComponent";
 import NewStudent from "./NewStudent";
+import StudentEdit from "./StudentEdit";
+import StudentInfo from "./StudentInfo";
 
 class App extends Component {
   state = {};
@@ -39,7 +40,13 @@ class App extends Component {
             />
             <Route
               path="/classroom/:classId/student/:studentId"
-              component={StudentComponent}
+              exact
+              component={StudentInfo}
+            />
+            <Route
+              path="/classroom/:classId/student/:studentId/edit"
+              exact
+              component={StudentEdit}
             />
           </Switch>
         </div>
