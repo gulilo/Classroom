@@ -1,3 +1,18 @@
+:root{
+    
+    --burnt-sienna: #de6b48ff;
+    --melon: #f4b9b2ff;
+    --middle-yellow-red: #e5b181ff;
+    --tea-green: #daedbdff;
+    --middle-blue: #7dbbc3ff;
+    --onyx: #3b3d40ff;
+    --dim-gray: #636667ff;
+    --spanish-gray: #909393ff;
+    --silver-sand: #bdc0bfff;
+    --platinum: #e9eceaff;
+}
+
+
 
 .listStyle{ 
 
@@ -14,13 +29,15 @@
     text-transform: capitalize;
     text-decoration: none;
 
-    height: 2rem;
+    height: 3vh;
+    min-height: 1rem;
+    
     width: 20rem;
     
-    margin: 2px;
+    margin: 5px;
     border : 2px navy solid;
     border-radius: 50px;
-    background-color: rgb(165, 243, 239);
+    background-color: var(--middle-blue);
 
     padding: 5px 0px;
     align-items: center;
@@ -32,7 +49,7 @@
 }
 
 .listStyle > .lineStyle :visited {
-    color : navy;
+    color :var(--onyx);
 }
 .listStyle > .lineStyle :active {
     color : red;
