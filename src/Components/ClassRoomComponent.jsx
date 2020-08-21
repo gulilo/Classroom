@@ -1,52 +1,18 @@
 import React, { Component } from "react";
-
 import StudentList from "./StudentList";
 import Style_classroomList from "../cssFiles/classroomList.module.css";
 import Style_MainGrid from "../cssFiles/MainGridLayout.module.css";
 
+import { classes } from "../mockedData/classes";
+
 class ClassRoomComponent extends Component {
-  state = {
-    classRooms: [
-      {
-        id: 11,
-        name: "a1",
-        students: [
-          { id: 1, name: "alpha" },
-          { id: 2, name: "bravo" },
-          { id: 3, name: "chralie" },
-          { id: 4, name: "delta" },
-          { id: 5, name: "echo" },
-          { id: 6, name: "fox" },
-        ],
-      },
-      {
-        id: 21,
-        name: "b1",
-        students: [
-          { id: 23, name: "amit" },
-          { id: 11, name: "gal" },
-          { id: 98, name: "hagit" },
-          { id: 99, name: "eli" },
-        ],
-      },
-      {
-        id: 22,
-        name: "b2",
-        students: [
-          { id: 26, name: "zulu" },
-          { id: 25, name: "yankee" },
-          { id: 24, name: "xray" },
-          { id: 23, name: "whiskey" },
-          { id: 11, name: "victor" },
-        ],
-      },
-    ],
-  };
+  state = { classRooms: { id: -1, name: "bla", students: [] } };
 
   componentDidMount() {
-    const classRooms = [...this.state.classRooms].filter(
-      ({ name }) => name === this.props.match.params.name
+    const classRooms = classes.find(
+      ({ id }) => id == this.props.match.params.classId
     );
+
     this.setState({ classRooms });
   }
 
@@ -57,14 +23,17 @@ class ClassRoomComponent extends Component {
   };
 
   render() {
+    if (this.state.classRooms.id === -1) return null;
+
     return (
       <div className={Style_MainGrid.AppMainArea}>
-        <h2>class name: {this.state.classRooms[0].name}</h2>
+        <h2>class name: {this.state.classRooms.name}</h2>
         <StudentList
           key={123}
-          students={this.state.classRooms[0].students}
+          classId={this.state.classRooms.id}
+          students={this.state.classRooms.students}
           onAdd={this.HandleAdd}
-        ></StudentList>
+        />
       </div>
     );
   }
