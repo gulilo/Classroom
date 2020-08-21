@@ -24,7 +24,7 @@ class App extends Component {
       <Router>
         <div>
           <menuBar className={styles_topMenu.topMenuBar}>
-          <NavLink to="/classrooms" className={styles_topMenu.topMenuItem}>classrooms</NavLink>
+          <NavLink to="/classrooms" className={styles_topMenu.topMenuItem}><span className={styles_topMenu.MenuText}>classrooms</span></NavLink>
           <NavLink to="/classroom/new" className={styles_topMenu.topMenuItem}>new class</NavLink>  
           <NavLink to="/options" className={styles_topMenu.topMenuItem}>options</NavLink>
           </menuBar>
