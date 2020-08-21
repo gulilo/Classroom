@@ -26,10 +26,21 @@ class App extends Component {
             <Route path="/" exact component={Home} />
             <Route path="/classrooms" exact component={ChooseClass} />
             <Route path="/classroom/new" exact component={NewClass} />
-            <Route path="/classroom/:name" component={ClassRoomComponent} />
+            <Route
+              path="/classroom/:classId"
+              exact
+              component={ClassRoomComponent}
+            />
             <Route path="/options" component={Options} />
-            <Route path="/student/new" exact component={NewStudent} />
-            <Route path="/student/:id" component={StudentComponent} />
+            <Route
+              path="/classroom/:classId/student/new"
+              exact
+              component={NewStudent}
+            />
+            <Route
+              path="/classroom/:classId/student/:studentId"
+              component={StudentComponent}
+            />
           </Switch>
         </div>
       </Router>

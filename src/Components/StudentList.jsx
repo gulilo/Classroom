@@ -1,17 +1,29 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import StudentComponent from "./StudentComponent";
+
+import { students as StudentsList } from "../mockedData/Students";
 
 class StudentList extends Component {
-  state = {};
+  state = { students: [{ id: -1, name: "" }] };
+
+  componentDidMount() {
+    const students = StudentsList.filter(({ id }) =>
+      this.props.students.find((student) => student.id === id)
+    );
+
+    this.setState({ students });
+  }
 
   render() {
+    if (this.state.students[0].id === -1) return null;
     return (
       <div>
         <ul>
-          {this.props.students.map((student) => (
+          {this.state.students.map((student) => (
             <li key={student.id}>
-              <Link to={`/student/${student.id}`}>{student.name}</Link>
+              <Link to={`${this.props.classId}/student/${student.id}`}>
+                {student.name}
+              </Link>
             </li>
           ))}
         </ul>
