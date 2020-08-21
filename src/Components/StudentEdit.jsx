@@ -1,9 +1,12 @@
 import React, { Component } from "react";
 import buttonStyles from "../simpleButtons.module.css";
+import { classes } from "../mockedData/classes";
+import { students } from "../mockedData/Students";
 
 class StudentEdit extends Component {
   state = {
-    student: { id: 0, name: "temp", likes: [], dislike: [] },
+    student: { id: -1, name: "", likes: [], dislike: [] },
+    otherStudents: [{ id: -1, name: "" }],
 
     nameEdit: false,
     likeAdd: false,
@@ -18,41 +21,110 @@ class StudentEdit extends Component {
   }
 
   componentDidMount() {
-    const student = this.students.find(
-      ({ id }) => id == this.props.match.params.id
+    const classStudent = classes
+      .find(({ id }) => id == this.props.match.params.classId)
+      .students.find(({ id }) => id == this.props.match.params.studentId);
+
+    const studentLikes = students.filter(({ id }) =>
+      classStudent.likes.find((student) => student === id)
     );
-    this.setState({ student });
+
+    const studentsDislikes = students.filter(({ id }) =>
+      classStudent.dislike.find((student) => student === id)
+    );
+
+    const student = {
+      id: classStudent.id,
+      name: students.find(({ id }) => id == classStudent.id).name,
+      likes: studentLikes,
+      dislike: studentsDislikes,
+    };
+
+    const otherStudents = students.filter(({ id }) =>
+      classes
+        .find(({ id }) => id == this.props.match.params.classId)
+        .students.find((student) => student.id === id)
+    );
+
+    this.setState({ student, otherStudents });
   }
 
   HundleDone = () => {
+    const newName = this.nameInput.current.value;
+
     let student = this.state.student;
-    student.name = this.nameInput.current.value;
-    this.setState({ student: student, nameEdit: false });
+    student.name = newName;
+
+    students.find(({ id }) => id == student.id).name = newName;
+
+    this.setState({ student, nameEdit: false });
   };
 
-  HandleDelete = (id, list) => {
+  HandleDelete = (toDelete, list) => {
     const student = this.state.student;
-    const index = list.indexOf(id);
-    if (index > -1) {
-      list.splice(index, 1);
+    console.log(list);
+    if (list === "likes") {
+      const index = student.likes.indexOf(toDelete);
+      if (index > -1) {
+        student.likes.splice(index, 1);
+
+        classes
+          .find(({ id }) => id == this.props.match.params.classId)
+          .students.find(({ id }) => id == this.props.match.params.studentId)
+          .likes.splice(index, 1);
+      }
+    } else {
+      const index = student.dislike.indexOf(toDelete);
+      if (index > -1) {
+        student.dislike.splice(index, 1);
+
+        classes
+          .find(({ id }) => id == this.props.match.params.classId)
+          .students.find(({ id }) => id == this.props.match.params.studentId)
+          .dislike.splice(index, 1);
+      }
     }
-    this.setState({ student: student });
+
+    this.setState({ student });
   };
 
-  HandleSave = (id, list) => {
-    let student = this.state.student;
-    list.push(id);
-    this.setState({ student: student });
+  HandleSave = (studentId, list) => {
+    const student = this.state.student;
+    const toadd = students.find(({ id }) => id == studentId);
+
+    if (list === "likes") {
+      student.likes.push(toadd);
+      classes
+        .find(({ id }) => id == this.props.match.params.classId)
+        .students.find(({ id }) => id == this.props.match.params.studentId)
+        .likes.push(toadd.id);
+    } else {
+      student.dislike.push(toadd);
+
+      classes
+        .find(({ id }) => id == this.props.match.params.classId)
+        .students.find(({ id }) => id == this.props.match.params.studentId)
+        .dislike.push(toadd.id);
+    }
+
+    this.setState({ student });
   };
 
   ShowList = (list) => {
-    return list.map((id2) => (
-      <li key={`${id2}`}>
+    var arr;
+    if (list === "likes") {
+      arr = this.state.student.likes;
+    } else {
+      arr = this.state.student.dislike;
+    }
+
+    return arr.map((student) => (
+      <li key={`${student.id}`}>
         <span>
-          {this.students.find(({ id }) => id == id2).name}
+          {student.name}
           <button
             className={buttonStyles.deleteButton}
-            onClick={(e) => this.HandleDelete(id2, list)}
+            onClick={(e) => this.HandleDelete(student, list)}
           ></button>
         </span>
       </li>
@@ -68,11 +140,11 @@ class StudentEdit extends Component {
               type="Text"
               ref={this.nameInput}
               defaultValue={this.state.student.name}
-            ></input>
+            />
             <button
               className={buttonStyles.saveButton}
               onClick={this.HundleDone}
-            ></button>
+            />
           </span>
         ) : (
           <span>
@@ -82,13 +154,13 @@ class StudentEdit extends Component {
               onClick={(e) => {
                 this.setState({ nameEdit: true });
               }}
-            ></button>
+            />
           </span>
         )}
         <br />
         likes:
         <ul>
-          {this.ShowList(this.state.student.likes)}
+          {this.ShowList("likes")}
 
           {this.state.student.likes.length < 3 && !this.state.likeAdd ? (
             <li key="addButton">
@@ -97,26 +169,23 @@ class StudentEdit extends Component {
                 onClick={(e) => {
                   this.setState({ likeAdd: true });
                 }}
-              ></button>
+              />
             </li>
           ) : this.state.likeAdd ? (
             <li key="new">
               <span>
                 <select ref={this.likeAdd}>
-                  {this.students.map(({ id, name }) => (
+                  {this.state.otherStudents.map(({ id, name }) => (
                     <option value={id}>{name}</option>
                   ))}
                 </select>
                 <button
                   className={buttonStyles.saveButton}
                   onClick={(e) => {
-                    this.HandleSave(
-                      this.likeAdd.current.value,
-                      this.state.student.likes
-                    );
+                    this.HandleSave(this.likeAdd.current.value, "likes");
                     this.setState({ likeAdd: false });
                   }}
-                ></button>
+                />
               </span>
             </li>
           ) : null}
@@ -124,7 +193,7 @@ class StudentEdit extends Component {
         <br />
         dislikes:
         <ul>
-          {this.ShowList(this.state.student.dislike)}
+          {this.ShowList("dislike")}
 
           {this.state.student.dislike.length < 3 && !this.state.dislikeAdd ? (
             <li key="addButton">
@@ -133,26 +202,23 @@ class StudentEdit extends Component {
                 onClick={(e) => {
                   this.setState({ dislikeAdd: true });
                 }}
-              ></button>
+              />
             </li>
           ) : this.state.dislikeAdd ? (
             <li key="new">
               <span>
                 <select ref={this.dislikeAdd}>
-                  {this.students.map(({ id, name }) => (
+                  {this.state.otherStudents.map(({ id, name }) => (
                     <option value={id}>{name}</option>
                   ))}
                 </select>
                 <button
                   className={buttonStyles.saveButton}
                   onClick={(e) => {
-                    this.HandleSave(
-                      this.dislikeAdd.current.value,
-                      this.state.student.dislike
-                    );
+                    this.HandleSave(this.dislikeAdd.current.value, "dislike");
                     this.setState({ dislikeAdd: false });
                   }}
-                ></button>
+                />
               </span>
             </li>
           ) : null}
@@ -160,24 +226,6 @@ class StudentEdit extends Component {
       </div>
     );
   }
-
-  students = [
-    { id: 23, name: "amit", likes: [98, 99], dislike: [11] },
-    { id: 11, name: "gal" },
-    { id: 98, name: "hagit" },
-    { id: 99, name: "eli" },
-    { id: 1, name: "alpha" },
-    { id: 2, name: "bravo" },
-    { id: 3, name: "chralie" },
-    { id: 4, name: "delta" },
-    { id: 5, name: "echo" },
-    { id: 6, name: "fox" },
-    { id: 26, name: "zulu" },
-    { id: 25, name: "yankee" },
-    { id: 24, name: "xray" },
-    { id: 27, name: "whiskey" },
-    { id: 28, name: "victor" },
-  ];
 }
 
 export default StudentEdit;
