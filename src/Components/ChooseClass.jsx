@@ -1,7 +1,9 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 
-import CLStyles from "../cssFiles/classroomList.module.css";
+
+import Style_MainGrid from "../cssFiles/MainGridLayout.module.css";
+import Style_classroomList from "../cssFiles/classroomList.module.css";
 
 
 class ChooseClass extends Component {
@@ -44,11 +46,11 @@ class ChooseClass extends Component {
   };
   render() {
     return (
-      <div>
-        <ul className={CLStyles.listStyle}>
+      <div className={Style_MainGrid.AppMainArea}>
+        <ul className={Style_classroomList.listStyle}>
           {this.state.classRooms.map((room) => (
-            <li className={CLStyles.lineStyle}>
-              <Link to={`/classroom/${room.name}`}>{room.name} </Link>
+            <li className={Style_classroomList.lineStyle}>
+              <Link className={Style_classroomList.classLink} to={`/classroom/${room.name}`}>{room.name} </Link>
             </li>
           ))}
         </ul>

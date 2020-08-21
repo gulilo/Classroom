@@ -15,16 +15,16 @@ import StudentEdit from "./StudentEdit";
 import StudentInfo from "./StudentInfo";
 
 import styles_topMenu from "../cssFiles/menuBar.module.css";
-
+import Style_MainGrid from "../cssFiles/MainGridLayout.module.css";
 
 class App extends Component {
   state = {};
   render() {
     return (
       <Router>
-        <div>
+        <div className={Style_MainGrid.AppMainGrid}>
           <menuBar className={styles_topMenu.topMenuBar}>
-          <NavLink to="/classrooms" className={styles_topMenu.topMenuItem}><span className={styles_topMenu.MenuText}>classrooms</span></NavLink>
+          <NavLink to="/classrooms" className={styles_topMenu.topMenuItem}>classrooms</NavLink>
           <NavLink to="/classroom/new" className={styles_topMenu.topMenuItem}>new class</NavLink>  
           <NavLink to="/options" className={styles_topMenu.topMenuItem}>options</NavLink>
           </menuBar>

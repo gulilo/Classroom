@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 
 import StudentList from "./StudentList";
+import Style_classroomList from "../cssFiles/classroomList.module.css";
+import Style_MainGrid from "../cssFiles/MainGridLayout.module.css";
 
 class ClassRoomComponent extends Component {
   state = {
@@ -56,7 +58,7 @@ class ClassRoomComponent extends Component {
 
   render() {
     return (
-      <div>
+      <div className={Style_MainGrid.AppMainArea}>
         <h2>class name: {this.state.classRooms[0].name}</h2>
         <StudentList
           key={123}
