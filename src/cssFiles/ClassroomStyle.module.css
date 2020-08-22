@@ -8,26 +8,39 @@ body{
     height: 10%;
 }
 .studentList > .studentItem{
-    font-size: 1.5em;
-    list-style-type: decimal;
-    list-style-position: inside;
-    padding: 0.1em 0.5em;
-    
-
-
     display: flex;
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-transform: capitalize;
+    text-decoration: none;
+
+    height: 3vh;
+    min-height: 1rem;
+    
+    width: 20rem;
+    min-width: 5rem;
+    max-width: 15rem;
+    
+    margin: 5px;
+    border : 2px navy solid;
+    border-radius: 50px;
+    background-color: var(--middle-blue);
+
+    padding: 5px 0px;
+    align-items: center;
     justify-content: space-between;
-    
-    margin-left: 30em;
+}
+.studentList > .studentItem > .StudentEditButton{
+    height: 80%;
+    padding-left: 20%;
+
+    border-radius: 0.9em;
     border-style: solid;
-    border-radius: 5em;
-    background-color: lightgray;
-
-    width: 12%;
-    min-height: 3em;
-    max-height: 7em;
-    height: 10vh;
-    
-
-    margin: 0.2em;
+    border-width: 0.1em;
+    outline: none;
+    background-color: lightblue;
+    background-image: url("/icons1/create-24px.svg");
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    justify-self: flex-end;
 }

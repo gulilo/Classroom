@@ -18,6 +18,7 @@
 
     list-style-type: none;
     color: orange;
+    
 
 }
 
@@ -33,6 +34,8 @@
     min-height: 1rem;
     
     width: 20rem;
+    min-width: 5rem;
+    max-width: 8rem;
     
     margin: 5px;
     border : 2px navy solid;
@@ -42,6 +45,8 @@
     padding: 5px 0px;
     align-items: center;
     justify-content: center;
+
+    
 }
 
 .listStyle > .lineStyle > .classLink{

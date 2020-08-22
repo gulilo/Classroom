@@ -27,7 +27,7 @@ class StudentList extends Component {
                 {student.name}
               </Link>
               <Link
-                className={Buttons.editButton}
+                className={`${Buttons.editButton}, ${listStyle.StudentEditButton}`}
                 to={`${this.props.classId}/student/${student.id}/edit`}
               ></Link>
             </li>
