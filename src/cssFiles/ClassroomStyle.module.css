@@ -11,19 +11,17 @@ body{
     box-sizing: border-box;
 
     justify-content: space-between;
-    align-content: center;
-    
-    font-size: 1.5rem;
+
+    font-size: 3vmin;
     font-weight: bold;
     text-transform: capitalize;
-    text-decoration: none;
+    
 
 
-    height: 3vh;
+    height: 5vh;
     min-height: 1rem;
-    
-    
-    
+    width: 100%;
+
     border : 2px navy solid;
     border-radius: 50px;
     background-color: var(--middle-blue);
@@ -36,12 +34,14 @@ body{
     
 }
 .studentList > .studentItem > .StudentLink{
-    display: flex;
+    display: inline;
+    
+    align-self: center;
     text-decoration: none;
-    width: 70%;
-    height: 20%;
-    align-items: flex-start;
-    justify-content: flex-start;
+    
+    
+    overflow: hidden;;
+    
     margin-left: 5%;
 
     font-size: 80%;
@@ -49,14 +49,19 @@ body{
 
 .studentList > .studentItem > .StudentEditButton{
     
-    
-    width: 20%;
-    height: 70%;
-    
+    display: block;
+    width: 30px;
+    width: minmax(1rem,3vw);
+    height: minmax(1rem,100%);
 
-    justify-self: left;
 
-    border-radius: 0.9em;
+ 
+    box-sizing: border-box;
+    margin: 3%;
+
+    justify-self: flex-end;
+
+    border-radius: 100%;
     border-style: solid;
     border-width: 0.1em;
     outline: none;
