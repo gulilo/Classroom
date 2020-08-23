@@ -24,32 +24,14 @@ class StudentEdit extends Component {
   }
 
   componentDidMount() {
-    const classStudent = classes
-      .find(({ id }) => id == this.props.match.params.classId)
-      .students.find(({ id }) => id == this.props.match.params.studentId);
+    if (this.props.newStudent) {
+      this.setState({ nameEdit: true });
+    } else {
+      const student = this.props.student;
+      const otherStudents = this.props.otherStudents;
 
-    const studentLikes = students.filter(({ id }) =>
-      classStudent.likes.find((student) => student === id)
-    );
-
-    const studentsDislikes = students.filter(({ id }) =>
-      classStudent.dislike.find((student) => student === id)
-    );
-
-    const student = {
-      id: classStudent.id,
-      name: students.find(({ id }) => id == classStudent.id).name,
-      likes: studentLikes,
-      dislike: studentsDislikes,
-    };
-
-    const otherStudents = students.filter(({ id }) =>
-      classes
-        .find(({ id }) => id == this.props.match.params.classId)
-        .students.find((student) => student.id === id)
-    );
-
-    this.setState({ student, otherStudents });
+      this.setState({ student, otherStudents });
+    }
   }
 
   HundleDone = () => {
@@ -58,58 +40,41 @@ class StudentEdit extends Component {
     let student = this.state.student;
     student.name = newName;
 
-    students.find(({ id }) => id == student.id).name = newName;
+    this.props.changeName(newName); // move to save button
 
     this.setState({ student, nameEdit: false });
   };
 
   HandleDelete = (toDelete, list) => {
     const student = this.state.student;
-    console.log(list);
     if (list === "likes") {
       const index = student.likes.indexOf(toDelete);
       if (index > -1) {
         student.likes.splice(index, 1);
-
-        classes
-          .find(({ id }) => id == this.props.match.params.classId)
-          .students.find(({ id }) => id == this.props.match.params.studentId)
-          .likes.splice(index, 1);
       }
     } else {
       const index = student.dislike.indexOf(toDelete);
       if (index > -1) {
         student.dislike.splice(index, 1);
-
-        classes
-          .find(({ id }) => id == this.props.match.params.classId)
-          .students.find(({ id }) => id == this.props.match.params.studentId)
-          .dislike.splice(index, 1);
       }
     }
+
+    this.props.deleteFromList(toDelete, list);
 
     this.setState({ student });
   };
 
   HandleSave = (studentId, list) => {
     const student = this.state.student;
-    const toadd = students.find(({ id }) => id == studentId);
+    const toadd = this.props.getStudent(studentId);
 
     if (list === "likes") {
       student.likes.push(toadd);
-      classes
-        .find(({ id }) => id == this.props.match.params.classId)
-        .students.find(({ id }) => id == this.props.match.params.studentId)
-        .likes.push(toadd.id);
     } else {
       student.dislike.push(toadd);
-
-      classes
-        .find(({ id }) => id == this.props.match.params.classId)
-        .students.find(({ id }) => id == this.props.match.params.studentId)
-        .dislike.push(toadd.id);
     }
 
+    this.props.addToList(studentId, list);
     this.setState({ student });
   };
 

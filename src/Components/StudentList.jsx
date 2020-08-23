@@ -2,22 +2,19 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 
 import listStyle from "../cssFiles/ClassroomStyle.module.css";
-import Buttons from "../cssFiles/simpleButtons.module.css";
-import { students as StudentsList } from "../mockedData/Students";
+
+
 
 class StudentList extends Component {
-  state = { students: [{ id: -1, name: "" }] };
+  state = { students: [] };
 
   componentDidMount() {
-    const students = StudentsList.filter(({ id }) =>
-      this.props.students.find((student) => student.id === id)
-    );
-
+    const students = this.props.students;
     this.setState({ students });
   }
 
   render() {
-    if (this.state.students[0].id === -1) return null;
+    if (this.state.students.length === 0) return null;
     return (
       <div>
         <span className={listStyle.studentList}>
