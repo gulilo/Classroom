@@ -88,10 +88,10 @@ class StudentEdit extends Component {
 
     return arr.map((student) => (
       <li key={`${student.id}`}>
-        <span>
+        <span className={labelStyles.StudentNameBracket}>
           {student.name}
           <button
-            className={buttonStyles.deleteButton}
+            className={labelStyles.DeleteButton}
             onClick={(e) => this.HandleDelete(student, list)}
           ></button>
         </span>
@@ -143,14 +143,14 @@ class StudentEdit extends Component {
             </li>
           ) : this.state.likeAdd ? (
             <li key="new">
-              <span>
-                <select ref={this.likeAdd}>
+              <span className={labelStyles.StudentNameBracket}>
+                <select className={labelStyles.StudentPicker} ref={this.likeAdd}>
                   {this.state.otherStudents.map(({ id, name }) => (
                     <option value={id}>{name}</option>
                   ))}
                 </select>
                 <button
-                  className={buttonStyles.saveButton}
+                  className={labelStyles.saveButton}
                   onClick={(e) => {
                     this.HandleSave(this.likeAdd.current.value, "likes");
                     this.setState({ likeAdd: false });
@@ -162,7 +162,7 @@ class StudentEdit extends Component {
         </span>
         <br />
         dislikes:
-        <ul>
+        <span>
           {this.ShowList("dislike")}
 
           {this.state.student.dislike.length < 3 && !this.state.dislikeAdd ? (
@@ -176,14 +176,14 @@ class StudentEdit extends Component {
             </li>
           ) : this.state.dislikeAdd ? (
             <li key="new">
-              <span>
-                <select ref={this.dislikeAdd}>
+              <span className={labelStyles.StudentNameBracket}>
+                <select className={labelStyles.StudentPicker} ref={this.dislikeAdd}>
                   {this.state.otherStudents.map(({ id, name }) => (
                     <option value={id}>{name}</option>
                   ))}
                 </select>
                 <button
-                  className={buttonStyles.saveButton}
+                  className={labelStyles.saveButton}
                   onClick={(e) => {
                     this.HandleSave(this.dislikeAdd.current.value, "dislike");
                     this.setState({ dislikeAdd: false });
@@ -192,7 +192,7 @@ class StudentEdit extends Component {
               </span>
             </li>
           ) : null}
-        </ul>
+        </span>
       </div>
     );
   }
