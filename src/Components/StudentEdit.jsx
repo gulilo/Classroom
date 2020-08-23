@@ -4,6 +4,8 @@ import labelStyles from "../cssFiles/StudentEdit.module.css";
 import { classes } from "../mockedData/classes";
 import { students } from "../mockedData/Students";
 
+import Style_MainGrid from "../cssFiles/MainGridLayout.module.css";
+
 class StudentEdit extends Component {
   state = {
     student: { id: -1, name: "", likes: [], dislike: [] },

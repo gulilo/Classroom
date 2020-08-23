@@ -29,10 +29,14 @@ body{
     padding: 5px 0px;
     align-items: center;
     justify-content: space-between;
+
+    
 }
 .studentList > .studentItem > .StudentEditButton{
     height: 80%;
-    padding-left: 20%;
+    padding-left: 10%;
+
+    margin-right: 10px;
 
     border-radius: 0.9em;
     border-style: solid;

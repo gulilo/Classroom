@@ -28,6 +28,8 @@
     height: auto;
 
     grid-column: 2;
+    grid-column-start: 2;
+    grid-column-end: 5;
 
     border: var(--onyx);
     border-width: 2px;
