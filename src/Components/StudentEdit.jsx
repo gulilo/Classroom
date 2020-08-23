@@ -136,7 +136,7 @@ class StudentEdit extends Component {
 
   render() {
     return (
-      <div>
+      <div className={Style_MainGrid.AppMainArea}>
         {this.state.nameEdit ? (
           <span>
             <input
