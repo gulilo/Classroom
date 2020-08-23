@@ -12,6 +12,7 @@ import StudentRoute from "../Routes/StudentRoute";
 import StudentEditRoute from "../Routes/StudentEditRoute";
 import ClassListRoute from "../Routes/ClassListRoute";
 import ClassroomRoute from "../Routes/ClassroomRoute";
+import Greeting from "./Greeting";
 
 class App extends Component {
   state = {};
@@ -22,6 +23,8 @@ class App extends Component {
           <NavLink to="/classrooms">classrooms</NavLink>
           <NavLink to="/classroom/new">new class </NavLink>
           <NavLink to="/options">options</NavLink>
+          <br />
+          <Greeting name="Degenerat" />
           <Switch>
             <Route path="/" exact component={Home} />
             <Route path="/classrooms" exact component={ClassListRoute} />
