@@ -136,7 +136,7 @@ class StudentEdit extends Component {
 
   render() {
     return (
-      <div>
+      <div className={Style_MainGrid.AppMainArea}>
         {this.state.nameEdit ? (
           <span>
             <input
@@ -151,9 +151,11 @@ class StudentEdit extends Component {
           </span>
         ) : (
           <span className={labelStyles.StudentNameBracket}>
+            <span className={labelStyles.NameLabel}>
               {this.state.student.name}
+            </span>
             <button
-              className={buttonStyles.editButton}
+              className={labelStyles.editbutton}
               onClick={(e) => {
                 this.setState({ nameEdit: true });
               }}

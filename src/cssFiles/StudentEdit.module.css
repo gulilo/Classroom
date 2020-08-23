@@ -1,20 +1,57 @@
 
 
 .StudentNameBracket{
-    font-size: 1.5em;
-    list-style-type: decimal;
-    list-style-position: inside;
-    padding: 0.1em 0.5em;
-    
     display: flex;
+    box-sizing: border-box;
+
     justify-content: space-between;
+    align-content: center;
     
-    margin-left: 30em;
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-transform: capitalize;
+    text-decoration: none;
+
+
+    height: 3vh;
+    min-height: 1rem;
+    
+    
+    
+    border : 2px navy solid;
+    border-radius: 50px;
+    background-color: var(--middle-blue);
+
+    padding: 0px 0px;
+
+    margin-bottom: 3px;
+}
+
+.StudentNameBracket > .editbutton{
+    width: 20%;
+    height: 70%;
+    
+
+    justify-self: left;
+    margin: 2%;
+    border-radius: 0.9em;
     border-style: solid;
-    border-radius: 5em;
-    background-color: lightgray;
+    border-width: 0.1em;
+    outline: none;
+    background-color: lightblue;
+    background-image: url("/icons1/create-24px.svg");
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
 
-    width: 7em;
+.StudentNameBracket > .NameLabel{
+    display: flex;
+    text-decoration: none;
+    width: 70%;
+    height: 20%;
+    align-items: flex-start;
+    justify-content: flex-start;
+    margin-left: 5%;
 
-    margin: 0.2em;
+    font-size: 80%;
 }
