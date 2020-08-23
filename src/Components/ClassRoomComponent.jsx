@@ -1,36 +1,30 @@
 import React, { Component } from "react";
 import StudentList from "./StudentList";
 
-import { classes } from "../mockedData/classes";
+import { students as StudentsList } from "../mockedData/Students";
 
 class ClassRoomComponent extends Component {
-  state = { classRooms: { id: -1, name: "bla", students: [] } };
+  state = { students: [] };
 
   componentDidMount() {
-    const classRooms = classes.find(
-      ({ id }) => id == this.props.match.params.classId
+    const students = StudentsList.filter(({ id }) =>
+      this.props.classroom.students.find((student) => student.id === id)
     );
-
-    this.setState({ classRooms });
+    this.setState({ students });
   }
 
-  HandleAdd = (studentName) => {
-    const students = [...this.state.students];
-    students.push({ id: this.state.students.length, name: studentName });
-    this.setState({ students });
-  };
-
   render() {
-    if (this.state.classRooms.id === -1) return null;
+    if (this.state.students.length === 0) {
+      return null;
+    }
 
     return (
       <div>
-        <h2>class name: {this.state.classRooms.name}</h2>
+        <h2>class name: {this.props.classroom.name}</h2>
         <StudentList
-          key={123}
-          classId={this.state.classRooms.id}
-          students={this.state.classRooms.students}
-          onAdd={this.HandleAdd}
+          key={this.props.classroom.id}
+          classId={this.props.classroom.id}
+          students={this.state.students}
         />
       </div>
     );

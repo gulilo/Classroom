@@ -2,7 +2,6 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import * as serviceWorker from './serviceWorker';
 import App from './Components/App';
-import ChooseClass from './Components/ChooseClass';
 
 
 

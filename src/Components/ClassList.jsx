@@ -1,14 +1,14 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import { classes } from "../mockedData/classes";
 
-class ChooseClass extends Component {
+class ClassList extends Component {
   state = {};
+
   render() {
     return (
       <div>
         <ul>
-          {classes.map((room) => (
+          {this.props.classes.map((room) => (
             <li key={room.id}>
               <Link to={`/classroom/${room.id}`}>{room.name} </Link>
             </li>
@@ -19,4 +19,4 @@ class ChooseClass extends Component {
   }
 }
 
-export default ChooseClass;
+export default ClassList;
