@@ -12,13 +12,13 @@ class ChooseClass extends Component {
   render() {
     return (
       <div className={Style_MainGrid.AppMainArea}>
-        <ul className={Style_classroomList.listStyle}>
+        <span className={Style_classroomList.listStyle}>
         {classes.map((room) => (
             <li key={room.id} className={Style_classroomList.lineStyle}>
               <Link className={Style_classroomList.classLink} to={`/classroom/${room.id}`}>{room.name} </Link>
             </li>
           ))}
-        </ul>
+        </span>
       </div>
     );
   }

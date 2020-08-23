@@ -20,19 +20,21 @@ class StudentList extends Component {
     if (this.state.students[0].id === -1) return null;
     return (
       <div>
-        <ul className={listStyle.studentList}>
+        <span className={listStyle.studentList}>
           {this.state.students.map((student) => (
             <li className={listStyle.studentItem} key={student.id}>
-              <Link to={`${this.props.classId}/student/${student.id}`}>
+              <Link className={listStyle.StudentLink} to={`${this.props.classId}/student/${student.id}`}>
                 {student.name}
               </Link>
+              
               <Link
-                className={`${Buttons.editButton}, ${listStyle.StudentEditButton}`}
+                className={listStyle.StudentEditButton}
                 to={`${this.props.classId}/student/${student.id}/edit`}
               ></Link>
+              
             </li>
           ))}
-        </ul>
+        </span>
       </div>
     );
   }

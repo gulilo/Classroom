@@ -12,14 +12,12 @@ body
 
     display: grid;
     grid-template-rows: 5vh clac(100%-15vh) 10vh;
-    grid-template-columns: 5% minmax(100px, 15%) minmax(100px, 15%) auto;
+    grid-template-columns: 5% minmax(100px, 15%) minmax(100px, 15%) minmax(50%, 90%) 5%;
 
     row-gap: 10px;
 
     margin: 3vh;
-    
-
-    
+ 
 
 }
 

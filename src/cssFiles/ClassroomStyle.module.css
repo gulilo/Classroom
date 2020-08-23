@@ -4,39 +4,57 @@ body{
     height: 10vh;
 }
 .studentList{
-    list-style-type: decimal;
-    height: 10%;
+    
 }
 .studentList > .studentItem{
     display: flex;
+    box-sizing: border-box;
+
+    justify-content: space-between;
+    align-content: center;
+    
     font-size: 1.5rem;
     font-weight: bold;
     text-transform: capitalize;
     text-decoration: none;
 
+
     height: 3vh;
     min-height: 1rem;
     
-    width: 20rem;
-    min-width: 5rem;
-    max-width: 15rem;
     
-    margin: 5px;
+    
     border : 2px navy solid;
     border-radius: 50px;
     background-color: var(--middle-blue);
 
-    padding: 5px 0px;
-    align-items: center;
-    justify-content: space-between;
+    padding: 0px 0px;
+
+    margin-bottom: 3px;
+
 
     
 }
-.studentList > .studentItem > .StudentEditButton{
-    height: 80%;
-    padding-left: 10%;
+.studentList > .studentItem > .StudentLink{
+    display: flex;
+    text-decoration: none;
+    width: 70%;
+    height: 20%;
+    align-items: flex-start;
+    justify-content: flex-start;
+    margin-left: 5%;
 
-    margin-right: 10px;
+    font-size: 80%;
+}
+
+.studentList > .studentItem > .StudentEditButton{
+    
+    
+    width: 20%;
+    height: 70%;
+    
+
+    justify-self: left;
 
     border-radius: 0.9em;
     border-style: solid;
@@ -46,5 +64,5 @@ body{
     background-image: url("/icons1/create-24px.svg");
     background-repeat: no-repeat;
     background-size: 100% 100%;
-    justify-self: flex-end;
+    
 }
