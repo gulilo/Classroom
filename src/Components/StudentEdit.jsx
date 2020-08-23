@@ -138,14 +138,14 @@ class StudentEdit extends Component {
     return (
       <div className={Style_MainGrid.AppMainArea}>
         {this.state.nameEdit ? (
-          <span>
-            <input
+          <span className={labelStyles.StudentNameBracket}>
+            <input className={labelStyles.NameLabel}
               type="Text"
               ref={this.nameInput}
               defaultValue={this.state.student.name}
             />
             <button
-              className={buttonStyles.saveButton}
+              className={labelStyles.saveButton}
               onClick={this.HundleDone}
             />
           </span>
@@ -164,7 +164,7 @@ class StudentEdit extends Component {
         )}
         <br />
         likes:
-        <ul>
+        <span>
           {this.ShowList("likes")}
 
           {this.state.student.likes.length < 3 && !this.state.likeAdd ? (
@@ -194,7 +194,7 @@ class StudentEdit extends Component {
               </span>
             </li>
           ) : null}
-        </ul>
+        </span>
         <br />
         dislikes:
         <ul>
