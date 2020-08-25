@@ -1,0 +1,74 @@
+:root{
+    
+    --burnt-sienna: #de6b48ff;
+    --melon: #f4b9b2ff;
+    --middle-yellow-red: #e5b181ff;
+    --tea-green: #daedbdff;
+    --middle-blue: #7dbbc3ff;
+    --onyx: #3b3d40ff;
+    --dim-gray: #636667ff;
+    --spanish-gray: #909393ff;
+    --silver-sand: #bdc0bfff;
+    --platinum: #e9eceaff;
+}
+
+.topMenuBar {
+    display: grid;
+    grid-gap: 3%;
+    padding: 0.3vh 1vw;
+
+    background-color: var(--middle-yellow-red);
+    grid-template-columns: minmax(10%,15%) minmax(10%,15%) minmax(10%,15%) minmax(10%,15%) minmax(10%,15%) minmax(10%,15%) minmax(10%,15%) ;
+
+
+    justify-content: center;
+    align-items: center;
+   
+    min-height: 2rem;
+    height: auto;
+
+    grid-row: 1;
+    grid-column-start: 2;
+    grid-column-end: 5;
+
+    border: var(--onyx);
+    border-width: 2px;
+    border-style: solid;
+    
+}
+
+
+.topMenuBar > .topMenuItem {
+    
+    display: flex;
+    text-align: center;
+
+    height: 3vh;
+    min-height: 80%;
+
+    
+
+    border-radius: 50px;
+    background-color: var(--burnt-sienna) ;
+
+    justify-content: center;
+    align-items: center;
+
+    text-decoration: none;
+
+    font-size: 2vw;
+    padding: 4px;
+    
+
+}
+
+
+.topMenuBar > .topMenuItem:hover{
+    text-shadow: 0px 0px 5px darkblue ;
+}
+
+
+
+
+
+
