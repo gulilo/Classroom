@@ -188,6 +188,8 @@ class StudentEdit extends Component {
             </li>
           ) : null}
         </ul>
+        <button>save</button>
+        <button>cancel</button>
       </div>
     );
   }
