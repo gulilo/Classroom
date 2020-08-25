@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+
 import buttonStyles from "../cssFiles/simpleButtons.module.css";
 import labelStyles from "../cssFiles/StudentEdit.module.css";
 
@@ -202,8 +203,15 @@ class StudentEdit extends Component {
             </li>
           ) : null}
         </span>
-        <button onClick={this.HandleSave}>save</button>
-        <button onClick={this.props.cancel}>cancel</button>
+        <button onClick={this.HandleSave} className={labelStyles.SaveButton}>
+          <span className={labelStyles.Text}>save</span>
+        </button>
+        <button
+          onClick={this.props.cancel}
+          className={labelStyles.CancelButton}
+        >
+          <span className={labelStyles.Text}>cancel</span>
+        </button>
       </div>
     );
   }
