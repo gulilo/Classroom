@@ -1,6 +1,8 @@
 import React, { Component } from "react";
+
 import buttonStyles from "../cssFiles/simpleButtons.module.css";
 import labelStyles from "../cssFiles/StudentEdit.module.css";
+
 import { classes } from "../mockedData/classes";
 import { students } from "../mockedData/Students";
 
@@ -200,8 +202,8 @@ class StudentEdit extends Component {
             </li>
           ) : null}
         </span>
-        <button>save</button>
-        <button>cancel</button>
+        <button className={labelStyles.SaveButton}><span className={labelStyles.Text}>save</span></button>
+        <button className={labelStyles.CancelButton}><span className={labelStyles.Text}>cancel</span></button>
       </div>
     );
   }
