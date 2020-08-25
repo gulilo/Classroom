@@ -1,7 +1,10 @@
 import React, { Component } from "react";
-import buttonStyles from "../simpleButtons.module.css";
+import buttonStyles from "../cssFiles/simpleButtons.module.css";
+import labelStyles from "../cssFiles/StudentEdit.module.css";
 import { classes } from "../mockedData/classes";
 import { students } from "../mockedData/Students";
+
+import Style_MainGrid from "../cssFiles/MainGridLayout.module.css";
 
 class StudentEdit extends Component {
   state = {
@@ -85,10 +88,10 @@ class StudentEdit extends Component {
 
     return arr.map((student) => (
       <li key={`${student.id}`}>
-        <span>
+        <span className={labelStyles.StudentNameBracket}>
           {student.name}
           <button
-            className={buttonStyles.deleteButton}
+            className={labelStyles.DeleteButton}
             onClick={(e) => this.HandleDelete(student, list)}
           ></button>
         </span>
@@ -98,24 +101,27 @@ class StudentEdit extends Component {
 
   render() {
     return (
-      <div>
+      <div className={Style_MainGrid.AppMainArea}>
         {this.state.nameEdit ? (
-          <span>
+          <span className={labelStyles.StudentNameBracket}>
             <input
+              className={labelStyles.NameLabel}
               type="Text"
               ref={this.nameInput}
               defaultValue={this.state.student.name}
             />
             <button
-              className={buttonStyles.saveButton}
+              className={labelStyles.saveButton}
               onClick={this.HundleDone}
             />
           </span>
         ) : (
-          <span>
-            {this.state.student.name}
+          <span className={labelStyles.StudentNameBracket}>
+            <span className={labelStyles.NameLabel}>
+              {this.state.student.name}
+            </span>
             <button
-              className={buttonStyles.editButton}
+              className={labelStyles.editbutton}
               onClick={(e) => {
                 this.setState({ nameEdit: true });
               }}
@@ -124,13 +130,13 @@ class StudentEdit extends Component {
         )}
         <br />
         likes:
-        <ul>
+        <span>
           {this.ShowList("likes")}
 
           {this.state.student.likes.length < 3 && !this.state.likeAdd ? (
             <li key="addButton">
               <button
-                className={buttonStyles.plusButton}
+                className={buttonStyles.addButton}
                 onClick={(e) => {
                   this.setState({ likeAdd: true });
                 }}
@@ -138,14 +144,17 @@ class StudentEdit extends Component {
             </li>
           ) : this.state.likeAdd ? (
             <li key="new">
-              <span>
-                <select ref={this.likeAdd}>
+              <span className={labelStyles.StudentNameBracket}>
+                <select
+                  className={labelStyles.StudentPicker}
+                  ref={this.likeAdd}
+                >
                   {this.state.otherStudents.map(({ id, name }) => (
                     <option value={id}>{name}</option>
                   ))}
                 </select>
                 <button
-                  className={buttonStyles.saveButton}
+                  className={labelStyles.saveButton}
                   onClick={(e) => {
                     this.HandleSave(this.likeAdd.current.value, "likes");
                     this.setState({ likeAdd: false });
@@ -154,16 +163,16 @@ class StudentEdit extends Component {
               </span>
             </li>
           ) : null}
-        </ul>
+        </span>
         <br />
         dislikes:
-        <ul>
+        <span>
           {this.ShowList("dislike")}
 
           {this.state.student.dislike.length < 3 && !this.state.dislikeAdd ? (
             <li key="addButton">
               <button
-                className={buttonStyles.plusButton}
+                className={buttonStyles.addButton}
                 onClick={(e) => {
                   this.setState({ dislikeAdd: true });
                 }}
@@ -171,14 +180,17 @@ class StudentEdit extends Component {
             </li>
           ) : this.state.dislikeAdd ? (
             <li key="new">
-              <span>
-                <select ref={this.dislikeAdd}>
+              <span className={labelStyles.StudentNameBracket}>
+                <select
+                  className={labelStyles.StudentPicker}
+                  ref={this.dislikeAdd}
+                >
                   {this.state.otherStudents.map(({ id, name }) => (
                     <option value={id}>{name}</option>
                   ))}
                 </select>
                 <button
-                  className={buttonStyles.saveButton}
+                  className={labelStyles.saveButton}
                   onClick={(e) => {
                     this.HandleSave(this.dislikeAdd.current.value, "dislike");
                     this.setState({ dislikeAdd: false });
@@ -187,7 +199,7 @@ class StudentEdit extends Component {
               </span>
             </li>
           ) : null}
-        </ul>
+        </span>
         <button>save</button>
         <button>cancel</button>
       </div>

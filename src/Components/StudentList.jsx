@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 
-import listStyle from "../ClassroomStyle.module.css";
-import Buttons from "../simpleButtons.module.css";
+import listStyle from "../cssFiles/ClassroomStyle.module.css";
+
+
 
 class StudentList extends Component {
   state = { students: [] };
@@ -16,19 +17,21 @@ class StudentList extends Component {
     if (this.state.students.length === 0) return null;
     return (
       <div>
-        <ul className={listStyle.studentList}>
+        <span className={listStyle.studentList}>
           {this.state.students.map((student) => (
             <li className={listStyle.studentItem} key={student.id}>
-              <Link to={`${this.props.classId}/student/${student.id}`}>
+              <Link className={listStyle.StudentLink} to={`${this.props.classId}/student/${student.id}`}>
                 {student.name}
               </Link>
+              
               <Link
-                className={Buttons.editButton}
+                className={listStyle.StudentEditButton}
                 to={`${this.props.classId}/student/${student.id}/edit`}
               ></Link>
+              
             </li>
           ))}
-        </ul>
+        </span>
       </div>
     );
   }
