@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import StudentEdit from "../Components/StudentEdit";
 
+import _ from "lodash";
+
 import { classes } from "../mockedData/classes";
 import { students } from "../mockedData/Students";
 
@@ -18,18 +20,25 @@ class StudentEditRoute extends Component {
       .find(({ id }) => id === this.getClassId())
       .students.find(({ id }) => id === this.getStudentId());
 
-    const studentLikes = students.filter(({ id }) =>
-      classStudent.likes.find((student) => student === id)
+    const studentName = (
+      " " + students.find(({ id }) => id === parseInt(classStudent.id, 10)).name
+    ).slice(1); // bug in chorme... forcing deep copy...
+
+    const studentLikes = _.cloneDeep(
+      students.filter(({ id }) =>
+        classStudent.likes.find((student) => student === id)
+      )
     );
 
-    const studentsDislikes = students.filter(({ id }) =>
-      classStudent.dislike.find((student) => student === id)
+    const studentsDislikes = _.cloneDeep(
+      students.filter(({ id }) =>
+        classStudent.dislike.find((student) => student === id)
+      )
     );
 
     const student = {
       id: classStudent.id,
-      name: students.find(({ id }) => id === parseInt(classStudent.id, 10))
-        .name,
+      name: studentName,
       likes: studentLikes,
       dislike: studentsDislikes,
     };
@@ -43,46 +52,30 @@ class StudentEditRoute extends Component {
     this.setState({ student, otherStudents });
   }
 
-  changeName = (newName) =>
-    (students.find(({ id }) => id === this.state.student.id).name = newName);
-
-  getStudent = (studentId) =>
-    students.find(({ id }) => id === parseInt(studentId, 10));
-
-  deleteFromList = (toDeleteId, list) => {
-    // not really working or needed.. move to save button
-    const todelete = parseInt(toDeleteId, 10);
-
-    if (list === "likes") {
-      const index = this.state.student.likes.indexOf(todelete);
-      console.log(index);
-      classes
-        .find(({ id }) => id === this.getClassId())
-        .students.find(({ id }) => id === this.getStudentId())
-        .likes.splice(index, 1);
-    } else if (list === "dislike") {
-      const index = this.state.student.dislike.indexOf(todelete);
-      classes
-        .find(({ id }) => id === this.getClassId())
-        .students.find(({ id }) => id === this.getStudentId())
-        .dislike.splice(index, 1);
+  saveStudent = () => {
+    console.log("bla");
+    if (this.state.student.id === -1) {
+      console.log("create new!");
+      return;
     }
+    const student = this.state.student;
+
+    const mockedStudent = students.find(
+      ({ id }) => id === this.state.student.id
+    );
+
+    const mockedClassStudent = classes
+      .find(({ id }) => id === this.getClassId())
+      .students.find(({ id }) => id === this.getStudentId());
+
+    mockedStudent.name = student.name;
+    mockedClassStudent.likes = student.likes.map(({ id }) => id);
+    mockedClassStudent.dislike = student.dislike.map(({ id }) => id);
   };
 
-  addToList = (toAddId, list) => {
-    const toAdd = parseInt(toAddId, 10);
-
-    if (list === "likes") {
-      classes
-        .find(({ id }) => id === this.getClassId())
-        .students.find(({ id }) => id === this.getStudentId())
-        .likes.push(toAdd);
-    } else if (list === "dislike") {
-      classes
-        .find(({ id }) => id === this.getClassId())
-        .students.find(({ id }) => id === this.getStudentId())
-        .dislike.push(toAdd);
-    }
+  handleCancel = () => {
+    console.log("cancel");
+    this.props.history.go(0); // refrash the page
   };
 
   render() {
@@ -94,10 +87,8 @@ class StudentEditRoute extends Component {
       <StudentEdit
         student={this.state.student}
         otherStudents={this.state.otherStudents}
-        changeName={this.changeName}
-        getStudent={this.getStudent}
-        deleteFromList={this.deleteFromList}
-        addToList={this.addToList}
+        saveStudent={this.saveStudent}
+        cancel={this.handleCancel}
       ></StudentEdit>
     );
   }
