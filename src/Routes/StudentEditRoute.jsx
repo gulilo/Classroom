@@ -71,6 +71,8 @@ class StudentEditRoute extends Component {
     mockedStudent.name = student.name;
     mockedClassStudent.likes = student.likes.map(({ id }) => id);
     mockedClassStudent.dislike = student.dislike.map(({ id }) => id);
+
+    this.props.history.go(0); // refrash the page
   };
 
   handleCancel = () => {
