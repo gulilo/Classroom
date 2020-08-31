@@ -1,12 +1,10 @@
 import React, { Component } from "react";
 import StudentEdit from "../Components/StudentEdit";
-
-import _ from "lodash";
-
-import { classes } from "../mockedData/classes";
-import { students } from "../mockedData/Students";
+import { MockedContext } from "../MockedContext";
 
 class StudentEditRoute extends Component {
+  static contextType = MockedContext;
+
   state = {
     student: { id: -1, name: "", likes: [], dislike: [] },
     otherStudents: [{ id: -1, name: "" }],
@@ -16,68 +14,80 @@ class StudentEditRoute extends Component {
   getClassId = () => parseInt(this.props.match.params.classId, 10);
 
   componentDidMount() {
-    const classStudent = classes
-      .find(({ id }) => id === this.getClassId())
-      .students.find(({ id }) => id === this.getStudentId());
-
-    const studentName = (
-      " " + students.find(({ id }) => id === parseInt(classStudent.id, 10)).name
-    ).slice(1); // bug in chorme... forcing deep copy...
-
-    const studentLikes = _.cloneDeep(
-      students.filter(({ id }) =>
-        classStudent.likes.find((student) => student === id)
-      )
+    const api = this.context;
+    const classStudent = api.classes.getStudent(
+      this.getClassId(),
+      this.getStudentId()
     );
 
-    const studentsDislikes = _.cloneDeep(
-      students.filter(({ id }) =>
-        classStudent.dislike.find((student) => student === id)
-      )
+    const studentLikes = api.student.getLikes(
+      this.getClassId(),
+      this.getStudentId()
+    );
+
+    const studentsDislikes = api.student.getDislikes(
+      this.getClassId(),
+      this.getStudentId()
     );
 
     const student = {
       id: classStudent.id,
-      name: studentName,
+      name: api.student.getName(this.getStudentId()),
       likes: studentLikes,
       dislike: studentsDislikes,
     };
 
-    const otherStudents = students.filter(({ id }) =>
-      classes
-        .find(({ id }) => id === this.getClassId())
-        .students.find((student) => student.id === id)
-    );
+    const otherStudents = api.classes.getStudentList(this.getClassId());
 
     this.setState({ student, otherStudents });
   }
 
   saveStudent = () => {
-    console.log("bla");
+    const api = this.context;
+
     if (this.state.student.id === -1) {
-      console.log("create new!");
       return;
     }
     const student = this.state.student;
 
-    const mockedStudent = students.find(
-      ({ id }) => id === this.state.student.id
+    const mockedStudent = api.student.getStudent(student.id);
+
+    const mockedClassStudent = api.classes.getStudent(
+      this.getClassId(),
+      this.getStudentId()
     );
 
-    const mockedClassStudent = classes
-      .find(({ id }) => id === this.getClassId())
-      .students.find(({ id }) => id === this.getStudentId());
+    console.log(student);
+    console.log(mockedStudent);
+    console.log(mockedClassStudent);
 
     mockedStudent.name = student.name;
     mockedClassStudent.likes = student.likes.map(({ id }) => id);
     mockedClassStudent.dislike = student.dislike.map(({ id }) => id);
 
-    this.props.history.go(0); // refrash the page
+    //this.props.history.go(0); // refrash the page
   };
 
   handleCancel = () => {
-    console.log("cancel");
-    this.props.history.go(0); // refrash the page
+    const api = this.context;
+
+    if (this.state.student.id === -1) {
+      return;
+    }
+    const student = this.state.student;
+
+    student.name = api.student.getName(this.getStudentId());
+    student.likes = api.student.getLikes(
+      this.getClassId(),
+      this.getStudentId()
+    );
+    student.dislike = api.student.getDislikes(
+      this.getClassId(),
+      this.getStudentId()
+    );
+
+    this.setState({ student });
+    //this.props.history.go(0); // refrash the page
   };
 
   render() {

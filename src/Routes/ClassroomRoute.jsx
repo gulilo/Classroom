@@ -1,15 +1,18 @@
 import React, { Component } from "react";
 
-import { classes } from "../mockedData/classes";
 import ClassRoomComponent from "../Components/ClassRoomComponent";
 
+import { MockedContext } from "../MockedContext";
+
 class ClassroomRoute extends Component {
+  static contextType = MockedContext;
+
   state = { classroom: { id: -1, name: "bla", students: [] } };
 
   getClassId = () => parseInt(this.props.match.params.classId, 10);
 
   componentDidMount() {
-    const classroom = classes.find(({ id }) => id === this.getClassId());
+    const classroom = this.context.classes.getById(this.getClassId());
     this.setState({ classroom });
   }
 

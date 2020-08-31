@@ -1,16 +1,19 @@
 import React, { Component } from "react";
 import StudentList from "./StudentList";
-import Style_classroomList from "../cssFiles/classroomList.module.css";
 import Style_MainGrid from "../cssFiles/MainGridLayout.module.css";
 
-import { students as StudentsList } from "../mockedData/Students";
+import { MockedContext } from "../MockedContext";
+import _ from "lodash";
 
 class ClassRoomComponent extends Component {
+  static contextType = MockedContext;
+
   state = { students: [] };
 
   componentDidMount() {
-    const students = StudentsList.filter(({ id }) =>
-      this.props.classroom.students.find((student) => student.id === id)
+    const students = _.map(
+      this.context.classes.getStudentList(this.props.classroom.id),
+      ({ id }) => this.context.student.getStudent(id)
     );
     this.setState({ students });
   }
