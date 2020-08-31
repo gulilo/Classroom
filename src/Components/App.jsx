@@ -26,7 +26,7 @@ class App extends Component {
       <ApiProvider>
         <Router>
           <div className={Style_MainGrid.AppMainGrid}>
-            <menuBar className={styles_topMenu.topMenuBar}>
+            <span className={styles_topMenu.topMenuBar}>
               <NavLink to="/classrooms" className={styles_topMenu.topMenuItem}>
                 classrooms
               </NavLink>
@@ -41,7 +41,7 @@ class App extends Component {
               </NavLink>
               <br />
               <Greeting name="Degenerat" />
-            </menuBar>
+            </span>
             <Switch>
               <Route path="/" exact component={Home} />
               <Route path="/classrooms" exact component={ClassListRoute} />
