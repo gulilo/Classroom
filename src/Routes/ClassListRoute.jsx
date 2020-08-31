@@ -1,13 +1,16 @@
 import React, { Component } from "react";
 
-import { classes as classesList } from "../mockedData/classes";
 import ClassList from "../Components/ClassList";
 
+import { MockedContext } from "../MockedContext";
+
 class ClassListRoute extends Component {
+  static contextType = MockedContext;
+
   state = { classes: [] };
 
   componentDidMount() {
-    const classes = [...classesList];
+    const classes = [...this.context.classes.getAll()];
 
     this.setState({ classes });
   }
