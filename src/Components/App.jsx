@@ -23,13 +23,19 @@ class App extends Component {
     return (
       <Router>
         <div className={Style_MainGrid.AppMainGrid}>
-          <menuBar className={styles_topMenu.topMenuBar}>
-          <NavLink to="/classrooms" className={styles_topMenu.topMenuItem}>classrooms</NavLink>
-          <NavLink to="/classroom/new" className={styles_topMenu.topMenuItem}>new class</NavLink>  
-          <NavLink to="/options" className={styles_topMenu.topMenuItem}>options</NavLink>
-          <br />
-          <Greeting name="Degenerat" />
-          </menuBar>
+          <span className={styles_topMenu.topMenuBar}>
+            <NavLink to="/classrooms" className={styles_topMenu.topMenuItem}>
+              classrooms
+            </NavLink>
+            <NavLink to="/classroom/new" className={styles_topMenu.topMenuItem}>
+              new class
+            </NavLink>
+            <NavLink to="/options" className={styles_topMenu.topMenuItem}>
+              options
+            </NavLink>
+            <br />
+            <Greeting name="Degenerat" />
+          </span>
           <Switch>
             <Route path="/" exact component={Home} />
             <Route path="/classrooms" exact component={ClassListRoute} />
