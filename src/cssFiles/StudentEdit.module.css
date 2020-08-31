@@ -130,3 +130,43 @@
 li{
     list-style: none;
 }
+
+
+
+.CancelButton{
+    height: 3vh;
+    width: 50%;
+    display: inline-flexbox;
+    background-image: url("/icons1/delete_outline-24px.svg");
+    background-repeat: no-repeat;
+    
+    background-position: left;
+
+    background-color: lightcoral;
+
+}
+
+
+
+.CancelButton > .Text{
+    font-size: calc(2vh*2vw);
+}
+
+.SaveButton{
+    height: 3vh;
+    width: 50%;
+    display: inline-flexbox;
+    background-image: url("/icons1/save-black-18dp.svg");
+    background-repeat: no-repeat;
+    
+    background-position: left;
+    background-color: lightgreen;
+}
+
+
+
+.SaveButton > .Text{
+    font-size: calc(2vh*2vw);
+}
+
+
