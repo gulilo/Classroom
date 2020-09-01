@@ -101,7 +101,7 @@ class StudentEdit extends Component {
 
   render() {
     return (
-      <div className={Style_MainGrid.AppMainArea}>
+      <div className={Style_MainGrid.AppMainAreaOut}>
         {this.state.nameEdit ? (
           <span className={labelStyles.StudentNameBracket}>
             <input

@@ -52,3 +52,8 @@ body {
     margin: 10px;
 }
 
+.AppMainAreaOut{
+    grid-row: 2;
+    grid-column: 4;
+}
+
