@@ -27,7 +27,7 @@ class App extends Component {
         <Router>
           <div className={Style_MainGrid.AppMainGrid}>
             <span className={styles_topMenu.topMenuBar}>
-              <NavLink to="/classrooms" className={styles_topMenu.topMenuItem}>
+              <NavLink to="/classroom" className={styles_topMenu.topMenuItem}>
                 classrooms
               </NavLink>
               <NavLink
@@ -42,25 +42,20 @@ class App extends Component {
               <br />
               <Greeting name="Degenerat" />
             </span>
-            <Switch>
-              <Route path="/" exact component={Home} />
-              <Route path="/classrooms" exact component={ClassListRoute} />
-              <Route path="/classroom/new" exact component={NewClass} />
-              <Route
-                path="/classroom/:classId"
-                exact
-                component={ClassroomRoute}
-              />
-              <Route path="/options" component={Options} />
-              <Route
-                path="/classroom/:classId/student/:studentId/edit"
-                component={StudentEditRoute}
-              ></Route>
-              <Route
-                path="/classroom/:classId/student/:studentId"
-                component={StudentRoute}
-              ></Route>
-            </Switch>
+            <Route path="/" exact component={Home} />
+            <Route path="/classroom" component={ClassListRoute} />
+            <Route path="/classroom/new" exact component={NewClass} />
+            <Route path="/classroom/:classId" component={ClassroomRoute} />
+            <Route path="/options" component={Options} />
+            <Route
+              path="/classroom/:classId/student/:studentId/edit"
+              component={StudentEditRoute}
+            ></Route>
+            <Route
+              path="/classroom/:classId/student/:studentId"
+              exact
+              component={StudentRoute}
+            ></Route>
           </div>
         </Router>
       </ApiProvider>

@@ -24,8 +24,7 @@ class ClassRoomComponent extends Component {
     }
 
     return (
-      <div className={Style_MainGrid.AppMainArea}>
-        <h2>class name: {this.props.classroom.name}</h2>
+      <div>
         <StudentList
           key={this.props.classroom.id}
           classId={this.props.classroom.id}
