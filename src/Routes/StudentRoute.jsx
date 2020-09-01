@@ -1,13 +1,18 @@
 import React, { Component } from "react";
 import StudentEdit from "../Components/StudentEdit";
 import StudentInfo from "../Components/StudentInfo";
+import { MockedContext } from "../MockedContext";
 
 class StudentRoute extends Component {
+  static contextType = MockedContext;
+
   state = {
     newStudent: false,
     studentInfo: false,
     studentEdit: false,
   };
+  getStudentId = () => parseInt(this.props.match.params.studentId, 10);
+  getClassId = () => parseInt(this.props.match.params.classId, 10);
 
   componentDidMount() {
     var newStudent = false;
@@ -25,7 +30,15 @@ class StudentRoute extends Component {
     if (this.state.newStudent) {
       return <StudentEdit newStudent={this.state.newStudent} />;
     } else if (this.state.studentInfo) {
-      return <StudentInfo />;
+      return (
+        <StudentInfo
+          student={this.context.classes.getStudent(
+            this.getClassId(),
+            this.getStudentId()
+          )}
+          classId={this.getClassId()}
+        />
+      );
     } else {
       return <div>somthing</div>;
     }
