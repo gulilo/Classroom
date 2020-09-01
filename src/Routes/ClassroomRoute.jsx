@@ -2,7 +2,13 @@ import React, { Component } from "react";
 
 import ClassRoomComponent from "../Components/ClassRoomComponent";
 
+import Style_MainGrid from "../cssFiles/MainGridLayout.module.css";
+
 import { MockedContext } from "../MockedContext";
+import { Route } from "react-router";
+import StudentEditRoute from "./StudentEditRoute";
+import StudentRoute from "./StudentRoute";
+import ClassData from "../Components/ClassData";
 
 class ClassroomRoute extends Component {
   static contextType = MockedContext;
@@ -20,8 +26,16 @@ class ClassroomRoute extends Component {
     if (this.state.classroom.id === -1) {
       return null;
     }
-
-    return <ClassRoomComponent classroom={this.state.classroom} />;
+    return (
+      <div className={Style_MainGrid.appClassroomArea}>
+      <div className={Style_MainGrid.AppMenuArea2}>
+        <ClassRoomComponent classroom={this.state.classroom} />
+      </div> 
+      <div className={Style_MainGrid.AppMainArea}>
+      <ClassData />
+    </div>
+    </div>
+    );
   }
 }
 

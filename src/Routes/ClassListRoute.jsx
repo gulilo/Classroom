@@ -1,8 +1,12 @@
 import React, { Component } from "react";
 
 import ClassList from "../Components/ClassList";
+import Style_MainGrid from "../cssFiles/MainGridLayout.module.css";
 
 import { MockedContext } from "../MockedContext";
+import { Route } from "react-router";
+import ClassroomRoute from "./ClassroomRoute";
+import ClassData from "../Components/ClassData";
 
 class ClassListRoute extends Component {
   static contextType = MockedContext;
@@ -16,7 +20,11 @@ class ClassListRoute extends Component {
   }
 
   render() {
-    return <ClassList classes={this.state.classes} />;
+    return (
+      <div className={Style_MainGrid.AppMenuArea1}>
+        <ClassList classes={this.state.classes} />
+      </div>
+    );
   }
 }
 
