@@ -23,7 +23,6 @@ class ClassListRoute extends Component {
     return (
       <div className={Style_MainGrid.AppMenuArea1}>
         <ClassList classes={this.state.classes} />
-        <ClassData />
       </div>
     );
   }

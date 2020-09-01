@@ -8,6 +8,7 @@ import { MockedContext } from "../MockedContext";
 import { Route } from "react-router";
 import StudentEditRoute from "./StudentEditRoute";
 import StudentRoute from "./StudentRoute";
+import ClassData from "../Components/ClassData";
 
 class ClassroomRoute extends Component {
   static contextType = MockedContext;
@@ -26,9 +27,14 @@ class ClassroomRoute extends Component {
       return null;
     }
     return (
+      <div className={Style_MainGrid.appClassroomArea}>
       <div className={Style_MainGrid.AppMenuArea2}>
         <ClassRoomComponent classroom={this.state.classroom} />
-      </div>
+      </div> 
+      <div className={Style_MainGrid.AppMainArea}>
+      <ClassData />
+    </div>
+    </div>
     );
   }
 }
