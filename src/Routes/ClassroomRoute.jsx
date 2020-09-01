@@ -28,7 +28,7 @@ class ClassroomRoute extends Component {
           <ClassRoomComponent classroom={this.state.classroom} />
         </div>
         <div className={Style_MainGrid.AppMainArea}>
-          <ClassData />
+          <ClassData classroom={this.state.classroom} />
         </div>
       </div>
     );
