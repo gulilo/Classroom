@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Style_MainGrid from "../cssFiles/MainGridLayout.module.css";
+import ClassTableStyle from "../cssFiles/ClassroomDataStyle.module.css";
 import _ from "lodash";
 import { MockedContext } from "../MockedContext";
 
@@ -59,23 +60,35 @@ class ClassData extends Component {
 
   render() {
     return (
-      <div className={Style_MainGrid.AppMainArea}>
-        <h3>popular:</h3>
+      <div className={ClassTableStyle.ClassMainTable}> 
+        <h3 className={ClassTableStyle.likedH}>popular:</h3>
+        <span className={ClassTableStyle.liked}>
         {_.map(this.state.populars, ({ id }) => (
           <li> {this.context.student.getName(id)} </li>
         ))}
-        <h3>rejected:</h3>
+        </span>
+
+        <h3 className={ClassTableStyle.deslikedH}>rejected:</h3>
+        <span className={ClassTableStyle.desliked}>
         {_.map(this.state.rejected, ({ id }) => (
           <li>{this.context.student.getName(id)} </li>
         ))}
-        <h3>ghost:</h3>
+        </span>
+
+        <h3 className={ClassTableStyle.ghostsH}>ghost:</h3>
+        <span className={ClassTableStyle.ghosts}>
         {_.map(this.state.ghosts, ({ id }) => (
           <li>{this.context.student.getName(id)} </li>
         ))}
-        <h3>rest:</h3>
+        </span>
+
+        <h3 className={ClassTableStyle.halfH}>rest:</h3>
+        <span className={ClassTableStyle.half}>
         {_.map(this.state.rest, ({ id }) => (
           <li>{this.context.student.getName(id)} </li>
         ))}
+        </span>
+        
       </div>
     );
   }
