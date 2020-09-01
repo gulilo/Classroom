@@ -3,8 +3,6 @@ import React, { Component } from "react";
 import ClassRoomComponent from "../Components/ClassRoomComponent";
 import Style_MainGrid from "../cssFiles/MainGridLayout.module.css";
 
-import Style_MainGrid from "../cssFiles/MainGridLayout.module.css";
-
 import { MockedContext } from "../MockedContext";
 import ClassData from "../Components/ClassData";
 
