@@ -65,7 +65,7 @@ class StudentInfo extends Component {
 
   render() {
     return (
-      <div className={Style_MainGrid.AppMainArea}>
+      <div className={Style_MainGrid.AppMainAreaOut}>
         <h3>likes: </h3>
         <span>
           {_.map(this.state.likes, ({ id, name }) => (
