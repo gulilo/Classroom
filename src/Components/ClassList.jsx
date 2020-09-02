@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 
-import Style_MainGrid from "../cssFiles/MainGridLayout.module.css";
 import Style_classroomList from "../cssFiles/classroomList.module.css";
 
 class ClassList extends Component {

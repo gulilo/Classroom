@@ -1,13 +1,10 @@
 import React, { Component } from "react";
+
 import StudentEdit from "../Components/StudentEdit";
 import StudentInfo from "../Components/StudentInfo";
 
 class StudentRoute extends Component {
-  state = {
-    newStudent: false,
-    studentInfo: false,
-    studentEdit: false,
-  };
+  state = {};
 
   componentDidMount() {
     var newStudent = false;
