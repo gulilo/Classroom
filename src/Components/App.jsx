@@ -1,10 +1,6 @@
 import React, { Component } from "react";
-import {
-  BrowserRouter as Router,
-  Route,
-  Switch,
-  NavLink,
-} from "react-router-dom";
+import { BrowserRouter as Router, Route, NavLink } from "react-router-dom";
+
 import Home from "./Home";
 import NewClass from "./NewClass";
 import Options from "./Options";
@@ -50,12 +46,12 @@ class App extends Component {
             <Route
               path="/classroom/:classId/student/:studentId/edit"
               component={StudentEditRoute}
-            ></Route>
+            />
             <Route
               path="/classroom/:classId/student/:studentId"
               exact
               component={StudentRoute}
-            ></Route>
+            />
           </div>
         </Router>
       </ApiProvider>

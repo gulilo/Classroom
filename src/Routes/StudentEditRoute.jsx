@@ -1,5 +1,8 @@
 import React, { Component } from "react";
+import _ from "lodash";
+
 import StudentEdit from "../Components/StudentEdit";
+
 import { MockedContext } from "../MockedContext";
 
 class StudentEditRoute extends Component {
@@ -37,7 +40,10 @@ class StudentEditRoute extends Component {
       dislike: studentsDislikes,
     };
 
-    const otherStudents = api.classes.getStudentList(this.getClassId());
+    const otherStudents = _.map(
+      api.classes.getStudentList(this.getClassId()),
+      ({ id }) => api.student.getStudent(id)
+    );
 
     this.setState({ student, otherStudents });
   }
@@ -94,7 +100,6 @@ class StudentEditRoute extends Component {
     if (this.state.student.id === -1) {
       return null;
     }
-
     return (
       <StudentEdit
         student={this.state.student}

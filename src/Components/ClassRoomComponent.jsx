@@ -1,9 +1,9 @@
 import React, { Component } from "react";
+import _ from "lodash";
+
 import StudentList from "./StudentList";
-import Style_MainGrid from "../cssFiles/MainGridLayout.module.css";
 
 import { MockedContext } from "../MockedContext";
-import _ from "lodash";
 
 class ClassRoomComponent extends Component {
   static contextType = MockedContext;
