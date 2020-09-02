@@ -13,12 +13,13 @@ class StudentInfo extends Component {
   componentDidMount() {
     const api = this.context;
     const student = this.props.student;
+    const otherStudents = this.props.otherStudents;
 
     const likes = _.map(student.likes, (id) => api.student.getStudent(id));
     const dislikes = _.map(student.dislike, (id) => api.student.getStudent(id));
 
     const likeMe = _.map(
-      _.filter(api.classes.getStudentList(this.props.classId), ({ likes }) =>
+      _.filter(otherStudents, ({ likes }) =>
         _.find(likes, (id) => {
           return student.id === id;
         })
@@ -27,7 +28,7 @@ class StudentInfo extends Component {
     );
 
     const dislikeMe = _.map(
-      _.filter(api.classes.getStudentList(this.props.classId), ({ dislike }) =>
+      _.filter(otherStudents, ({ dislike }) =>
         _.find(dislike, (id) => {
           return student.id === id;
         })
@@ -35,9 +36,31 @@ class StudentInfo extends Component {
       ({ id }) => api.student.getStudent(id)
     );
 
-    console.log(dislikeMe);
+    const likeAndLikeMe = _.intersection(likes, likeMe);
+    const likeAndDislikeMe = _.intersection(likes, dislikeMe);
+    const dislikeAndLikeMe = _.intersection(dislikes, likeMe);
+    const dislikeAndDislikeMe = _.intersection(likes, dislikeMe);
 
-    this.setState({ likes, dislikes, likeMe, dislikeMe });
+    const likeRest = _.difference(likes, likeAndLikeMe, likeAndDislikeMe);
+    const dislikeRest = _.difference(
+      dislikes,
+      dislikeAndLikeMe,
+      dislikeAndDislikeMe
+    );
+
+    this.setState({
+      likes,
+      dislikes,
+      likeMe,
+      dislikeMe,
+
+      likeAndLikeMe,
+      likeAndDislikeMe,
+      dislikeAndLikeMe,
+      dislikeAndDislikeMe,
+      likeRest,
+      dislikeRest,
+    });
   }
 
   render() {

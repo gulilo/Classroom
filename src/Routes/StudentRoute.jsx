@@ -36,7 +36,9 @@ class StudentRoute extends Component {
             this.getClassId(),
             this.getStudentId()
           )}
-          classId={this.getClassId()}
+          otherStudents={
+            this.context.classes.getById(this.getClassId()).students
+          }
         />
       );
     } else {
