@@ -15,7 +15,7 @@ class StudentRoute extends Component {
   getStudentId = () => parseInt(this.props.match.params.studentId, 10);
   getClassId = () => parseInt(this.props.match.params.classId, 10);
 
-  componentDidMount() {
+  init = () => {
     var newStudent = false;
     var studentInfo = false;
     if (this.props.match.params.studentId === "new") {
@@ -25,6 +25,17 @@ class StudentRoute extends Component {
     }
 
     this.setState({ newStudent, studentInfo });
+  };
+
+  componentDidMount() {
+    this.init();
+  }
+  componentDidUpdate(prevProps) {
+    if (
+      prevProps.match.params.studentId !== this.props.match.params.studentId
+    ) {
+      this.init();
+    }
   }
 
   render() {

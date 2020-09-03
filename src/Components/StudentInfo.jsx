@@ -11,7 +11,7 @@ class StudentInfo extends Component {
 
   state = {};
 
-  componentDidMount() {
+  init = () => {
     const api = this.context;
     const student = this.props.student;
     const otherStudents = this.props.otherStudents;
@@ -62,6 +62,16 @@ class StudentInfo extends Component {
       likeRest,
       dislikeRest,
     });
+  };
+
+  componentDidMount() {
+    this.init();
+  }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.student.id !== this.props.student.id) {
+      this.init();
+    }
   }
 
   render() {

@@ -114,11 +114,20 @@ class StudentEdit extends Component {
     otherStudents: [{ id: -1, name: "" }],
   };
 
-  componentDidMount() {
+  init = () => {
     const student = this.props.student;
     const otherStudents = this.props.otherStudents;
 
     this.setState({ student, otherStudents });
+  };
+
+  componentDidMount() {
+    this.init();
+  }
+  componentDidUpdate(prevProps) {
+    if (prevProps.student.id !== this.props.student.id) {
+      this.init();
+    }
   }
 
   HandleChangeName = (newName) => {
