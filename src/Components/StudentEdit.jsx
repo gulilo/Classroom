@@ -1,41 +1,127 @@
 import React, { Component } from "react";
+import _ from "lodash";
 
 import buttonStyles from "../cssFiles/simpleButtons.module.css";
 import labelStyles from "../cssFiles/StudentEdit.module.css";
-
 import Style_MainGrid from "../cssFiles/MainGridLayout.module.css";
+
+class NameItem extends Component {
+  state = { edit: false };
+
+  constructor(props) {
+    super(props);
+    this.nameInput = React.createRef();
+  }
+
+  render() {
+    if (!this.state.edit) {
+      return (
+        <span className={labelStyles.StudentNameBracket}>
+          <span className={labelStyles.NameLabel}>
+            {this.props.student.name}
+          </span>
+          <button
+            className={labelStyles.editbutton}
+            onClick={(e) => {
+              this.setState({ edit: true });
+            }}
+          />
+        </span>
+      );
+    } else {
+      return (
+        <span className={labelStyles.StudentNameBracket}>
+          <input
+            className={labelStyles.NameLabel}
+            type="Text"
+            ref={this.nameInput}
+            defaultValue={this.props.student.name}
+          />
+          <button
+            className={labelStyles.saveButton}
+            onClick={() => {
+              this.props.onChangeName(this.nameInput.current.value);
+              this.setState({ edit: false });
+            }}
+          />
+        </span>
+      );
+    }
+  }
+}
+
+class ListItem extends Component {
+  state = {};
+
+  render() {
+    if (!this.props.student) {
+      return null;
+    }
+    return (
+      <span className={labelStyles.StudentNameBracket}>
+        {this.props.student.name}
+        <button
+          className={labelStyles.DeleteButton}
+          onClick={(e) => this.props.onDelete()}
+        ></button>
+      </span>
+    );
+  }
+}
+
+class AddItem extends Component {
+  state = { add: false };
+
+  constructor(props) {
+    super(props);
+    this.selector = React.createRef();
+  }
+
+  render() {
+    if (!this.state.add) {
+      return (
+        <button
+          className={buttonStyles.addButton}
+          onClick={(e) => {
+            this.setState({ add: true });
+          }}
+        />
+      );
+    } else {
+      return (
+        <span className={labelStyles.StudentNameBracket}>
+          <select className={labelStyles.StudentPicker} ref={this.selector}>
+            {this.props.otherStudents.map(({ id, name }) => (
+              <option value={id}>{name}</option>
+            ))}
+          </select>
+          <button
+            className={labelStyles.saveButton}
+            onClick={(e) => {
+              this.props.onSave(this.selector.current.value);
+              this.setState({ add: false });
+            }}
+          />
+        </span>
+      );
+    }
+  }
+}
 
 class StudentEdit extends Component {
   state = {
     student: { id: -1, name: "", likes: [], dislike: [] },
     otherStudents: [{ id: -1, name: "" }],
-
-    nameEdit: false,
-    likeAdd: false,
-    dislikeAdd: false,
   };
 
-  constructor(props) {
-    super(props);
-    this.nameInput = React.createRef();
-    this.likeAdd = React.createRef();
-    this.dislikeAdd = React.createRef();
-  }
-
   componentDidMount() {
-    if (this.props.newStudent) {
-      this.setState({ nameEdit: true });
-    } else {
-      const student = this.props.student;
-      const otherStudents = this.props.otherStudents;
+    const student = this.props.student;
+    const otherStudents = this.props.otherStudents;
 
-      this.setState({ student, otherStudents });
-    }
+    this.setState({ student, otherStudents });
   }
 
-  HandleChangeName = () => {
-    const newName = this.nameInput.current.value;
-
+  HandleChangeName = (newName) => {
     let student = this.state.student;
     student.name = newName;
 
@@ -45,15 +131,9 @@ class StudentEdit extends Component {
   HandleDeleteFromList = (toDelete, list) => {
     const student = this.state.student;
     if (list === "likes") {
-      const index = student.likes.indexOf(toDelete);
-      if (index > -1) {
-        student.likes.splice(index, 1);
-      }
+      _.remove(student.likes, { id: toDelete });
     } else {
-      const index = student.dislike.indexOf(toDelete);
-      if (index > -1) {
-        student.dislike.splice(index, 1);
-      }
+      _.remove(student.dislike, { id: toDelete });
     }
 
     this.setState({ student });
@@ -61,7 +141,8 @@ class StudentEdit extends Component {
 
   HandleAddToList = (studentId, list) => {
     const student = this.state.student;
-    const toadd = this.state.otherStudents.find(
+    const toadd = _.find(
+      this.state.otherStudents,
       ({ id }) => id === parseInt(studentId, 10)
     );
 
@@ -85,130 +166,51 @@ class StudentEdit extends Component {
     } else {
       arr = this.state.student.dislike;
     }
-
-    return arr.map((student) => (
-      <li key={`${student.id}`}>
-        <span className={labelStyles.StudentNameBracket}>
-          {student.name}
-          <button
-            className={labelStyles.DeleteButton}
-            onClick={(e) => this.HandleDeleteFromList(student, list)}
-          ></button>
-        </span>
-      </li>
+    const maped = _.map(arr, (student) => (
+      <ListItem
+        student={student}
+        onDelete={() => {
+          this.HandleDeleteFromList(student.id, list);
+        }}
+      />
     ));
+    if (arr.length < 3) {
+      maped.push(
+        <AddItem
+          otherStudents={this.state.otherStudents}
+          onSave={(toAdd) => {
+            this.HandleAddToList(toAdd, "likes");
+          }}
+        />
+      );
+    }
+
+    return maped;
   };
 
   render() {
+    if (this.state.student.id === -1) {
+      return null;
+    }
     return (
-      <div className={Style_MainGrid.AppMainArea}>
-        {this.state.nameEdit ? (
-          <span className={labelStyles.StudentNameBracket}>
-            <input
-              className={labelStyles.NameLabel}
-              type="Text"
-              ref={this.nameInput}
-              defaultValue={this.state.student.name}
-            />
-            <button
-              className={labelStyles.saveButton}
-              onClick={this.HandleChangeName}
-            />
-          </span>
-        ) : (
-          <span className={labelStyles.StudentNameBracket}>
-            <span className={labelStyles.NameLabel}>
-              {this.state.student.name}
-            </span>
-            <button
-              className={labelStyles.editbutton}
-              onClick={(e) => {
-                this.setState({ nameEdit: true });
-              }}
-            />
-          </span>
-        )}
+      <div className={Style_MainGrid.AppMainAreaOut}>
+        <NameItem
+          student={this.state.student}
+          onChangeName={(newName) => this.HandleChangeName(newName)}
+        />
         <br />
         likes:
-        <span>
-          {this.ShowList("likes")}
-
-          {this.state.student.likes.length < 3 && !this.state.likeAdd ? (
-            <li key="addButton">
-              <button
-                className={buttonStyles.addButton}
-                onClick={(e) => {
-                  this.setState({ likeAdd: true });
-                }}
-              />
-            </li>
-          ) : this.state.likeAdd ? (
-            <li key="new">
-              <span className={labelStyles.StudentNameBracket}>
-                <select
-                  className={labelStyles.StudentPicker}
-                  ref={this.likeAdd}
-                >
-                  {this.state.otherStudents.map(({ id, name }) => (
-                    <option value={id}>{name}</option>
-                  ))}
-                </select>
-                <button
-                  className={labelStyles.saveButton}
-                  onClick={(e) => {
-                    this.HandleAddToList(this.likeAdd.current.value, "likes");
-                    this.setState({ likeAdd: false });
-                  }}
-                />
-              </span>
-            </li>
-          ) : null}
-        </span>
+        {this.ShowList("likes")}
         <br />
         dislikes:
-        <span>
-          {this.ShowList("dislike")}
-
-          {this.state.student.dislike.length < 3 && !this.state.dislikeAdd ? (
-            <li key="addButton">
-              <button
-                className={buttonStyles.addButton}
-                onClick={(e) => {
-                  this.setState({ dislikeAdd: true });
-                }}
-              />
-            </li>
-          ) : this.state.dislikeAdd ? (
-            <li key="new">
-              <span className={labelStyles.StudentNameBracket}>
-                <select
-                  className={labelStyles.StudentPicker}
-                  ref={this.dislikeAdd}
-                >
-                  {this.state.otherStudents.map(({ id, name }) => (
-                    <option value={id}>{name}</option>
-                  ))}
-                </select>
-                <button
-                  className={labelStyles.saveButton}
-                  onClick={(e) => {
-                    this.HandleAddToList(
-                      this.dislikeAdd.current.value,
-                      "dislike"
-                    );
-                    this.setState({ dislikeAdd: false });
-                  }}
-                />
-              </span>
-            </li>
-          ) : null}
-        </span>
-        <button onClick={this.HandleSave} className={labelStyles.SaveButton}>
+        {this.ShowList("dislike")}
+        <br />
+        <button className={labelStyles.SaveButton} onClick={this.HandleSave}>
           <span className={labelStyles.Text}>save</span>
         </button>
         <button
-          onClick={this.props.cancel}
           className={labelStyles.CancelButton}
+          onClick={this.props.cancel}
         >
           <span className={labelStyles.Text}>cancel</span>
         </button>
