@@ -10,7 +10,7 @@ class ClassData extends Component {
 
   state = { students: [], ghosts: [] };
 
-  componentDidMount() {
+  init = () => {
     const classroom = this.props.classroom;
 
     const students = [];
@@ -51,6 +51,16 @@ class ClassData extends Component {
     const rest = _.difference(students, _.union(ghosts, populars, rejected));
 
     this.setState({ students, ghosts, populars, rejected, rest });
+  };
+
+  componentDidMount() {
+    this.init();
+  }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.classroom.id !== this.props.classroom.id) {
+      this.init();
+    }
   }
 
   render() {
@@ -66,21 +76,21 @@ class ClassData extends Component {
         <h3 className={ClassTableStyle.deslikedH}>rejected:</h3>
         <span className={ClassTableStyle.desliked}>
           {_.map(this.state.rejected, ({ id }) => (
-            <li>{this.context.student.getName(id)} </li>
+            <li key={id}>{this.context.student.getName(id)} </li>
           ))}
         </span>
 
         <h3 className={ClassTableStyle.ghostsH}>ghost:</h3>
         <span className={ClassTableStyle.ghosts}>
           {_.map(this.state.ghosts, ({ id }) => (
-            <li>{this.context.student.getName(id)} </li>
+            <li key={id}>{this.context.student.getName(id)} </li>
           ))}
         </span>
 
         <h3 className={ClassTableStyle.halfH}>rest:</h3>
         <span className={ClassTableStyle.half}>
           {_.map(this.state.rest, ({ id }) => (
-            <li>{this.context.student.getName(id)} </li>
+            <li key={id}>{this.context.student.getName(id)} </li>
           ))}
         </span>
       </div>

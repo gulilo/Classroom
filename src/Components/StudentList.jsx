@@ -4,20 +4,15 @@ import { Link } from "react-router-dom";
 import listStyle from "../cssFiles/ClassroomStyle.module.css";
 
 class StudentList extends Component {
-  state = { students: [] };
-
-  componentDidMount() {
-    const students = this.props.students;
-    this.setState({ students });
-  }
+  state = {};
 
   render() {
-    if (this.state.students.length === 0) return null;
+    if (this.props.students.length === 0) return null;
 
     return (
       <div>
         <span className={listStyle.studentList}>
-          {this.state.students.map((student) => (
+          {this.props.students.map((student) => (
             <li className={listStyle.studentItem} key={student.id}>
               <Link
                 className={listStyle.StudentLink}

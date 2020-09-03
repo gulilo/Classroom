@@ -10,12 +10,22 @@ class ClassRoomComponent extends Component {
 
   state = { students: [] };
 
-  componentDidMount() {
+  init = () => {
     const students = _.map(
       this.context.classes.getStudentList(this.props.classroom.id),
       ({ id }) => this.context.student.getStudent(id)
     );
     this.setState({ students });
+  };
+  upda;
+  componentDidMount() {
+    this.init();
+  }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.classroom.id !== this.props.classroom.id) {
+      this.init();
+    }
   }
 
   render() {
