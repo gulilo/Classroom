@@ -1,13 +1,9 @@
 import React, { Component } from "react";
-
-import ClassRoomComponent from "../Components/ClassRoomComponent";
-import ClassData from "../Components/ClassData";
-
 import Style_MainGrid from "../cssFiles/MainGridLayout.module.css";
-
+import ClassData from "../Components/ClassData";
 import { MockedContext } from "../MockedContext";
 
-class ClassroomRoute extends Component {
+class ClassroomDataRoute extends Component {
   static contextType = MockedContext;
 
   state = { classroom: { id: -1, name: "bla", students: [] } };
@@ -18,20 +14,18 @@ class ClassroomRoute extends Component {
     const classroom = this.context.classes.getById(this.getClassId());
     this.setState({ classroom });
   }
-
   render() {
     if (this.state.classroom.id === -1) {
       return null;
     }
-    console.log(this.props.match);
     return (
       <div className={Style_MainGrid.appClassroomArea}>
-        <div className={Style_MainGrid.AppMenuArea2}>
-          <ClassRoomComponent classroom={this.state.classroom} />
+        <div className={Style_MainGrid.AppMainArea}>
+          <ClassData classroom={this.state.classroom} />
         </div>
       </div>
     );
   }
 }
 
-export default ClassroomRoute;
+export default ClassroomDataRoute;
