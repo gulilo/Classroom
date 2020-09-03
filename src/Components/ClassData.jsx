@@ -1,7 +1,8 @@
 import React, { Component } from "react";
-import Style_MainGrid from "../cssFiles/MainGridLayout.module.css";
-import ClassTableStyle from "../cssFiles/ClassroomDataStyle.module.css";
 import _ from "lodash";
+
+import ClassTableStyle from "../cssFiles/ClassroomDataStyle.module.css";
+
 import { MockedContext } from "../MockedContext";
 
 class ClassData extends Component {
@@ -58,7 +59,7 @@ class ClassData extends Component {
         <h3 className={ClassTableStyle.likedH}>popular:</h3>
         <span className={ClassTableStyle.liked}>
           {_.map(this.state.populars, ({ id }) => (
-            <li> {this.context.student.getName(id)} </li>
+            <li key={id}> {this.context.student.getName(id)} </li>
           ))}
         </span>
 

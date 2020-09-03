@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 
 import ClassRoomComponent from "../Components/ClassRoomComponent";
-import ClassData from "../Components/ClassData";
 
 import Style_MainGrid from "../cssFiles/MainGridLayout.module.css";
 
