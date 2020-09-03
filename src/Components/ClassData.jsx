@@ -49,46 +49,39 @@ class ClassData extends Component {
 
     const rest = _.difference(students, _.union(ghosts, populars, rejected));
 
-    console.log(students);
-    console.log(ghosts);
-    console.log(populars);
-    console.log(rejected);
-    console.log(rest);
-
     this.setState({ students, ghosts, populars, rejected, rest });
   }
 
   render() {
     return (
-      <div className={ClassTableStyle.ClassMainTable}> 
+      <div className={ClassTableStyle.ClassMainTable}>
         <h3 className={ClassTableStyle.likedH}>popular:</h3>
         <span className={ClassTableStyle.liked}>
-        {_.map(this.state.populars, ({ id }) => (
-          <li> {this.context.student.getName(id)} </li>
-        ))}
+          {_.map(this.state.populars, ({ id }) => (
+            <li> {this.context.student.getName(id)} </li>
+          ))}
         </span>
 
         <h3 className={ClassTableStyle.deslikedH}>rejected:</h3>
         <span className={ClassTableStyle.desliked}>
-        {_.map(this.state.rejected, ({ id }) => (
-          <li>{this.context.student.getName(id)} </li>
-        ))}
+          {_.map(this.state.rejected, ({ id }) => (
+            <li>{this.context.student.getName(id)} </li>
+          ))}
         </span>
 
         <h3 className={ClassTableStyle.ghostsH}>ghost:</h3>
         <span className={ClassTableStyle.ghosts}>
-        {_.map(this.state.ghosts, ({ id }) => (
-          <li>{this.context.student.getName(id)} </li>
-        ))}
+          {_.map(this.state.ghosts, ({ id }) => (
+            <li>{this.context.student.getName(id)} </li>
+          ))}
         </span>
 
         <h3 className={ClassTableStyle.halfH}>rest:</h3>
         <span className={ClassTableStyle.half}>
-        {_.map(this.state.rest, ({ id }) => (
-          <li>{this.context.student.getName(id)} </li>
-        ))}
+          {_.map(this.state.rest, ({ id }) => (
+            <li>{this.context.student.getName(id)} </li>
+          ))}
         </span>
-        
       </div>
     );
   }

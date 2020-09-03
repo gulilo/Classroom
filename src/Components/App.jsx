@@ -9,6 +9,7 @@ import StudentEditRoute from "../Routes/StudentEditRoute";
 import ClassListRoute from "../Routes/ClassListRoute";
 import ClassroomRoute from "../Routes/ClassroomRoute";
 import Greeting from "./Greeting";
+import ClassroomDataRoute from "../Routes/ClassroomDataRoute";
 
 import styles_topMenu from "../cssFiles/menuBar.module.css";
 import Style_MainGrid from "../cssFiles/MainGridLayout.module.css";
@@ -41,6 +42,11 @@ class App extends Component {
             <Route path="/" exact component={Home} />
             <Route path="/classroom" component={ClassListRoute} />
             <Route path="/classroom/new" exact component={NewClass} />
+            <Route
+              path="/classroom/:classId"
+              exact
+              component={ClassroomDataRoute}
+            />
             <Route path="/classroom/:classId" component={ClassroomRoute} />
             <Route path="/options" component={Options} />
             <Route
