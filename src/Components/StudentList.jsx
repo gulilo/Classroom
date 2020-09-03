@@ -13,6 +13,7 @@ class StudentList extends Component {
 
   render() {
     if (this.state.students.length === 0) return null;
+
     return (
       <div>
         <span className={listStyle.studentList}>
@@ -20,14 +21,14 @@ class StudentList extends Component {
             <li className={listStyle.studentItem} key={student.id}>
               <Link
                 className={listStyle.StudentLink}
-                to={`${this.props.classId}/student/${student.id}`}
+                to={`/classroom/${this.props.classId}/student/${student.id}`}
               >
                 {student.name}
               </Link>
 
               <Link
                 className={listStyle.StudentEditButton}
-                to={`${this.props.classId}/student/${student.id}/edit`}
+                to={`/classroom/${this.props.classId}/student/${student.id}/edit`}
               ></Link>
             </li>
           ))}

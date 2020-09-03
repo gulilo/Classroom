@@ -23,7 +23,6 @@ class ClassroomRoute extends Component {
     if (this.state.classroom.id === -1) {
       return null;
     }
-    console.log(this.props.match);
     return (
       <div className={Style_MainGrid.appClassroomArea}>
         <div className={Style_MainGrid.AppMenuArea2}>

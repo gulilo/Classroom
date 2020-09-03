@@ -63,10 +63,6 @@ class StudentEditRoute extends Component {
       this.getStudentId()
     );
 
-    console.log(student);
-    console.log(mockedStudent);
-    console.log(mockedClassStudent);
-
     mockedStudent.name = student.name;
     mockedClassStudent.likes = student.likes.map(({ id }) => id);
     mockedClassStudent.dislike = student.dislike.map(({ id }) => id);
