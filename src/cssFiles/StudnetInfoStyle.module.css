@@ -1,0 +1,82 @@
+
+
+.StudnetInfoGrid{
+    display: grid;
+
+    grid-template-rows: auto auto;
+    grid-template-columns: repeat(4 auto);
+
+    grid-gap:   5px;
+    border-color: black;
+    border: solid;
+    border-width: 2px;
+
+    padding: 5px;
+
+
+}
+
+.likeH{
+    grid-row: 1;
+    grid-column: 1;
+    background-color: lightgreen;
+}
+.likeC{
+    grid-row: 2;
+    grid-column: 1;
+}
+.LikeLike{
+    background-color: lightgreen;
+}
+.LikeNone{
+    background-color: lightgray;
+}
+.LikeDislike{
+    background-color: lightgoldenrodyellow;
+}
+
+
+.dislikeH{
+    grid-row: 1;
+    grid-column: 2;
+    background-color: coral;
+}
+.dislikeC{
+    grid-row: 2;
+    grid-column: 2;
+}
+.DislikeLike{
+    background-color: lightpink;
+}
+.DislikeNone{
+    background-color: lightgray;
+}
+.DislikeDislike{
+    background-color: red;
+}
+
+
+
+.RlikeH{
+    grid-row: 1;
+    grid-column: 3;
+    background-color: lightblue;
+}
+.RlikeC{
+    grid-row: 2;
+    grid-column: 3;
+    background-color: lightblue;
+}
+
+
+
+.RdislikeH{
+    grid-row: 1;
+    grid-column: 4;
+    background-color: pink;
+}
+.RdislikeC{
+    grid-row: 2;
+    grid-column: 4;
+    background-color: pink;
+}
