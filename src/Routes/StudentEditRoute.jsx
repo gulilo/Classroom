@@ -16,7 +16,7 @@ class StudentEditRoute extends Component {
   getStudentId = () => parseInt(this.props.match.params.studentId, 10);
   getClassId = () => parseInt(this.props.match.params.classId, 10);
 
-  componentDidMount() {
+  init = () => {
     const api = this.context;
     const classStudent = api.classes.getStudent(
       this.getClassId(),
@@ -44,8 +44,20 @@ class StudentEditRoute extends Component {
       api.classes.getStudentList(this.getClassId()),
       ({ id }) => api.student.getStudent(id)
     );
-
+    console.log(student);
     this.setState({ student, otherStudents });
+  };
+
+  componentDidMount() {
+    this.init();
+  }
+  componentDidUpdate(prevProps) {
+    if (
+      prevProps.match.params.studentId !== this.props.match.params.studentId
+    ) {
+      console.log("changed");
+      this.init();
+    }
   }
 
   saveStudent = () => {
@@ -102,7 +114,7 @@ class StudentEditRoute extends Component {
         otherStudents={this.state.otherStudents}
         saveStudent={this.saveStudent}
         cancel={this.handleCancel}
-      ></StudentEdit>
+      />
     );
   }
 }
