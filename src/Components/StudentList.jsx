@@ -13,7 +13,7 @@ class StudentList extends Component {
 
   render() {
     if (this.state.students.length === 0) return null;
-    console.log(this.props);
+
     return (
       <div>
         <span className={listStyle.studentList}>

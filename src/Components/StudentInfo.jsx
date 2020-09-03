@@ -48,7 +48,7 @@ class StudentInfo extends Component {
       dislikeAndLikeMe,
       dislikeAndDislikeMe
     );
-      console.log (likeAndDislikeMe)
+
     this.setState({
       likes,
       dislikes,
@@ -68,48 +68,62 @@ class StudentInfo extends Component {
     return (
       <div className={Style_MainGrid.AppMainAreaOut}>
         <div className={Style_StudnetInfo.StudnetInfoGrid}>
-        <h3 className={Style_StudnetInfo.likeH}>likes: </h3>
-        <span className={Style_StudnetInfo.likeC}>
-          {_.map(this.state.likeAndLikeMe, ({ id, name }) => (
-            <li className={Style_StudnetInfo.LikeLike} key={id}> {name} </li>
-          ))}
-          {_.map(this.state.likeRest, ({ id, name }) => (
-            <li className={Style_StudnetInfo.LikeNone} key={id}> {name} </li>
-          ))}
-          {_.map(this.state.likeAndDislikeMe, ({ id, name }) => (
-            <li className={Style_StudnetInfo.LikeDislike} key={id}> {name} </li>
-          ))}
+          <h3 className={Style_StudnetInfo.likeH}>likes: </h3>
+          <span className={Style_StudnetInfo.likeC}>
+            {_.map(this.state.likeAndLikeMe, ({ id, name }) => (
+              <li className={Style_StudnetInfo.LikeLike} key={id}>
+                {" "}
+                {name}{" "}
+              </li>
+            ))}
+            {_.map(this.state.likeRest, ({ id, name }) => (
+              <li className={Style_StudnetInfo.LikeNone} key={id}>
+                {" "}
+                {name}{" "}
+              </li>
+            ))}
+            {_.map(this.state.likeAndDislikeMe, ({ id, name }) => (
+              <li className={Style_StudnetInfo.LikeDislike} key={id}>
+                {" "}
+                {name}{" "}
+              </li>
+            ))}
+          </span>
 
-        </span>
-        
-        
-        <h3 className={Style_StudnetInfo.dislikeH}>dislikes: </h3>
-        <span className={Style_StudnetInfo.dislikeC}>
-          {_.map(this.state.dislikeAndLikeMe, ({ id, name }) => (
-            <li className={Style_StudnetInfo.DislikeLike} key={id}> {name} </li>
-          ))}
-          {_.map(this.state.dislikeRest, ({ id, name }) => (
-            <li className={Style_StudnetInfo.DislikeNone} key={id}> {name} </li>
-          ))}
-          {_.map(this.state.dislikeAndDislikeMe, ({ id, name }) => (
-            <li className={Style_StudnetInfo.DislikeDislike} key={id}> {name} </li>
-          ))}
-        </span>
+          <h3 className={Style_StudnetInfo.dislikeH}>dislikes: </h3>
+          <span className={Style_StudnetInfo.dislikeC}>
+            {_.map(this.state.dislikeAndLikeMe, ({ id, name }) => (
+              <li className={Style_StudnetInfo.DislikeLike} key={id}>
+                {" "}
+                {name}{" "}
+              </li>
+            ))}
+            {_.map(this.state.dislikeRest, ({ id, name }) => (
+              <li className={Style_StudnetInfo.DislikeNone} key={id}>
+                {" "}
+                {name}{" "}
+              </li>
+            ))}
+            {_.map(this.state.dislikeAndDislikeMe, ({ id, name }) => (
+              <li className={Style_StudnetInfo.DislikeDislike} key={id}>
+                {" "}
+                {name}{" "}
+              </li>
+            ))}
+          </span>
 
-
-
-        <h3 className={Style_StudnetInfo.RlikeH}>like me: </h3>
-        <span className={Style_StudnetInfo.RlikeC}> 
-          {_.map(this.state.likeMe, ({ id, name }) => (
-            <li key={id}> {name} </li>
-          ))}
-        </span>
-        <h3 className={Style_StudnetInfo.RdislikeH}>dislikes me: </h3>
-        <span className={Style_StudnetInfo.RdislikeC}>
-          {_.map(this.state.dislikeMe, ({ id, name }) => (
-            <li key={id}> {name} </li>
-          ))}
-        </span>
+          <h3 className={Style_StudnetInfo.RlikeH}>like me: </h3>
+          <span className={Style_StudnetInfo.RlikeC}>
+            {_.map(this.state.likeMe, ({ id, name }) => (
+              <li key={id}> {name} </li>
+            ))}
+          </span>
+          <h3 className={Style_StudnetInfo.RdislikeH}>dislikes me: </h3>
+          <span className={Style_StudnetInfo.RdislikeC}>
+            {_.map(this.state.dislikeMe, ({ id, name }) => (
+              <li key={id}> {name} </li>
+            ))}
+          </span>
         </div>
       </div>
     );
