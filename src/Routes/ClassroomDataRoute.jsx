@@ -10,10 +10,21 @@ class ClassroomDataRoute extends Component {
 
   getClassId = () => parseInt(this.props.match.params.classId, 10);
 
-  componentDidMount() {
+  init = () => {
     const classroom = this.context.classes.getById(this.getClassId());
     this.setState({ classroom });
+  };
+
+  componentDidMount() {
+    this.init();
   }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.match.params.classId !== this.props.match.params.classId) {
+      this.init();
+    }
+  }
+
   render() {
     if (this.state.classroom.id === -1) {
       return null;
