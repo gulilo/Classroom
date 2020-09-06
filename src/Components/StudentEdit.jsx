@@ -17,29 +17,26 @@ class NameItem extends Component {
     if (!this.state.edit) {
       return (
         <span className={labelStyles.StudentNameBracket}>
-          <span className={labelStyles.NameLabel}>
-            {this.props.student.name}
-          </span>
-          <button
-            className={labelStyles.editbutton}
-            onClick={(e) => {
+          <h4
+            className={labelStyles.NameLabel}
+            onClick={() => {
               this.setState({ edit: true });
             }}
-          />
+          >
+            {this.props.student.name}
+          </h4>
         </span>
       );
     } else {
       return (
         <span className={labelStyles.StudentNameBracket}>
           <input
+            autoFocus
             className={labelStyles.NameLabel}
             type="Text"
             ref={this.nameInput}
             defaultValue={this.props.student.name}
-          />
-          <button
-            className={labelStyles.saveButton}
-            onClick={() => {
+            onBlur={() => {
               this.props.onChangeName(this.nameInput.current.value);
               this.setState({ edit: false });
             }}
@@ -90,18 +87,19 @@ class AddItem extends Component {
     } else {
       return (
         <span className={labelStyles.StudentNameBracket}>
-          <select className={labelStyles.StudentPicker} ref={this.selector}>
+          <select
+            className={labelStyles.StudentPicker}
+            ref={this.selector}
+            onChange={() => {
+              this.props.onSave(this.selector.current.value);
+              this.setState({ add: false });
+            }}
+          >
+            <option value={-1}>pick</option>
             {this.props.otherStudents.map(({ id, name }) => (
               <option value={id}>{name}</option>
             ))}
           </select>
-          <button
-            className={labelStyles.saveButton}
-            onClick={(e) => {
-              this.props.onSave(this.selector.current.value);
-              this.setState({ add: false });
-            }}
-          />
         </span>
       );
     }
@@ -177,6 +175,7 @@ class StudentEdit extends Component {
     }
     const maped = _.map(arr, (student) => (
       <ListItem
+        key={student.id}
         student={student}
         onDelete={() => {
           this.HandleDeleteFromList(student.id, list);
