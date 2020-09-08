@@ -47,23 +47,19 @@ class NameItem extends Component {
   }
 }
 
-class ListItem extends Component {
-  state = {};
-
-  render() {
-    if (!this.props.student) {
-      return null;
-    }
-    return (
-      <span className={labelStyles.StudentNameBracket}>
-        {this.props.student.name}
-        <button
-          className={labelStyles.DeleteButton}
-          onClick={(e) => this.props.onDelete()}
-        ></button>
-      </span>
-    );
+function ListItem(props) {
+  if (!props.student) {
+    return null;
   }
+  return (
+    <span className={labelStyles.StudentNameBracket}>
+      {props.student.name}
+      <button
+        className={labelStyles.DeleteButton}
+        onClick={(e) => props.onDelete()}
+      ></button>
+    </span>
+  );
 }
 
 class AddItem extends Component {
@@ -132,7 +128,7 @@ class StudentEdit extends Component {
     let student = this.state.student;
     student.name = newName;
 
-    this.setState({ student, nameEdit: false });
+    this.setState({ student });
   };
 
   HandleDeleteFromList = (toDelete, list) => {
@@ -187,7 +183,7 @@ class StudentEdit extends Component {
         <AddItem
           otherStudents={this.state.otherStudents}
           onSave={(toAdd) => {
-            this.HandleAddToList(toAdd, "likes");
+            this.HandleAddToList(toAdd, list === "likes" ? "likes" : "dislike");
           }}
         />
       );
