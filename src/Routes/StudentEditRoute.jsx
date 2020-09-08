@@ -44,7 +44,6 @@ class StudentEditRoute extends Component {
       api.classes.getStudentList(this.getClassId()),
       ({ id }) => api.student.getStudent(id)
     );
-    console.log(student);
     this.setState({ student, otherStudents });
   };
 
@@ -55,7 +54,6 @@ class StudentEditRoute extends Component {
     if (
       prevProps.match.params.studentId !== this.props.match.params.studentId
     ) {
-      console.log("changed");
       this.init();
     }
   }
