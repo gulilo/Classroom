@@ -1,49 +1,43 @@
-import React, { Component } from "react";
+import React, { useState, Component, useRef } from "react";
 import _ from "lodash";
 
 import buttonStyles from "../cssFiles/simpleButtons.module.css";
 import labelStyles from "../cssFiles/StudentEdit.module.css";
 import Style_MainGrid from "../cssFiles/MainGridLayout.module.css";
 
-class NameItem extends Component {
-  state = { edit: false };
+function NameItem(props) {
+  const [edit, setEdit] = useState({ edit: false });
+  const nameInput = useRef(null);
 
-  constructor(props) {
-    super(props);
-    this.nameInput = React.createRef();
-  }
-
-  render() {
-    if (!this.state.edit) {
-      return (
-        <span className={labelStyles.StudentNameBracket}>
-          <h4
-            className={labelStyles.NameLabel}
-            onClick={() => {
-              this.setState({ edit: true });
-            }}
-          >
-            {this.props.student.name}
-          </h4>
-        </span>
-      );
-    } else {
-      return (
-        <span className={labelStyles.StudentNameBracket}>
-          <input
-            autoFocus
-            className={labelStyles.NameLabel}
-            type="Text"
-            ref={this.nameInput}
-            defaultValue={this.props.student.name}
-            onBlur={() => {
-              this.props.onChangeName(this.nameInput.current.value);
-              this.setState({ edit: false });
-            }}
-          />
-        </span>
-      );
-    }
+  if (!edit) {
+    return (
+      <span className={labelStyles.StudentNameBracket}>
+        <h4
+          className={labelStyles.NameLabel}
+          onClick={() => {
+            setEdit(true);
+          }}
+        >
+          {props.student.name}
+        </h4>
+      </span>
+    );
+  } else {
+    return (
+      <span className={labelStyles.StudentNameBracket}>
+        <input
+          autoFocus
+          className={labelStyles.NameLabel}
+          type="Text"
+          ref={nameInput}
+          defaultValue={props.student.name}
+          onBlur={() => {
+            props.onChangeName(nameInput.current.value);
+            setEdit(false);
+          }}
+        />
+      </span>
+    );
   }
 }
 
@@ -62,43 +56,39 @@ function ListItem(props) {
   );
 }
 
-class AddItem extends Component {
-  state = { add: false };
+function AddItem(props) {
+  const [add, setAdd] = useState(false);
+  const selector = useRef(null);
 
-  constructor(props) {
-    super(props);
-    this.selector = React.createRef();
-  }
-
-  render() {
-    if (!this.state.add) {
-      return (
-        <button
-          className={buttonStyles.addButton}
-          onClick={(e) => {
-            this.setState({ add: true });
+  if (!add) {
+    return (
+      <button
+        className={buttonStyles.addButton}
+        onClick={(e) => {
+          setAdd(true);
+        }}
+      />
+    );
+  } else {
+    return (
+      <span className={labelStyles.StudentNameBracket}>
+        <select
+          className={labelStyles.StudentPicker}
+          ref={selector}
+          onChange={() => {
+            props.onSave(selector.current.value);
+            setAdd(false);
           }}
-        />
-      );
-    } else {
-      return (
-        <span className={labelStyles.StudentNameBracket}>
-          <select
-            className={labelStyles.StudentPicker}
-            ref={this.selector}
-            onChange={() => {
-              this.props.onSave(this.selector.current.value);
-              this.setState({ add: false });
-            }}
-          >
-            <option value={-1}>pick</option>
-            {this.props.otherStudents.map(({ id, name }) => (
-              <option value={id}>{name}</option>
-            ))}
-          </select>
-        </span>
-      );
-    }
+        >
+          <option value={-1}>pick</option>
+          {props.otherStudents.map(({ id, name }) => (
+            <option key={id} value={id}>
+              {name}
+            </option>
+          ))}
+        </select>
+      </span>
+    );
   }
 }
 

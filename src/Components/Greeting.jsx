@@ -1,9 +1,7 @@
-import React, { Component } from "react";
+import React from "react";
 
-class Greeting extends Component {
-  state = {};
-
-  timeOfDay = () => {
+function Greeting(props) {
+  const timeOfDay = () => {
     var hr = new Date().getHours();
     if (hr >= 7 && hr < 12) return "Good Morning";
     else if (hr >= 12 && hr < 16) return "It's High Noon";
@@ -13,15 +11,13 @@ class Greeting extends Component {
     return "hello";
   };
 
-  render() {
-    return (
-      <div>
-        <span>
-          {this.timeOfDay()} {this.props.name}
-        </span>
-      </div>
-    );
-  }
+  return (
+    <div>
+      <span>
+        {timeOfDay()} {props.name}
+      </span>
+    </div>
+  );
 }
 
 export default Greeting;

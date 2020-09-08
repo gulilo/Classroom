@@ -1,10 +1,7 @@
-import React, { Component } from "react";
+import React from "react";
 
-class Options extends Component {
-  state = {};
-  render() {
-    return <div>options </div>;
-  }
+function Options() {
+  return <div>options </div>;
 }
 
 export default Options;
