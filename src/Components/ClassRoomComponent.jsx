@@ -1,48 +1,35 @@
-import React, { Component } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import _ from "lodash";
 
 import StudentList from "./StudentList";
 
 import { MockedContext } from "../MockedContext";
 
-class ClassRoomComponent extends Component {
-  static contextType = MockedContext;
+function ClassRoomComponent(props) {
+  const api = useContext(MockedContext);
+  const [students, setStudents] = useState([]);
 
-  state = { students: [] };
-
-  init = () => {
+  useEffect(() => {
     const students = _.map(
-      this.context.classes.getStudentList(this.props.classroom.id),
-      ({ id }) => this.context.student.getStudent(id)
+      api.classes.getStudentList(props.classroom.id),
+      ({ id }) => api.student.getStudent(id)
     );
-    this.setState({ students });
-  };
-  upda;
-  componentDidMount() {
-    this.init();
+    setStudents(students);
+  }, [props.classroom]);
+
+  if (students.length === 0) {
+    return null;
   }
 
-  componentDidUpdate(prevProps) {
-    if (prevProps.classroom.id !== this.props.classroom.id) {
-      this.init();
-    }
-  }
-
-  render() {
-    if (this.state.students.length === 0) {
-      return null;
-    }
-
-    return (
-      <div>
-        <StudentList
-          key={this.props.classroom.id}
-          classId={this.props.classroom.id}
-          students={this.state.students}
-        />
-      </div>
-    );
-  }
+  return (
+    <div>
+      <StudentList
+        key={props.classroom.id}
+        classId={props.classroom.id}
+        students={students}
+      />
+    </div>
+  );
 }
 
 export default ClassRoomComponent;

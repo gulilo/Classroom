@@ -1,34 +1,43 @@
-import React, { Component } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import _ from "lodash";
 
 import ClassTableStyle from "../cssFiles/ClassroomDataStyle.module.css";
 
 import { MockedContext } from "../MockedContext";
 
-class ClassData extends Component {
-  static contextType = MockedContext;
+function ClassData(props) {
+  const api = useContext(MockedContext);
+  const [classData, setClassData] = useState({});
 
-  state = { students: [], ghosts: [] };
-
-  init = () => {
-    const classroom = this.props.classroom;
-
+  useEffect(() => {
     const students = [];
 
-    _.forEach(classroom.students, (student) => {
-      _.forEach(student.likes, (like) => {
-        const stud = _.find(students, { id: like });
+    _.forEach(props.classroom.students, (student) => {
+      _.forEach(student.likes, (id) => {
+        const stud = _.find(students, { id: id });
         if (!stud) {
-          students.push({ id: like, like: 1, dislike: 0, sum: 1 });
+          students.push({
+            id: id,
+            name: api.student.getName(id),
+            like: 1,
+            dislike: 0,
+            sum: 1,
+          });
         } else {
           stud.like++;
           stud.sum++;
         }
       });
-      _.forEach(student.dislike, (dislike) => {
-        const stud = _.find(students, { id: dislike });
+      _.forEach(student.dislike, (id) => {
+        const stud = _.find(students, { id: id });
         if (!stud) {
-          students.push({ id: dislike, like: 0, dislike: 1, sum: 1 });
+          students.push({
+            id: id,
+            name: api.student.getName(id),
+            like: 0,
+            dislike: 1,
+            sum: 1,
+          });
         } else {
           stud.dislike++;
           stud.sum++;
@@ -50,52 +59,40 @@ class ClassData extends Component {
 
     const rest = _.difference(students, _.union(ghosts, populars, rejected));
 
-    this.setState({ students, ghosts, populars, rejected, rest });
-  };
+    setClassData({ ghosts, populars, rejected, rest });
+  }, [props.classroom]);
 
-  componentDidMount() {
-    this.init();
-  }
+  return (
+    <div className={ClassTableStyle.ClassMainTable}>
+      <h3 className={ClassTableStyle.likedH}>popular:</h3>
+      <span className={ClassTableStyle.liked}>
+        {_.map(classData.populars, ({ id, name }) => (
+          <li key={id}> {name} </li>
+        ))}
+      </span>
 
-  componentDidUpdate(prevProps) {
-    if (prevProps.classroom.id !== this.props.classroom.id) {
-      this.init();
-    }
-  }
+      <h3 className={ClassTableStyle.deslikedH}>rejected:</h3>
+      <span className={ClassTableStyle.desliked}>
+        {_.map(classData.rejected, ({ id, name }) => (
+          <li key={id}>{name} </li>
+        ))}
+      </span>
 
-  render() {
-    return (
-      <div className={ClassTableStyle.ClassMainTable}>
-        <h3 className={ClassTableStyle.likedH}>popular:</h3>
-        <span className={ClassTableStyle.liked}>
-          {_.map(this.state.populars, ({ id }) => (
-            <li key={id}> {this.context.student.getName(id)} </li>
-          ))}
-        </span>
+      <h3 className={ClassTableStyle.ghostsH}>ghost:</h3>
+      <span className={ClassTableStyle.ghosts}>
+        {_.map(classData.ghosts, ({ id, name }) => (
+          <li key={id}>{name} </li>
+        ))}
+      </span>
 
-        <h3 className={ClassTableStyle.deslikedH}>rejected:</h3>
-        <span className={ClassTableStyle.desliked}>
-          {_.map(this.state.rejected, ({ id }) => (
-            <li key={id}>{this.context.student.getName(id)} </li>
-          ))}
-        </span>
-
-        <h3 className={ClassTableStyle.ghostsH}>ghost:</h3>
-        <span className={ClassTableStyle.ghosts}>
-          {_.map(this.state.ghosts, ({ id }) => (
-            <li key={id}>{this.context.student.getName(id)} </li>
-          ))}
-        </span>
-
-        <h3 className={ClassTableStyle.halfH}>rest:</h3>
-        <span className={ClassTableStyle.half}>
-          {_.map(this.state.rest, ({ id }) => (
-            <li key={id}>{this.context.student.getName(id)} </li>
-          ))}
-        </span>
-      </div>
-    );
-  }
+      <h3 className={ClassTableStyle.halfH}>rest:</h3>
+      <span className={ClassTableStyle.half}>
+        {_.map(classData.rest, ({ id, name }) => (
+          <li key={id}>{name} </li>
+        ))}
+      </span>
+    </div>
+  );
 }
 
 export default ClassData;
