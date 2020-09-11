@@ -6,7 +6,7 @@ import labelStyles from "../cssFiles/StudentEdit.module.css";
 import Style_MainGrid from "../cssFiles/MainGridLayout.module.css";
 
 function NameItem(props) {
-  const [edit, setEdit] = useState({ edit: false });
+  const [edit, setEdit] = useState(false);
   const nameInput = useRef(null);
 
   if (!edit) {
