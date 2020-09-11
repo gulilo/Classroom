@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { useContext, useState, useEffect } from "react";
 
 import ClassList from "../Components/ClassList";
 
@@ -6,24 +6,19 @@ import Style_MainGrid from "../cssFiles/MainGridLayout.module.css";
 
 import { MockedContext } from "../MockedContext";
 
-class ClassListRoute extends Component {
-  static contextType = MockedContext;
+function ClassListRoute() {
+  const api = useContext(MockedContext);
+  const [classes, setClasses] = useState([]);
 
-  state = { classes: [] };
+  useEffect(() => {
+    setClasses(api.classes.getAll());
+  }, [classes]);
 
-  componentDidMount() {
-    const classes = [...this.context.classes.getAll()];
-
-    this.setState({ classes });
-  }
-
-  render() {
-    return (
-      <div className={Style_MainGrid.AppMenuArea1}>
-        <ClassList classes={this.state.classes} />
-      </div>
-    );
-  }
+  return (
+    <div className={Style_MainGrid.AppMenuArea1}>
+      <ClassList classes={classes} />
+    </div>
+  );
 }
 
 export default ClassListRoute;

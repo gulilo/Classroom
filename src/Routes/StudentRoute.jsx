@@ -1,62 +1,20 @@
-import React, { Component } from "react";
+import React, { useContext } from "react";
 
-import StudentEdit from "../Components/StudentEdit";
 import StudentInfo from "../Components/StudentInfo";
 import { MockedContext } from "../MockedContext";
 
-class StudentRoute extends Component {
-  static contextType = MockedContext;
+function StudentRoute(props) {
+  const api = useContext(MockedContext);
 
-  state = {
-    newStudent: false,
-    studentInfo: false,
-    studentEdit: false,
-  };
-  getStudentId = () => parseInt(this.props.match.params.studentId, 10);
-  getClassId = () => parseInt(this.props.match.params.classId, 10);
+  const getStudentId = () => parseInt(props.match.params.studentId, 10);
+  const getClassId = () => parseInt(props.match.params.classId, 10);
 
-  init = () => {
-    var newStudent = false;
-    var studentInfo = false;
-    if (this.props.match.params.studentId === "new") {
-      newStudent = true;
-    } else {
-      studentInfo = true;
-    }
-
-    this.setState({ newStudent, studentInfo });
-  };
-
-  componentDidMount() {
-    this.init();
-  }
-  componentDidUpdate(prevProps) {
-    if (
-      prevProps.match.params.studentId !== this.props.match.params.studentId
-    ) {
-      this.init();
-    }
-  }
-
-  render() {
-    if (this.state.newStudent) {
-      return <StudentEdit newStudent={this.state.newStudent} />;
-    } else if (this.state.studentInfo) {
-      return (
-        <StudentInfo
-          student={this.context.classes.getStudent(
-            this.getClassId(),
-            this.getStudentId()
-          )}
-          otherStudents={
-            this.context.classes.getById(this.getClassId()).students
-          }
-        />
-      );
-    } else {
-      return <div>somthing</div>;
-    }
-  }
+  return (
+    <StudentInfo
+      student={api.classes.getStudent(getClassId(), getStudentId())}
+      otherStudents={api.classes.getStudentList(getClassId())}
+    />
+  );
 }
 
 export default StudentRoute;

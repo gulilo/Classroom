@@ -1,49 +1,43 @@
-import React, { Component } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import _ from "lodash";
 
 import buttonStyles from "../cssFiles/simpleButtons.module.css";
 import labelStyles from "../cssFiles/StudentEdit.module.css";
 import Style_MainGrid from "../cssFiles/MainGridLayout.module.css";
 
-class NameItem extends Component {
-  state = { edit: false };
+function NameItem(props) {
+  const [edit, setEdit] = useState(false);
+  const nameInput = useRef(null);
 
-  constructor(props) {
-    super(props);
-    this.nameInput = React.createRef();
-  }
-
-  render() {
-    if (!this.state.edit) {
-      return (
-        <span className={labelStyles.StudentNameBracket}>
-          <h4
-            className={labelStyles.NameLabel}
-            onClick={() => {
-              this.setState({ edit: true });
-            }}
-          >
-            {this.props.student.name}
-          </h4>
-        </span>
-      );
-    } else {
-      return (
-        <span className={labelStyles.StudentNameBracket}>
-          <input
-            autoFocus
-            className={labelStyles.NameLabel}
-            type="Text"
-            ref={this.nameInput}
-            defaultValue={this.props.student.name}
-            onBlur={() => {
-              this.props.onChangeName(this.nameInput.current.value);
-              this.setState({ edit: false });
-            }}
-          />
-        </span>
-      );
-    }
+  if (!edit) {
+    return (
+      <span className={labelStyles.StudentNameBracket}>
+        <h4
+          className={labelStyles.NameLabel}
+          onClick={() => {
+            setEdit(true);
+          }}
+        >
+          {props.student.name}
+        </h4>
+      </span>
+    );
+  } else {
+    return (
+      <span className={labelStyles.StudentNameBracket}>
+        <input
+          autoFocus
+          className={labelStyles.NameLabel}
+          type="Text"
+          ref={nameInput}
+          defaultValue={props.student.name}
+          onBlur={() => {
+            props.onChangeName(nameInput.current.value);
+            setEdit(false);
+          }}
+        />
+      </span>
+    );
   }
 }
 
@@ -62,128 +56,114 @@ function ListItem(props) {
   );
 }
 
-class AddItem extends Component {
-  state = { add: false };
+function AddItem(props) {
+  const [add, setAdd] = useState(false);
+  const selector = useRef(null);
 
-  constructor(props) {
-    super(props);
-    this.selector = React.createRef();
-  }
-
-  render() {
-    if (!this.state.add) {
-      return (
-        <button
-          className={buttonStyles.addButton}
-          onClick={(e) => {
-            this.setState({ add: true });
+  if (!add) {
+    return (
+      <button
+        className={buttonStyles.addButton}
+        onClick={(e) => {
+          setAdd(true);
+        }}
+      />
+    );
+  } else {
+    return (
+      <span className={labelStyles.StudentNameBracket}>
+        <select
+          className={labelStyles.StudentPicker}
+          ref={selector}
+          onChange={() => {
+            props.onSave(selector.current.value);
+            setAdd(false);
           }}
-        />
-      );
-    } else {
-      return (
-        <span className={labelStyles.StudentNameBracket}>
-          <select
-            className={labelStyles.StudentPicker}
-            ref={this.selector}
-            onChange={() => {
-              this.props.onSave(this.selector.current.value);
-              this.setState({ add: false });
-            }}
-          >
-            <option value={-1}>pick</option>
-            {this.props.otherStudents.map(({ id, name }) => (
-              <option value={id}>{name}</option>
-            ))}
-          </select>
-        </span>
-      );
-    }
+        >
+          <option value={-1}>pick</option>
+          {props.otherStudents.map(({ id, name }) => (
+            <option key={id} value={id}>
+              {name}
+            </option>
+          ))}
+        </select>
+      </span>
+    );
   }
 }
 
-class StudentEdit extends Component {
-  state = {
-    student: { id: -1, name: "", likes: [], dislike: [] },
-    otherStudents: [{ id: -1, name: "" }],
+function StudentEdit(props) {
+  const [student, setStudent] = useState({
+    id: -1,
+    name: "",
+    likes: [],
+    dislike: [],
+  });
+
+  useEffect(() => {
+    setStudent(props.student);
+  }, [props.student]);
+
+  const HandleChangeName = (newName) => {
+    setStudent({ ...student, name: newName });
   };
 
-  init = () => {
-    const student = this.props.student;
-    const otherStudents = this.props.otherStudents;
-
-    this.setState({ student, otherStudents });
-  };
-
-  componentDidMount() {
-    this.init();
-  }
-  componentDidUpdate(prevProps) {
-    if (prevProps.student.id !== this.props.student.id) {
-      this.init();
-    }
-  }
-
-  HandleChangeName = (newName) => {
-    let student = this.state.student;
-    student.name = newName;
-
-    this.setState({ student });
-  };
-
-  HandleDeleteFromList = (toDelete, list) => {
-    const student = this.state.student;
+  const HandleDeleteFromList = (toDelete, list) => {
+    let arr;
     if (list === "likes") {
-      _.remove(student.likes, { id: toDelete });
+      arr = student.likes;
+      _.remove(arr, { id: toDelete });
     } else {
-      _.remove(student.dislike, { id: toDelete });
+      arr = student.dislike;
+      _.remove(arr, { id: toDelete });
     }
-
-    this.setState({ student });
+    setStudent({ ...student, arr });
   };
 
-  HandleAddToList = (studentId, list) => {
-    const student = this.state.student;
+  const HandleAddToList = (studentId, list) => {
     const toadd = _.find(
-      this.state.otherStudents,
+      props.otherStudents,
       ({ id }) => id === parseInt(studentId, 10)
     );
-
+    let arr;
     if (list === "likes") {
-      student.likes.push(toadd);
+      arr = student.likes;
+      arr.push(toadd);
     } else {
-      student.dislike.push(toadd);
+      arr = student.dislike;
+      arr.push(toadd);
     }
 
-    this.setState({ student });
+    setStudent({ ...student, arr });
   };
 
-  HandleSave = () => {
-    this.props.saveStudent();
+  const HandleSave = () => {
+    props.saveStudent();
   };
 
-  ShowList = (list) => {
+  const ShowList = (list) => {
     var arr;
     if (list === "likes") {
-      arr = this.state.student.likes;
+      arr = student.likes;
     } else {
-      arr = this.state.student.dislike;
+      arr = student.dislike;
     }
     const maped = _.map(arr, (student) => (
       <ListItem
         key={student.id}
         student={student}
         onDelete={() => {
-          this.HandleDeleteFromList(student.id, list);
+          HandleDeleteFromList(student.id, list);
         }}
       />
     ));
     if (arr.length < 3) {
       maped.push(
         <AddItem
-          otherStudents={this.state.otherStudents}
+          key={"add"}
+          otherStudents={props.otherStudents}
           onSave={(toAdd) => {
-            this.HandleAddToList(toAdd, list === "likes" ? "likes" : "dislike");
+            HandleAddToList(toAdd, list === "likes" ? "likes" : "dislike");
           }}
         />
       );
@@ -192,35 +172,30 @@ class StudentEdit extends Component {
     return maped;
   };
 
-  render() {
-    if (this.state.student.id === -1) {
-      return null;
-    }
-    return (
-      <div className={Style_MainGrid.AppMainAreaOut}>
-        <NameItem
-          student={this.state.student}
-          onChangeName={(newName) => this.HandleChangeName(newName)}
-        />
-        <br />
-        likes:
-        {this.ShowList("likes")}
-        <br />
-        dislikes:
-        {this.ShowList("dislike")}
-        <br />
-        <button className={labelStyles.SaveButton} onClick={this.HandleSave}>
-          <span className={labelStyles.Text}>save</span>
-        </button>
-        <button
-          className={labelStyles.CancelButton}
-          onClick={this.props.cancel}
-        >
-          <span className={labelStyles.Text}>cancel</span>
-        </button>
-      </div>
-    );
+  if (student.id === -1) {
+    return null;
   }
+  return (
+    <div className={Style_MainGrid.AppMainAreaOut}>
+      <NameItem
+        student={student}
+        onChangeName={(newName) => HandleChangeName(newName)}
+      />
+      <br />
+      likes:
+      {ShowList("likes")}
+      <br />
+      dislikes:
+      {ShowList("dislike")}
+      <br />
+      <button className={labelStyles.SaveButton} onClick={HandleSave}>
+        <span className={labelStyles.Text}>save</span>
+      </button>
+      <button className={labelStyles.CancelButton} onClick={props.cancel}>
+        <span className={labelStyles.Text}>cancel</span>
+      </button>
+    </div>
+  );
 }
 
 export default StudentEdit;

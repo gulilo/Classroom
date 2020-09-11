@@ -1,76 +1,60 @@
-import React, { Component } from "react";
+import React, { useContext } from "react";
 import _ from "lodash";
 
 import StudentEdit from "../Components/StudentEdit";
 
 import { MockedContext } from "../MockedContext";
+import { useState } from "react";
+import { useEffect } from "react";
 
-class StudentEditRoute extends Component {
-  static contextType = MockedContext;
+function StudentEditRoute(props) {
+  const api = useContext(MockedContext);
+  const [student, setStudent] = useState({
+    id: -1,
+    name: "",
+    likes: [],
+    dislike: [],
+  });
+  const [otherStudents, setOtherStudents] = useState([{ id: -1, name: "" }]);
 
-  state = {
-    student: { id: -1, name: "", likes: [], dislike: [] },
-    otherStudents: [{ id: -1, name: "" }],
-  };
+  const getStudentId = () => parseInt(props.match.params.studentId, 10);
+  const getClassId = () => parseInt(props.match.params.classId, 10);
 
-  getStudentId = () => parseInt(this.props.match.params.studentId, 10);
-  getClassId = () => parseInt(this.props.match.params.classId, 10);
+  useEffect(() => {
+    const classStudent = api.classes.getStudent(getClassId(), getStudentId());
 
-  init = () => {
-    const api = this.context;
-    const classStudent = api.classes.getStudent(
-      this.getClassId(),
-      this.getStudentId()
-    );
-
-    const studentLikes = api.student.getLikes(
-      this.getClassId(),
-      this.getStudentId()
-    );
+    const studentLikes = api.student.getLikes(getClassId(), getStudentId());
 
     const studentsDislikes = api.student.getDislikes(
-      this.getClassId(),
-      this.getStudentId()
+      getClassId(),
+      getStudentId()
     );
 
     const student = {
       id: classStudent.id,
-      name: api.student.getName(this.getStudentId()),
+      name: api.student.getName(getStudentId()),
       likes: studentLikes,
       dislike: studentsDislikes,
     };
 
     const otherStudents = _.map(
-      api.classes.getStudentList(this.getClassId()),
+      api.classes.getStudentList(getClassId()),
       ({ id }) => api.student.getStudent(id)
     );
-    this.setState({ student, otherStudents });
-  };
+    setStudent(student);
+    setOtherStudents(otherStudents);
+  }, [props.match.params.studentId, props.match.params.classId]);
 
-  componentDidMount() {
-    this.init();
-  }
-  componentDidUpdate(prevProps) {
-    if (
-      prevProps.match.params.studentId !== this.props.match.params.studentId
-    ) {
-      this.init();
-    }
-  }
-
-  saveStudent = () => {
-    const api = this.context;
-
-    if (this.state.student.id === -1) {
+  const saveStudent = () => {
+    if (student.id === -1) {
       return;
     }
-    const student = this.state.student;
 
     const mockedStudent = api.student.getStudent(student.id);
 
     const mockedClassStudent = api.classes.getStudent(
-      this.getClassId(),
-      this.getStudentId()
+      getClassId(),
+      getStudentId()
     );
 
     mockedStudent.name = student.name;
@@ -80,41 +64,34 @@ class StudentEditRoute extends Component {
     //this.props.history.go(0); // refrash the page
   };
 
-  handleCancel = () => {
-    const api = this.context;
-
-    if (this.state.student.id === -1) {
+  const handleCancel = () => {
+    if (student.id === -1) {
       return;
     }
-    const student = this.state.student;
 
-    student.name = api.student.getName(this.getStudentId());
-    student.likes = api.student.getLikes(
-      this.getClassId(),
-      this.getStudentId()
-    );
-    student.dislike = api.student.getDislikes(
-      this.getClassId(),
-      this.getStudentId()
-    );
+    setStudent((prevStudent) => {
+      return {
+        ...prevStudent,
+        name: api.student.getName(getStudentId()),
+        likes: api.student.getLikes(getClassId(), getStudentId()),
+        dislike: api.student.getDislikes(getClassId(), getStudentId()),
+      };
+    });
 
-    this.setState({ student });
     //this.props.history.go(0); // refrash the page
   };
 
-  render() {
-    if (this.state.student.id === -1) {
-      return null;
-    }
-    return (
-      <StudentEdit
-        student={this.state.student}
-        otherStudents={this.state.otherStudents}
-        saveStudent={this.saveStudent}
-        cancel={this.handleCancel}
-      />
-    );
+  if (student.id === -1) {
+    return null;
   }
+  return (
+    <StudentEdit
+      student={student}
+      otherStudents={otherStudents}
+      saveStudent={saveStudent}
+      cancel={handleCancel}
+    />
+  );
 }
 
 export default StudentEditRoute;
