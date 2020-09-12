@@ -13,26 +13,23 @@
 }
 
 .topMenuBar {
-    display: grid;
-    grid-gap: 3%;
-    padding: 0.3vh 1vw;
+    display: flex;
 
-    background-color: var(--middle-yellow-red);
-    grid-template-columns: minmax(10%,15%) minmax(10%,15%) minmax(10%,15%) minmax(10%,15%) minmax(10%,15%) minmax(10%,15%) minmax(10%,15%) ;
+    background-color: gold;
 
-
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
    
-    min-height: 2rem;
-    height: auto;
+    height: 7vh;
+    max-height: 50px;
+    min-height: 20px;
 
     grid-row: 1;
     grid-column-start: 2;
     grid-column-end: 5;
 
     border: var(--onyx);
-    border-width: 2px;
+    border-width: 3px;
     border-style: solid;
     
 }
@@ -43,24 +40,36 @@
     display: flex;
     text-align: center;
 
-    height: 3vh;
-    min-height: 80%;
-
-    
+    height: 50%;
+    width: 15%;
 
     border-radius: 50px;
-    background-color: var(--burnt-sienna) ;
+    background-color: darkgreen;
 
     justify-content: center;
     align-items: center;
 
     text-decoration: none;
 
-    font-size: 2vw;
-    padding: 4px;
+    font-size: 2.5vw;
+
+    color:lightgray;
+    padding: 0.5vw;
+
+    margin-left: 1vw;
+
+    animation-duration: .5s;
+    animation-fill-mode: forwards;
+    animation-name: topMenuLoadAnimation;
     
 
 }
+
+@keyframes topMenuLoadAnimation{
+    from {height: 1% ;font-size:1vw;}
+    to {height: 50%;font-size:2.5vw;}
+}
+
 
 
 .topMenuBar > .topMenuItem:hover{
