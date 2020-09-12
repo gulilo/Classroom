@@ -64,33 +64,41 @@ function ClassData(props) {
 
   return (
     <div className={ClassTableStyle.ClassMainTable}>
+      <div className={ClassTableStyle.GroupContainer}>
       <h3 className={ClassTableStyle.likedH}>popular:</h3>
       <span className={ClassTableStyle.liked}>
         {_.map(classData.populars, ({ id, name }) => (
           <li key={id}> {name} </li>
         ))}
       </span>
+      </div>
 
+      <div className={ClassTableStyle.GroupContainer}>
       <h3 className={ClassTableStyle.deslikedH}>rejected:</h3>
       <span className={ClassTableStyle.desliked}>
         {_.map(classData.rejected, ({ id, name }) => (
           <li key={id}>{name} </li>
         ))}
       </span>
+      </div>
 
+      <div className={ClassTableStyle.GroupContainer}>
       <h3 className={ClassTableStyle.ghostsH}>ghost:</h3>
       <span className={ClassTableStyle.ghosts}>
         {_.map(classData.ghosts, ({ id, name }) => (
           <li key={id}>{name} </li>
         ))}
       </span>
+      </div>
 
+      <div className={ClassTableStyle.GroupContainer}>
       <h3 className={ClassTableStyle.halfH}>rest:</h3>
       <span className={ClassTableStyle.half}>
         {_.map(classData.rest, ({ id, name }) => (
           <li key={id}>{name} </li>
         ))}
       </span>
+      </div>
     </div>
   );
 }

@@ -6,6 +6,7 @@ body {
     margin: 0px;
 }
 
+
 .AppMainGrid {
 
     display: grid;
@@ -55,5 +56,9 @@ body {
 .AppMainAreaOut{
     grid-row: 2;
     grid-column: 4;
+}
+
+@media only screen and (min-width: 600px){
+    .body{background-color: black;}
 }
 

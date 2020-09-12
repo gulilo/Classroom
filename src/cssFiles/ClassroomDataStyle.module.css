@@ -1,10 +1,95 @@
+
+.ClassMainTable{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+
+.GroupContainer{
+    box-sizing: border-box;
+    width: 25%;
+    display: flex;
+    flex-direction: column;
+
+    align-items: flex-start;
+    
+    border: solid 2px black;
+}
+
+.likedH{
+    background-color: lightgreen;
+    align-self: stretch;
+    margin: 0px;
+    padding: 0.3rem;
+    border-bottom: black;
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+    text-align: center;
+    justify-content: center;
+}
+.ghostsH{
+    background-color: lightgray;
+    align-self: stretch;
+    margin: 0px;
+    padding: 0.3rem;
+    border-bottom: black;
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+    text-align: center;
+    justify-content: center;
+}
+.deslikedH{
+    background-color:lightcoral;
+    align-self: stretch;
+    margin: 0px;
+    padding: 0.3rem;
+    border-bottom: black;
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+    text-align: center;
+    justify-content: center;
+}
+.halfH{
+    background-color: orange;
+    align-self: stretch;
+    margin: 0px;
+    padding: 0.3rem;
+    border-bottom: black;
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+    text-align: center;
+    justify-content: center;
+}
+
+.liked{
+    background-color: lightgreen;
+    align-self: stretch;
+    height: 100%;
+}
+.ghosts{
+    background-color: lightgray;
+    align-self: stretch;
+    height: 100%;
+}
+.desliked{
+    background-color: lightcoral;
+    align-self: stretch;
+    height: 100%;
+}
+.half{
+    background-color: orange;
+    align-self: stretch;
+    height: 100%;
+}
+
+/*
 .ClassMainTable{
     display: grid;
     grid-template-rows: 2;
 
     grid-template-columns:  repeat(4 1fr);
 
-    font-size: 2rem;
+    font-size: 1rem;
 
     margin: 10px;
     column-gap: 3px;
@@ -52,3 +137,4 @@
     grid-column: 4;
     background-color: lightyellow;
 }
+*/
