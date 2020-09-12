@@ -4,29 +4,26 @@ body{
     height: 10vh;
 }
 .studentList{
+    flex-direction: column;
     
 }
 .studentList > .studentItem{
     display: flex;
     box-sizing: border-box;
 
-    justify-content: space-between;
-
-    font-size: 3vmin;
+    font-size: 1.8rem;
     font-weight: bold;
-    text-transform: capitalize;
-    
-
 
     height: 5vh;
-    min-height: 1rem;
+    min-height: 2rem;
+    max-height: 2.5rem;
     width: 100%;
 
     border : 2px navy solid;
     border-radius: 50px;
     background-color: var(--middle-blue);
 
-    padding: 0px 0px;
+    padding: 1px 1px;
 
     margin-bottom: 3px;
 
