@@ -7,13 +7,45 @@
 
 .GroupContainer{
     box-sizing: border-box;
-    width: 25%;
+    width: auto;
     display: flex;
     flex-direction: column;
+
+    flex-grow: 1;
 
     align-items: flex-start;
     
     border: solid 2px black;
+}
+
+@media only screen and (max-width : 1000px){
+    .GroupContainer{
+        box-sizing: border-box;
+        width: 50%;
+        display: flex;
+        flex-direction: column;
+    
+        flex-grow: 1;
+    
+        align-items: flex-start;
+        
+        border: solid 2px black;
+    }
+}
+
+@media only screen and (max-width : 600px){
+    .GroupContainer{
+        box-sizing: border-box;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+    
+        flex-grow: 1;
+    
+        align-items: flex-start;
+        
+        border: solid 2px black;
+    }
 }
 
 .likedH{
