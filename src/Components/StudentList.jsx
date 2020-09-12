@@ -9,8 +9,9 @@ function StudentList(props) {
   return (
     <div>
       <span className={listStyle.studentList}>
-        {props.students.map((student) => (
-          <li className={listStyle.studentItem} key={student.id}>
+        {props.students.map((student,i) => (
+          <li className={listStyle.studentItem} key={student.id}
+          style={{animationDelay: ((i+1)/20)+"s"}}>
             <Link
               className={listStyle.StudentLink}
               to={`/classroom/${props.classId}/student/${student.id}`}

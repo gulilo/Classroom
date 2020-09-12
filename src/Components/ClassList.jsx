@@ -7,16 +7,18 @@ function ClassList(props) {
   return (
     <div>
       <span className={Style_classroomList.listStyle}>
-        {props.classes.map((room) => (
-          <li key={room.id} className={Style_classroomList.lineStyle}>
-            
-            <Link
+        {props.classes.map((room,i) => (
+          <li key={room.id} className={Style_classroomList.lineStyle}
+            style={{animationDelay: ((i+1)/20)+"s"}}>
+            <Link 
               className={Style_classroomList.classLink}
               to={`/classroom/${room.id}`}
             >
+              
               {room.name}
             </Link>
           </li>
+          
         ))}
       </span>
     </div>
