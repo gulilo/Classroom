@@ -1,5 +1,129 @@
 
+.StudentMainTable{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+}
 
+.GroupContainer{
+    box-sizing: border-box;
+    width: auto;
+    display: flex;
+    flex-direction: column;
+
+    flex-grow: 1;
+
+    align-items: flex-start;
+    
+    border: solid 2px black;
+}
+
+@media only screen and (max-width : 1000px){
+    .GroupContainer{
+        box-sizing: border-box;
+        width: 50%;
+        display: flex;
+        flex-direction: column;
+    
+        flex-grow: 1;
+    
+        align-items: flex-start;
+        
+        border: solid 2px black;
+    }
+}
+
+@media only screen and (max-width : 600px){
+    .GroupContainer{
+        box-sizing: border-box;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+    
+        flex-grow: 1;
+    
+        align-items: flex-start;
+        
+        border: solid 2px black;
+    }
+}
+
+.likeH{
+    background-color: lightgreen;
+    align-self: stretch;
+    margin: 0px;
+    padding: 0.3rem;
+    border-bottom: black;
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+    text-align: center;
+    justify-content: center;
+}
+
+.likeC{
+    background-color: lightgreen;
+    align-self: stretch;
+    height: 100%;
+}
+
+.dislikeH{
+    background-color:lightcoral;
+    align-self: stretch;
+    margin: 0px;
+    padding: 0.3rem;
+    border-bottom: black;
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+    text-align: center;
+    justify-content: center;
+}
+
+.dislikeC{
+    background-color: lightcoral;
+    align-self: stretch;
+    height: 100%;
+}
+
+
+
+.RlikeH{
+    background-color:lightblue;
+    align-self: stretch;
+    margin: 0px;
+    padding: 0.3rem;
+    border-bottom: black;
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+    text-align: center;
+    justify-content: center;
+}
+.RlikeC{
+    background-color: lightblue;
+    align-self: stretch;
+    height: 100%;
+}
+
+
+
+
+.RdislikeH{
+    background-color:pink;
+    align-self: stretch;
+    margin: 0px;
+    padding: 0.3rem;
+    border-bottom: black;
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+    text-align: center;
+    justify-content: center;
+}
+.RdislikeC{
+    background-color: pink;
+    align-self: stretch;
+    height: 100%;
+}
+
+/*
 .StudnetInfoGrid{
     display: grid;
 
@@ -79,4 +203,4 @@
     grid-row: 2;
     grid-column: 4;
     background-color: pink;
-}
+}*/

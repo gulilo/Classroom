@@ -74,8 +74,8 @@ function ClassData(props) {
       </div>
 
       <div className={ClassTableStyle.GroupContainer}>
-      <h3 className={ClassTableStyle.deslikedH}>rejected:</h3>
-      <span className={ClassTableStyle.desliked}>
+      <h3 className={ClassTableStyle.dislikedH}>rejected:</h3>
+      <span className={ClassTableStyle.disliked}>
         {_.map(classData.rejected, ({ id, name }) => (
           <li key={id}>{name} </li>
         ))}

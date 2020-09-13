@@ -70,7 +70,7 @@
     text-align: center;
     justify-content: center;
 }
-.deslikedH{
+.dislikedH{
     background-color:lightcoral;
     align-self: stretch;
     margin: 0px;
@@ -103,7 +103,7 @@
     align-self: stretch;
     height: 100%;
 }
-.desliked{
+.disliked{
     background-color: lightcoral;
     align-self: stretch;
     height: 100%;

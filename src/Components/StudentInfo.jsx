@@ -62,7 +62,8 @@ function StudentInfo(props) {
 
   return (
     <div className={Style_MainGrid.AppMainAreaOut}>
-      <div className={Style_StudnetInfo.StudnetInfoGrid}>
+      <div className={Style_StudnetInfo.StudentMainTable}>
+        <div className={Style_StudnetInfo.GroupContainer}>
         <h3 className={Style_StudnetInfo.likeH}>likes: </h3>
         <span className={Style_StudnetInfo.likeC}>
           {_.map(studentLikes.likeAndLikeMe, ({ id, name }) => (
@@ -81,7 +82,10 @@ function StudentInfo(props) {
             </li>
           ))}
         </span>
+        </div>
 
+          
+        <div className={Style_StudnetInfo.GroupContainer}>
         <h3 className={Style_StudnetInfo.dislikeH}>dislikes: </h3>
         <span className={Style_StudnetInfo.dislikeC}>
           {_.map(studentLikes.dislikeAndLikeMe, ({ id, name }) => (
@@ -100,19 +104,25 @@ function StudentInfo(props) {
             </li>
           ))}
         </span>
+        </div>
 
+        <div className={Style_StudnetInfo.GroupContainer}>
         <h3 className={Style_StudnetInfo.RlikeH}>like me: </h3>
         <span className={Style_StudnetInfo.RlikeC}>
           {_.map(studentLikes.likeMe, ({ id, name }) => (
             <li key={id}> {name} </li>
           ))}
         </span>
+        </div>
+
+        <div className={Style_StudnetInfo.GroupContainer}>
         <h3 className={Style_StudnetInfo.RdislikeH}>dislikes me: </h3>
         <span className={Style_StudnetInfo.RdislikeC}>
           {_.map(studentLikes.dislikeMe, ({ id, name }) => (
             <li key={id}> {name} </li>
           ))}
         </span>
+        </div>
       </div>
     </div>
   );
