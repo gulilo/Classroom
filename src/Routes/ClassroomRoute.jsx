@@ -16,10 +16,12 @@ function ClassroomRoute(props) {
 
   const getClassId = () => parseInt(props.match.params.classId, 10);
 
-  useEffect(async () => {
-    const classroom = await api.classes.getById(getClassId());
-    setClassroom(classroom);
-  },[props.match.params.classId]);
+  useEffect(() => {
+    (async function readClassStudentList() {
+      const classroom = await api.classes.getById(getClassId());
+      setClassroom(classroom);
+    })();
+  }, [props.match.params.classId]);
 
   if (classroom.id === -1) {
     return null;

@@ -8,26 +8,27 @@ import { MockedContext } from "../MockedContext";
 
 function ClassroomDataRoute(props) {
   const api = useContext(MockedContext);
-  const [classroom, setClassroom] = useState({
-    id: -1,
-    name: "bla",
-    students: [],
-  });
+  const [classroom, setClassroom] = useState([]);
 
-  const getClassId = () => parseInt(props.match.params.classId, 10);
-
-  useEffect(async () => {
-    const classroom = await api.classes.getById(getClassId());
-    setClassroom(classroom);
-  }, [props.match.params.classId]);
+  useEffect(() => {
+    console.log(props.match.params.classId);
+    function getClassId() {
+      return parseInt(props.match.params.classId, 10);
+    }
+    (async function readClassData() {
+      const students = await api.classes.getStudentListWithName(getClassId());
+      setClassroom(students);
+    })();
+  }, [props.match.params.classId, api.classes]);
 
   if (classroom.id === -1) {
     return null;
   }
+  console.log(classroom);
   return (
     <div className={Style_MainGrid.appClassroomArea}>
       <div className={Style_MainGrid.AppMainArea}>
-        <ClassData classroom={classroom} />
+        {/*<ClassData classroom={classroom} />*/}
       </div>
     </div>
   );

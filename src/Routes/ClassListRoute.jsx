@@ -10,9 +10,11 @@ function ClassListRoute() {
   const api = useContext(MockedContext);
   const [classes, setClasses] = useState([]);
 
-  useEffect(async () => {
-    const classes = await api.classes.getAll();
-    setClasses(classes);
+  useEffect(() => {
+    (async function readClassList() {
+      const classes = await api.classes.getAll();
+      setClasses(classes);
+    })();
   });
 
   return (
