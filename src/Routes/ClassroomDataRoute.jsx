@@ -16,8 +16,8 @@ function ClassroomDataRoute(props) {
 
   const getClassId = () => parseInt(props.match.params.classId, 10);
 
-  useEffect(() => {
-    const classroom = api.classes.getById(getClassId());
+  useEffect(async () => {
+    const classroom = await api.classes.getById(getClassId());
     setClassroom(classroom);
   }, [props.match.params.classId]);
 

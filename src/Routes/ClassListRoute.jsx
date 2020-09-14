@@ -10,9 +10,10 @@ function ClassListRoute() {
   const api = useContext(MockedContext);
   const [classes, setClasses] = useState([]);
 
-  useEffect(() => {
-    setClasses(api.classes.getAll());
-  }, [classes]);
+  useEffect(async () => {
+    const classes = await api.classes.getAll();
+    setClasses(classes);
+  });
 
   return (
     <div className={Style_MainGrid.AppMenuArea1}>

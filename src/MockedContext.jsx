@@ -9,33 +9,40 @@ export const MockedContext = createContext();
 export const ApiProvider = (props) => {
   const ApiMocked = {
     classes: {
-      getAll() {
+      async getAll() {
         return classes;
       },
-      getById(classId) {
+      async getById(classId) {
         return _.find(classes, { id: classId });
       },
-      getStudentList(classId) {
+      async getStudentList(classId) {
         return this.getById(classId).students;
       },
-      getStudent(classId, studentId) {
-        return _.find(this.getStudentList(classId), { id: studentId });
+      async getStudent(classId, studentId) {
+        const studentData = _.find(this.getStudentList(classId), { id: studentId });
+        const studentName = ApiMocked.student.getName(studentId);
+        return {id:studentData.id, name:studentName,likes:studentData.likes,dislike:studentData.dislike};
       },
+      async getStudentsName(classId){
+        const list = await this.getStudentList(classId);
+        return Promise.all(_.map(list, ({ id }) =>  ApiMocked.student.getStudent(id))
+        );
+      }
     },
     student: {
-      getStudent(studentId) {
+      async getStudent(studentId) {
         return _.find(students, { id: studentId });
       },
-      getName(studentId) {
+      async getName(studentId) {
         return _.find(students, { id: studentId }).name;
       },
-      getLikes(classId, studentId) {
+      async getLikes(classId, studentId) {
         return _.map(
           ApiMocked.classes.getStudent(classId, studentId).likes,
           (id) => _.find(students, (student) => student.id === id)
         );
       },
-      getDislikes(classId, studentId) {
+      async getDislikes(classId, studentId) {
         return _.map(
           ApiMocked.classes.getStudent(classId, studentId).dislike,
           (id) => _.find(students, (student) => student.id === id)

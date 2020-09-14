@@ -20,39 +20,33 @@ function StudentEditRoute(props) {
   const getStudentId = () => parseInt(props.match.params.studentId, 10);
   const getClassId = () => parseInt(props.match.params.classId, 10);
 
-  useEffect(() => {
-    const classStudent = api.classes.getStudent(getClassId(), getStudentId());
-
-    const studentLikes = api.student.getLikes(getClassId(), getStudentId());
-
-    const studentsDislikes = api.student.getDislikes(
-      getClassId(),
-      getStudentId()
-    );
+  useEffect(async () => {
+    const classStudent = await api.classes.getStudent(getClassId(), getStudentId());
+  
+    const studentLikes = classStudent.likes;
+    const studentsDislikes = classStudent.dislike;
 
     const student = {
       id: classStudent.id,
-      name: api.student.getName(getStudentId()),
+      name: classStudent.name,
       likes: studentLikes,
       dislike: studentsDislikes,
     };
 
-    const otherStudents = _.map(
-      api.classes.getStudentList(getClassId()),
-      ({ id }) => api.student.getStudent(id)
-    );
+    const otherStudents = await api.getstudentsName(getClassId());
+
     setStudent(student);
     setOtherStudents(otherStudents);
   }, [props.match.params.studentId, props.match.params.classId]);
 
-  const saveStudent = () => {
+   const saveStudent = async () => {
     if (student.id === -1) {
       return;
     }
 
-    const mockedStudent = api.student.getStudent(student.id);
+    const mockedStudent = await api.student.getStudent(student.id);
 
-    const mockedClassStudent = api.classes.getStudent(
+    const mockedClassStudent = await api.classes.getStudent(
       getClassId(),
       getStudentId()
     );
@@ -64,17 +58,17 @@ function StudentEditRoute(props) {
     //this.props.history.go(0); // refrash the page
   };
 
-  const handleCancel = () => {
+  const handleCancel = async () => {
     if (student.id === -1) {
       return;
     }
-
+    const DBstudent = await api.classes.getStudent(getClassId(),getStudentId()); 
     setStudent((prevStudent) => {
       return {
         ...prevStudent,
-        name: api.student.getName(getStudentId()),
-        likes: api.student.getLikes(getClassId(), getStudentId()),
-        dislike: api.student.getDislikes(getClassId(), getStudentId()),
+        name: DBstudent.name,
+        likes: DBstudent.likes,
+        dislike: DBstudent.dislike,
       };
     });
 
