@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 
-import StudentInfo from "../Components/StudentInfo";
+import ClassStudentInfo from "../Components/ClassStudentInfo";
 import { MockedContext } from "../MockedContext";
 
 function StudentRoute(props) {
@@ -10,7 +10,7 @@ function StudentRoute(props) {
   const getClassId = () => parseInt(props.match.params.classId, 10);
 
   return (
-    <StudentInfo
+    <ClassStudentInfo
       student={api.classes.getStudent(getClassId(), getStudentId())}
       otherStudents={api.classes.getStudentList(getClassId())}
     />

@@ -15,6 +15,8 @@ import styles_topMenu from "../cssFiles/menuBar.module.css";
 import Style_MainGrid from "../cssFiles/MainGridLayout.module.css";
 
 import { ApiProvider } from "../MockedContext";
+import StudentListRoute from "../Routes/StudentListRoute";
+import StudentInfoRoute from "../Routes/StudentInfoRoute";
 
 function App() {
   return (
@@ -23,16 +25,24 @@ function App() {
         <div className={Style_MainGrid.AppMainGrid}>
           <span className={styles_topMenu.topMenuBar}>
             <NavLink to="/classroom" className={styles_topMenu.topMenuItem}>
-              classrooms
+              groups
+            </NavLink>
+            <NavLink to="/student" className={styles_topMenu.topMenuItem}>
+              student list
+            </NavLink>
+
+            <br />
+            <Greeting name="Degenerat" />
+
+            <NavLink to="/classroom/new" className={styles_topMenu.topMenuItem}>
+              logout
             </NavLink>
             <NavLink to="/classroom/new" className={styles_topMenu.topMenuItem}>
-              new class
+              change class
             </NavLink>
             <NavLink to="/options" className={styles_topMenu.topMenuItem}>
               options
             </NavLink>
-            <br />
-            <Greeting name="Degenerat" />
           </span>
           <Route path="/" exact component={Home} />
           <Route path="/classroom" component={ClassListRoute} />
@@ -53,6 +63,8 @@ function App() {
             exact
             component={StudentRoute}
           />
+          <Route path="/student" component={StudentListRoute} />
+          <Route path="/student/:studentId" component={StudentInfoRoute} />
         </div>
       </Router>
     </ApiProvider>

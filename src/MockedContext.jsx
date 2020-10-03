@@ -23,6 +23,9 @@ export const ApiProvider = (props) => {
       },
     },
     student: {
+      getAll() {
+        return students;
+      },
       getStudent(studentId) {
         return _.find(students, { id: studentId });
       },
