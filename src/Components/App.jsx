@@ -15,25 +15,14 @@ import styles_topMenu from "../cssFiles/menuBar.module.css";
 import Style_MainGrid from "../cssFiles/MainGridLayout.module.css";
 
 import { ApiProvider } from "../MockedContext";
+import TopMenuBar from "./TopMenuBar";
 
 function App() {
   return (
     <ApiProvider>
       <Router>
         <div className={Style_MainGrid.AppMainGrid}>
-          <span className={styles_topMenu.topMenuBar}>
-            <NavLink to="/classroom" className={styles_topMenu.topMenuItem}>
-              classrooms
-            </NavLink>
-            <NavLink to="/classroom/new" className={styles_topMenu.topMenuItem}>
-              new class
-            </NavLink>
-            <NavLink to="/options" className={styles_topMenu.topMenuItem}>
-              options
-            </NavLink>
-            <br />
-            <Greeting name="Degenerat" />
-          </span>
+          <TopMenuBar></TopMenuBar>
           <Route path="/" exact component={Home} />
           <Route path="/classroom" component={ClassListRoute} />
           <Route path="/classroom/new" exact component={NewClass} />
