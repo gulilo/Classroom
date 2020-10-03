@@ -12,14 +12,12 @@ export default function TopMenuBar() {
           <div className={style.TopMenuBar}>
             <div className={style.ClassMenuItems}>
         <NavLink to="/classroom" className={style.MenuItem}>
-          <span className={style.TextField}>כיתות</span>
+          <span className={style.TextField}>קבוצות</span>
         </NavLink>
         <NavLink to="/classroom/new" className={style.MenuItem}>
-        <span className={style.TextField}>כיתה חדשה</span>
+        <span className={style.TextField}>תלמידים</span>
         </NavLink>
-        <NavLink to="/options" className={style.MenuItem}>
-        <span className={style.TextField}>אפשרויות</span>
-        </NavLink>
+        
             </div>
         <br />
         <div className={style.Greeting}>

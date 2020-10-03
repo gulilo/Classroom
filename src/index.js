@@ -6,7 +6,7 @@ import TopMenuBar from './Components/TopMenuBar';
 
 
 
-ReactDOM.render( < TopMenuBar /
+ReactDOM.render( < App /
   >
   ,
   document.getElementById('root')

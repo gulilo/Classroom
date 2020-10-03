@@ -19,6 +19,6 @@
     --menuButtonHover: radial-gradient(farthest-side at 50% 50%,var(--greenButton0),var(--greenButton1));
 
 
-    --defaultWidth :75vw;
+    --defaultWidth :100%;
 }
 
