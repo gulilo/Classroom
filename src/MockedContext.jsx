@@ -2,6 +2,7 @@ import React, { createContext } from "react";
 
 import { classes } from "./mockedData/classes";
 import { students } from "./mockedData/Students";
+import { users } from "./mockedData/Users";
 import _ from "lodash";
 
 export const MockedContext = createContext();
@@ -40,6 +41,11 @@ export const ApiProvider = (props) => {
           ApiMocked.classes.getStudent(classId, studentId).dislike,
           (id) => _.find(students, (student) => student.id === id)
         );
+      },
+    },
+    users: {
+      login(userName, password) {
+        return _.find(users, { userName, password });
       },
     },
   };

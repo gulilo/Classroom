@@ -1,6 +1,9 @@
 import React from "react";
+import { useSelector } from "react-redux";
 
-function Greeting(props) {
+function Greeting() {
+  const user = useSelector((state) => state.user);
+
   const timeOfDay = () => {
     var hr = new Date().getHours();
     if (hr >= 7 && hr < 12) return "Good Morning";
@@ -14,7 +17,7 @@ function Greeting(props) {
   return (
     <div>
       <span>
-        {timeOfDay()} {props.name}
+        {timeOfDay()} {user.name}
       </span>
     </div>
   );
