@@ -1,0 +1,24 @@
+:root{
+    --red: hsla(0, 100%, 41%, 1);
+    --yellow: hsla(43, 100%, 52%, 1);
+    --blue: hsla(207, 54%, 51%, 1);
+    --pearl: hsla(30, 100%, 99%, 1);
+    --lightgreen: hsla(137, 72%, 70%, 1);
+    --purple: hsla(287, 45%, 49%, 1);
+    --drakblue: hsla(220, 24%, 24%, 1);
+    --black: hsla(5, 15%, 14%, 1);
+    --lightblue: hsla(211, 100%, 93%, 1);
+    --navy: hsla(248, 92%, 25%, 1);
+
+
+    --greenButton1: hsla(137,72%,40%,1);
+    --greenButton2: hsla(137,72%,60%,1);
+    --greenButton0: hsla(137,72%,30%,1);
+
+    --menuButton: radial-gradient(farthest-side at 50% 50%,var(--greenButton1),var(--greenButton2));
+    --menuButtonHover: radial-gradient(farthest-side at 50% 50%,var(--greenButton0),var(--greenButton1));
+
+
+    --defaultWidth :75vw;
+}
+
