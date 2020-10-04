@@ -1,4 +1,4 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
 import _ from "lodash";
 
 const initialState = {
@@ -12,6 +12,11 @@ const student = createSlice({
   name: "student",
   initialState,
   reducers: {
+    setUser(state, { payload }) {
+      if (payload) {
+        return (state = payload);
+      }
+    },
     changeName(state, { payload }) {
       if (payload) {
         state.name = payload.newName;
@@ -44,5 +49,11 @@ const student = createSlice({
   },
 });
 
-export const { changeName } = student.actions;
+export const {
+  changeName,
+  deleteLike,
+  deleteDislike,
+  addLike,
+  addDislike,
+} = student.actions;
 export default student.reducer;
