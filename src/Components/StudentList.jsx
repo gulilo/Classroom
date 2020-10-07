@@ -14,6 +14,9 @@ function StudentList(props) {
             <Link
               className={listStyle.StudentLink}
               to={`/classroom/${props.classId}/student/${student.id}`}
+              onClick={() => {
+                props.chooseStudent(student.id);
+              }}
             >
               {student.name}
             </Link>
@@ -21,6 +24,9 @@ function StudentList(props) {
             <Link
               className={listStyle.StudentEditButton}
               to={`/classroom/${props.classId}/student/${student.id}/edit`}
+              onClick={() => {
+                props.chooseStudent(student.id);
+              }}
             ></Link>
           </li>
         ))}

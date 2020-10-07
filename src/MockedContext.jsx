@@ -21,6 +21,13 @@ export const ApiProvider = (props) => {
       getStudent(classId, studentId) {
         return _.find(this.getStudentList(classId), { id: studentId });
       },
+      getClassWithNames(classId) {
+        const list = this.getById(classId);
+        const students = _.map(list.students, ({ id }) =>
+          ApiMocked.student.getStudent(id)
+        );
+        return { ...list, students };
+      },
     },
     student: {
       getStudent(studentId) {

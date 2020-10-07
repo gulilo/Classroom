@@ -12,7 +12,7 @@ const student = createSlice({
   name: "student",
   initialState,
   reducers: {
-    setUser(state, { payload }) {
+    setStudent(state, { payload }) {
       if (payload) {
         return (state = payload);
       }
@@ -50,6 +50,7 @@ const student = createSlice({
 });
 
 export const {
+  setStudent,
   changeName,
   deleteLike,
   deleteDislike,
