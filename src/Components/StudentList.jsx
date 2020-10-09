@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 import listStyle from "../cssFiles/ClassroomStyle.module.css";
 
@@ -10,19 +10,22 @@ function StudentList(props) {
     <div>
       <span className={listStyle.studentList}>
         {props.students.map((student) => (
-          <li className={listStyle.studentItem} key={student.id}>
-            <Link
-              className={listStyle.StudentLink}
+
+            <NavLink
+              className={listStyle.studentItem}
+              activeClassName={listStyle.activeStudent}
               to={`/classroom/${props.classId}/student/${student.id}`}
             >
-              {student.name}
-            </Link>
+              <span className={listStyle.StudentLink}>{student.name}</span>
 
-            <Link
+              <Link
               className={listStyle.StudentEditButton}
               to={`/classroom/${props.classId}/student/${student.id}/edit`}
             ></Link>
-          </li>
+
+            </NavLink>
+
+
         ))}
       </span>
     </div>
