@@ -8,7 +8,7 @@ import React from 'react'
 
 export default function TopMenuBar() {
     return (
-        <Router>
+        
           <div className={style.TopMenuBar}>
             <div className={style.ClassMenuItems}>
         <NavLink to="/classroom" className={style.MenuItem}>
@@ -24,6 +24,6 @@ export default function TopMenuBar() {
         <Greeting name="Degenerat" />
         </div>
         </div>
-      </Router>
+      
     )
 }

@@ -58,13 +58,17 @@ body{
 
     text-decoration: none;
 
+    border: black solid 3px;
+
 }
 
 
 .MenuItem > .TextField{
 
     align-self: center;
-    color:  hsla(317,90%,40%,1);
+    color: var(--black);
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
 }
 .MenuItem:hover {
     cursor: pointer;
