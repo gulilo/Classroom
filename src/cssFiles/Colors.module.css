@@ -30,5 +30,7 @@
 
 
     --studentButton: var(--blue);
+
+    --selectedClass:  hsla(207, 54%, 30%, 1);
 }
 

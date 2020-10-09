@@ -1,16 +1,4 @@
-:root{
-    
-    --burnt-sienna: #de6b48ff;
-    --melon: #f4b9b2ff;
-    --middle-yellow-red: #e5b181ff;
-    --tea-green: #daedbdff;
-    --middle-blue: #7dbbc3ff;
-    --onyx: #3b3d40ff;
-    --dim-gray: #636667ff;
-    --spanish-gray: #909393ff;
-    --silver-sand: #bdc0bfff;
-    --platinum: #e9eceaff;
-}
+
 @import url("../cssFiles/Colors.module.css");
 
 
@@ -44,20 +32,42 @@
 
 }
 
-.listStyle > .lineStyle > .classLink{
+.listStyle > .lineStyle{
+    
+    box-sizing: border-box;
     display: flex;
-    text-decoration: none;
+    background-color: var(--studentButton);
+    
+    border-radius: 50px;
+    border:var(--black) solid 2px;
+
+
     width: 100%;
-    height: 100%;
-    align-items: center;
+
+    align-self: center;
     justify-content: center;
+    font-size: 2vw;
+
+    text-decoration: none;
+
+    align-self: flex-start
+
 }
+.listStyle > .activeClass{
+
+    background-color: var(--selectedClass);
+
+}
+    
+
+
+
 
 .listStyle > .lineStyle :visited {
-    color :var(--onyx);
+    color :var(--black);
 }
 .listStyle > .lineStyle :active {
-    color :var(--onyx);
+    color :var(--red);
 }
 
 
