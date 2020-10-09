@@ -4,7 +4,9 @@ body{
     height: 10vh;
 }
 .studentList{
-    
+    display: flex;
+    flex-direction: column;
+    row-gap: 1vh;
 }
 .studentList > .studentItem{
     box-sizing: border-box;
@@ -23,7 +25,11 @@ body{
 
     text-decoration: none;
 
-    align-self: flex-start
+    align-self: flex-start;
+    color: var(--black);
+
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
 }
 .studentList > .studentItem > .StudentLink{
     display: flex;
