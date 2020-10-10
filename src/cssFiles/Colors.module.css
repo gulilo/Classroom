@@ -32,5 +32,8 @@
     --studentButton: var(--blue);
 
     --selectedClass:  hsla(207, 54%, 30%, 1);
+
+
+    --appFont: Arial, Helvetica, sans-serif;
 }
 

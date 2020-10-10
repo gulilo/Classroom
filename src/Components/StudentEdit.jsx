@@ -11,23 +11,25 @@ function NameItem(props) {
 
   if (!edit) {
     return (
-      <span className={labelStyles.StudentNameBracket}>
-        <h4
-          className={labelStyles.NameLabel}
+      <div className={labelStyles.NameConatiner}>
+      <span className={labelStyles.NameLabel}>
+        <span
           onClick={() => {
             setEdit(true);
           }}
         >
           {props.student.name}
-        </h4>
+        </span>
       </span>
+      </div>
     );
   } else {
     return (
-      <span className={labelStyles.StudentNameBracket}>
+      <div className={labelStyles.NameConatiner}>
+      
         <input
           autoFocus
-          className={labelStyles.NameLabel}
+          className={labelStyles.NameLabelEdit}
           type="Text"
           ref={nameInput}
           defaultValue={props.student.name}
@@ -36,7 +38,8 @@ function NameItem(props) {
             setEdit(false);
           }}
         />
-      </span>
+      
+      </div>
     );
   }
 }

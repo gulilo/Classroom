@@ -1,5 +1,50 @@
 
+.body{
 
+    font-family: var(--appFont);
+}
+
+.NameConatiner{
+    display: flex;
+    width: 100%;
+
+    justify-content: center;
+    
+}
+.NameLabel{
+    display: block;
+    
+    
+
+    font: var(--appFont);
+    font-weight: bold;
+    font-size: 2rem;
+
+    border-bottom: solid;
+    border-bottom-width: 3px;
+    border-bottom-color: var(--black);
+    margin: 0px;
+    padding: 0px 10%;
+}
+.NameLabelEdit{
+    display: block;
+ 
+    text-align: center;
+
+    font: var(--appFont);
+    font-weight: bold;
+    font-size: 2rem;
+
+    border-bottom: solid;
+    border-bottom-width: 3px;
+    border-bottom-color: var(--black);
+    margin: 0px;
+    padding: 0px 10%;
+
+    background-color:var(--red);
+    width: 30ch;
+
+}
 .StudentNameBracket{
     display: flex;
     box-sizing: border-box;
@@ -29,6 +74,8 @@
     margin-bottom: 3px;
 
     list-style: none;
+
+    
 }
 
 .StudentNameBracket > .editbutton{
@@ -83,21 +130,7 @@
     
 }
 
-.StudentNameBracket > .NameLabel{
-    display: flex;
-    text-decoration: none;
-    width: 70%;
-    height: 80%;
-    align-self: center;
-    align-items: center;
-    justify-content: flex-start;
-    margin-left: 5%;
 
-    
-    border:none;
-
-    font-size: 80%;
-}
 
 .StudentNameBracket > .StudentPicker{
     
