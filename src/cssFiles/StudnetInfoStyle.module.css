@@ -5,6 +5,9 @@
     width: 100%;
     font-size: 2rem;
 
+    font-family: var(--appFont);
+    font-weight: bold
+
 }
 
 .Container{
@@ -17,52 +20,81 @@
 
 .likeH{
     margin-bottom: 0;
-    background-color: lightgreen;
+    background-color: var(--lightgreen);
     border: 2px var(--black) solid;
 }
 .likeC{
     background-color: lightgray;
     height: 100%;
     border: 2px var(--black) solid;
+    background-color: var(--lightgreen);
 }
 .LikeLike{
-    background-color: lightgreen;
+    background-color: var(--lightgreen);
 }
 .LikeLike::after{
     content: " ";
+    margin-right: 5%;
     display: inline-block;
-    background-image: url("/icons1/create-24px.svg");
+    background-image: url("/icons1/Smiley-Happy.svg");
     background-size: cover;
-    width: 2rem;
-    height: 2rem;
-    background-repeat: no-repeat;
-    
+    width: 1.5rem;
+    height: 1.5rem;  
 }
 .LikeNone{
-    background-color: lightgray;
+    background-color: var(--lightgreen);
 }
 .LikeDislike{
-    background-color: lightgoldenrodyellow;
+    background-color: var(--lightgreen);
+}
+.LikeDislike::after{
+    content: " ";
+    margin-right: 5%;
+    display: inline-block;
+    background-image: url("/icons1/Smiley-Neutral.svg");
+    background-size: cover;
+    width: 1.5rem;
+    height: 1.5rem;  
 }
 
 
 .dislikeH{
     margin-bottom: 0;
-    background-color: coral;
+    background-color: var(--red2);
     border: 2px var(--black) solid;
 }
 .dislikeC{
     height: 100%;
     border: 2px var(--black) solid;
+    background-color: var(--red2);
 }
 .DislikeLike{
-    background-color: lightpink;
+    background-color: var(--red2);
+    
+}
+.DislikeLike::after{
+    content: " ";
+    margin-right: 5%;
+    display: inline-block;
+    background-image: url("/icons1/Smiley-Neutral.svg");
+    background-size: cover;
+    width: 1.5rem;
+    height: 1.5rem;  
 }
 .DislikeNone{
-    background-color: lightgray;
+    background-color: var(--red2);
 }
 .DislikeDislike{
-    background-color: red;
+    background-color: var(--red2);  
+}
+.DislikeDislike::after{
+    content: " ";
+    margin-right: 5%;
+    display: inline-block;
+    background-image: url("/icons1/Smiley-Sad.svg");
+    background-size: cover;
+    width: 1.5rem;
+    height: 1.5rem;  
 }
 
 
