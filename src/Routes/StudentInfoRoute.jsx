@@ -1,5 +1,5 @@
 import React, { useEffect, useContext, useState } from "react";
-import StudentInfo from "../Components/ClassStudentInfo";
+import StudentInfo from "../Components/StudentInfo";
 import _ from "lodash";
 import { MockedContext } from "../MockedContext";
 
@@ -20,6 +20,8 @@ export default function StudentInfoRoute(props) {
     });
     setStudent({ ...temp, classes: studentClasses });
   }, []);
+
+  console.log("blal");
 
   return <StudentInfo student={student} />;
 }
