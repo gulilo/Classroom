@@ -18,13 +18,25 @@
 .likeH{
     margin-bottom: 0;
     background-color: lightgreen;
+    border: 2px var(--black) solid;
 }
 .likeC{
     background-color: lightgray;
     height: 100%;
+    border: 2px var(--black) solid;
 }
 .LikeLike{
     background-color: lightgreen;
+}
+.LikeLike::after{
+    content: " ";
+    display: inline-block;
+    background-image: url("/icons1/create-24px.svg");
+    background-size: cover;
+    width: 2rem;
+    height: 2rem;
+    background-repeat: no-repeat;
+    
 }
 .LikeNone{
     background-color: lightgray;
@@ -37,9 +49,11 @@
 .dislikeH{
     margin-bottom: 0;
     background-color: coral;
+    border: 2px var(--black) solid;
 }
 .dislikeC{
     height: 100%;
+    border: 2px var(--black) solid;
 }
 .DislikeLike{
     background-color: lightpink;
@@ -56,10 +70,12 @@
 .RlikeH{
     margin-bottom: 0;
     background-color: lightblue;
+    border: 2px var(--black) solid;
 }
 .RlikeC{
     height: 100%;
     background-color: lightblue;
+    border: 2px var(--black) solid;
 }
 
 
@@ -67,8 +83,10 @@
 .RdislikeH{
     margin-bottom: 0;
     background-color: pink;
+    border: 2px var(--black) solid;
 }
 .RdislikeC{
     height: 100%;
     background-color: pink;
+    border: 2px var(--black) solid;
 }
