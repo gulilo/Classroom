@@ -16,6 +16,8 @@ import Style_MainGrid from "../cssFiles/MainGridLayout.module.css";
 
 import { ApiProvider } from "../MockedContext";
 import TopMenuBar from "./TopMenuBar";
+import StudentListRoute from "../Routes/StudentListRoute";
+import StudentInfoRoute from "../Routes/StudentInfoRoute";
 
 function App() {
   return (
@@ -42,6 +44,8 @@ function App() {
             exact
             component={StudentRoute}
           />
+           <Route path="/student" component={StudentListRoute} />
+           <Route path="/student/:studentId" component={StudentInfoRoute} />
         </div>
       </Router>
     </ApiProvider>

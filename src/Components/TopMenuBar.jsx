@@ -13,7 +13,7 @@ export default function TopMenuBar() {
         <NavLink to="/classroom" className={style.MenuItem}>
           <span className={style.TextField}>קבוצות</span>
         </NavLink>
-        <NavLink to="/classroom/new" className={style.MenuItem}>
+        <NavLink to="/student" className={style.MenuItem}>
           <span className={style.TextField}>תלמידים</span>
         </NavLink>
       </div>

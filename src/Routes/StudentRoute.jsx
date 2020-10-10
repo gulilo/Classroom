@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 
-import StudentInfo from "../Components/StudentInfo";
+import StudentInfo from "../Components/ClassStudentInfo";
 import { MockedContext } from "../MockedContext";
 
 function StudentRoute(props) {
