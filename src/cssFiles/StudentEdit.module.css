@@ -1,33 +1,113 @@
 
+.body{
 
-.StudentNameBracket{
+    font-family: var(--appFont);
+}
+
+.NameConatiner{
+    display: flex;
+    width: 100%;
+
+    justify-content: center;
+    
+}
+.NameLabel{
+    display: block;
+    
+    
+
+    font: var(--appFont);
+    font-weight: bold;
+    font-size: 2rem;
+
+    border-bottom: solid;
+    border-bottom-width: 3px;
+    border-bottom-color: var(--black);
+    margin: 0px;
+    padding: 0px 10%;
+}
+.NameLabelEdit{
+    display: block;
+ 
+    text-align: center;
+
+    font: var(--appFont);
+    font-weight: bold;
+    font-size: 2rem;
+
+    border-bottom: solid;
+    border-bottom-width: 3px;
+    border-bottom-color: var(--black);
+    margin: 0px;
+    padding: 0px 10%;
+
+    background-color:var(--red);
+    width: 30ch;
+
+}
+
+.Container{
+    display: flex;
+    margin-top: 1vw;
+    flex-grow: 1;
+}
+.Container2{
+    display: flex;
+    flex-direction: column;
+    margin-top: 1vw;
+    flex-grow: 1;
+}
+.Header{
+    font-size: 3rem;
+    text-align: center;
+    font-weight: bold;
+}
+.LikesNamesContainer{
+    flex-grow: 1;
+
+
+}
+.LikesNamesContainer > .StudentNameBracket{
     display: flex;
     box-sizing: border-box;
-
     justify-content: space-between;
-    
-
     align-items: center;
-    
+    font-family: var(--appFont);
     font-size: 1.5rem;
     font-weight: bold;
-    text-transform: capitalize;
     text-decoration: none;
-
-
-    height: 5vh;
-    min-height: 1rem;
-    
-    
-    
-    border : 2px navy solid;
+    height: 2.5vw;
+    min-height: 1.5rem; 
+    border : 2px var(--black) solid;
     border-radius: 50px;
-    background-color: var(--middle-blue);
+    background-color: var(--green);
+    padding: 0px 1vw;
+    margin: 0.3vw 1vw 0.3vw 1vw;
+    list-style: none;
+    
+}
 
-    padding: 0px 0px;
+.DislikesNamesContainer{
+    flex-grow: 1;
 
-    margin-bottom: 3px;
 
+}
+.DislikesNamesContainer > .StudentNameBracket{
+    display: flex;
+    box-sizing: border-box;
+    justify-content: space-between;
+    align-items: center;
+    font-family: var(--appFont);
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-decoration: none;
+    height: 2.5vw;
+    min-height: 1.5rem; 
+    border : 2px var(--black) solid;
+    border-radius: 50px;
+    background-color: var(--red2);
+    padding: 0px 1vw;
+    margin: 0.3vw 1vw 0.3vw 1vw;
     list-style: none;
 }
 
@@ -83,21 +163,7 @@
     
 }
 
-.StudentNameBracket > .NameLabel{
-    display: flex;
-    text-decoration: none;
-    width: 70%;
-    height: 80%;
-    align-self: center;
-    align-items: center;
-    justify-content: flex-start;
-    margin-left: 5%;
 
-    
-    border:none;
-
-    font-size: 80%;
-}
 
 .StudentNameBracket > .StudentPicker{
     
