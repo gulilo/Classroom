@@ -11,14 +11,26 @@
     --navy: hsla(248, 92%, 25%, 1);
 
 
-    --greenButton1: hsla(137,72%,40%,1);
-    --greenButton2: hsla(137,72%,60%,1);
-    --greenButton0: hsla(137,72%,30%,1);
+    --greenButton1: hsla(137,50%,40%,1);
+    --greenButton2: hsla(137,80%,30%,1);
+    --greenButton0: hsla(137,80%,45%,1);
 
-    --menuButton: radial-gradient(farthest-side at 50% 50%,var(--greenButton1),var(--greenButton2));
-    --menuButtonHover: radial-gradient(farthest-side at 50% 50%,var(--greenButton0),var(--greenButton1));
+    /*--menuButton: radial-gradient(farthest-side at 50% 50%,var(--greenButton1),var(--greenButton2));
+    --menuButtonHover: radial-gradient(farthest-side at 50% 50%,var(--greenButton0),var(--greenButton1));*/
+
+    
+    --menuButton: radial-gradient(farthest-side at 50% 50%,var(--greenButton0),var(--greenButton0));
+    --menuButtonHover: radial-gradient(farthest-side at 50% 50%,var(--greenButton2),var(--greenButton2));
+
 
 
     --defaultWidth :100%;
+
+
+
+
+    --studentButton: var(--blue);
+
+    --selectedClass:  hsla(207, 54%, 30%, 1);
 }
 

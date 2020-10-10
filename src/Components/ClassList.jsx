@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 import Style_classroomList from "../cssFiles/classroomList.module.css";
 
@@ -8,14 +8,17 @@ function ClassList(props) {
     <div>
       <span className={Style_classroomList.listStyle}>
         {props.classes.map((room) => (
-          <li key={room.id} className={Style_classroomList.lineStyle}>
-            <Link
-              className={Style_classroomList.classLink}
+          
+            <NavLink
+            className={Style_classroomList.lineStyle}
+            activeClassName={Style_classroomList.activeClass}
               to={`/classroom/${room.id}`}
             >
+              
               {room.name}
-            </Link>
-          </li>
+              
+            </NavLink>
+
         ))}
       </span>
     </div>

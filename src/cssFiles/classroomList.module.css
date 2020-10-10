@@ -1,27 +1,61 @@
-:root{
-    
-    --burnt-sienna: #de6b48ff;
-    --melon: #f4b9b2ff;
-    --middle-yellow-red: #e5b181ff;
-    --tea-green: #daedbdff;
-    --middle-blue: #7dbbc3ff;
-    --onyx: #3b3d40ff;
-    --dim-gray: #636667ff;
-    --spanish-gray: #909393ff;
-    --silver-sand: #bdc0bfff;
-    --platinum: #e9eceaff;
-}
 
+@import url("../cssFiles/Colors.module.css");
 
 
 .listStyle{ 
 
    display: flex;
    flex-direction: column;
+   row-gap: 1vh;
    
 }
 
+
 .listStyle > .lineStyle{
+    
+    box-sizing: border-box;
+    display: flex;
+    background-color: var(--studentButton);
+    
+    border-radius: 50px;
+    border:var(--black) solid 2px;
+
+
+    width: 100%;
+
+    align-self: center;
+    justify-content: center;
+    font-size: 2vw;
+
+    text-decoration: none;
+
+    align-self: flex-start;
+    color: var(--black);
+
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+
+}
+.listStyle > .activeClass{
+
+    background-color: var(--selectedClass);
+    color: var(--lightblue);
+
+}
+    
+
+
+
+
+.listStyle > .lineStyle :visited {
+    color :var(--black);
+}
+.listStyle > .lineStyle :active {
+    color :var(--red);
+}
+
+
+/*.listStyle > .lineStyle{
     
     display: flex;
     box-sizing: border-box;
@@ -46,22 +80,4 @@
 
     margin-bottom: 3px;
 
-}
-
-.listStyle > .lineStyle > .classLink{
-    display: flex;
-    text-decoration: none;
-    width: 100%;
-    height: 100%;
-    align-items: center;
-    justify-content: center;
-}
-
-.listStyle > .lineStyle :visited {
-    color :var(--onyx);
-}
-.listStyle > .lineStyle :active {
-    color :var(--onyx);
-}
-
-
+}*/
