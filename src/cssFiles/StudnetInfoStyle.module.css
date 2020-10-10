@@ -1,82 +1,124 @@
 
 
 .StudnetInfoGrid{
-    display: grid;
+    display: flex;
+    width: 100%;
+    font-size: 2rem;
 
-    grid-template-rows: auto auto;
-    grid-template-columns: repeat(4 auto);
+    font-family: var(--appFont);
+    font-weight: bold
 
-    grid-gap:   5px;
-    border-color: black;
-    border: solid;
-    border-width: 2px;
+}
 
-    padding: 5px;
-
-
+.Container{
+    display: flex;
+    flex-direction: column;
+    row-gap: 0;
+    flex-grow: 1;
+    text-indent: 5%;
 }
 
 .likeH{
-    grid-row: 1;
-    grid-column: 1;
-    background-color: lightgreen;
+    margin-bottom: 0;
+    background-color: var(--lightgreen);
+    border: 2px var(--black) solid;
 }
 .likeC{
-    grid-row: 2;
-    grid-column: 1;
+    background-color: lightgray;
+    height: 100%;
+    border: 2px var(--black) solid;
+    background-color: var(--lightgreen);
 }
 .LikeLike{
-    background-color: lightgreen;
+    background-color: var(--lightgreen);
+}
+.LikeLike::after{
+    content: " ";
+    margin-right: 5%;
+    display: inline-block;
+    background-image: url("/icons1/Smiley-Happy.svg");
+    background-size: cover;
+    width: 1.5rem;
+    height: 1.5rem;  
 }
 .LikeNone{
-    background-color: lightgray;
+    background-color: var(--lightgreen);
 }
 .LikeDislike{
-    background-color: lightgoldenrodyellow;
+    background-color: var(--lightgreen);
+}
+.LikeDislike::after{
+    content: " ";
+    margin-right: 5%;
+    display: inline-block;
+    background-image: url("/icons1/Smiley-Neutral.svg");
+    background-size: cover;
+    width: 1.5rem;
+    height: 1.5rem;  
 }
 
 
 .dislikeH{
-    grid-row: 1;
-    grid-column: 2;
-    background-color: coral;
+    margin-bottom: 0;
+    background-color: var(--red2);
+    border: 2px var(--black) solid;
 }
 .dislikeC{
-    grid-row: 2;
-    grid-column: 2;
+    height: 100%;
+    border: 2px var(--black) solid;
+    background-color: var(--red2);
 }
 .DislikeLike{
-    background-color: lightpink;
+    background-color: var(--red2);
+    
+}
+.DislikeLike::after{
+    content: " ";
+    margin-right: 5%;
+    display: inline-block;
+    background-image: url("/icons1/Smiley-Neutral.svg");
+    background-size: cover;
+    width: 1.5rem;
+    height: 1.5rem;  
 }
 .DislikeNone{
-    background-color: lightgray;
+    background-color: var(--red2);
 }
 .DislikeDislike{
-    background-color: red;
+    background-color: var(--red2);  
+}
+.DislikeDislike::after{
+    content: " ";
+    margin-right: 5%;
+    display: inline-block;
+    background-image: url("/icons1/Smiley-Sad.svg");
+    background-size: cover;
+    width: 1.5rem;
+    height: 1.5rem;  
 }
 
 
 
 .RlikeH{
-    grid-row: 1;
-    grid-column: 3;
+    margin-bottom: 0;
     background-color: lightblue;
+    border: 2px var(--black) solid;
 }
 .RlikeC{
-    grid-row: 2;
-    grid-column: 3;
+    height: 100%;
     background-color: lightblue;
+    border: 2px var(--black) solid;
 }
 
 
 
 .RdislikeH{
-    grid-row: 1;
-    grid-column: 4;
+    margin-bottom: 0;
     background-color: pink;
+    border: 2px var(--black) solid;
 }
 .RdislikeC{
-    grid-row: 2;
-    grid-column: 4;
+    height: 100%;
     background-color: pink;
+    border: 2px var(--black) solid;
 }
