@@ -184,13 +184,24 @@ function StudentEdit(props) {
         student={student}
         onChangeName={(newName) => HandleChangeName(newName)}
       />
+
+      <div className={labelStyles.Container}>
       <br />
-      likes:
+      <div className={labelStyles.Container2}>
+      <span className={labelStyles.Header}>בחירות:</span>
+      <div className={labelStyles.LikesNamesContainer}>
       {ShowList("likes")}
+      </div>
+      </div>
       <br />
-      dislikes:
+      <div className={labelStyles.Container2}>
+      <span className={labelStyles.Header}>דחיות:</span>
+      <div className={labelStyles.DislikesNamesContainer}>
       {ShowList("dislike")}
+      </div>
+      </div>
       <br />
+      </div>
       <button className={labelStyles.SaveButton} onClick={HandleSave}>
         <span className={labelStyles.Text}>save</span>
       </button>

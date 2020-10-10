@@ -45,37 +45,70 @@
     width: 30ch;
 
 }
-.StudentNameBracket{
+
+.Container{
+    display: flex;
+    margin-top: 1vw;
+    flex-grow: 1;
+}
+.Container2{
+    display: flex;
+    flex-direction: column;
+    margin-top: 1vw;
+    flex-grow: 1;
+}
+.Header{
+    font-size: 3rem;
+    text-align: center;
+    font-weight: bold;
+}
+.LikesNamesContainer{
+    flex-grow: 1;
+
+
+}
+.LikesNamesContainer > .StudentNameBracket{
     display: flex;
     box-sizing: border-box;
-
     justify-content: space-between;
-    
-
     align-items: center;
-    
+    font-family: var(--appFont);
     font-size: 1.5rem;
     font-weight: bold;
-    text-transform: capitalize;
     text-decoration: none;
-
-
-    height: 5vh;
-    min-height: 1rem;
-    
-    
-    
-    border : 2px navy solid;
+    height: 2.5vw;
+    min-height: 1.5rem; 
+    border : 2px var(--black) solid;
     border-radius: 50px;
-    background-color: var(--middle-blue);
-
-    padding: 0px 0px;
-
-    margin-bottom: 3px;
-
+    background-color: var(--green);
+    padding: 0px 1vw;
+    margin: 0.3vw 1vw 0.3vw 1vw;
     list-style: none;
-
     
+}
+
+.DislikesNamesContainer{
+    flex-grow: 1;
+
+
+}
+.DislikesNamesContainer > .StudentNameBracket{
+    display: flex;
+    box-sizing: border-box;
+    justify-content: space-between;
+    align-items: center;
+    font-family: var(--appFont);
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-decoration: none;
+    height: 2.5vw;
+    min-height: 1.5rem; 
+    border : 2px var(--black) solid;
+    border-radius: 50px;
+    background-color: var(--red2);
+    padding: 0px 1vw;
+    margin: 0.3vw 1vw 0.3vw 1vw;
+    list-style: none;
 }
 
 .StudentNameBracket > .editbutton{
