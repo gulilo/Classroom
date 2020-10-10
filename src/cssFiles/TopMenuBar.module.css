@@ -72,7 +72,9 @@ body{
 }
 .MenuItem:hover {
     cursor: pointer;
-    background-image: var(--menuButtonHover);
+    
+    font-size: 2.2vw;
+    border-width: 5px;
 
 }
 
