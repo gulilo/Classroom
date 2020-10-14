@@ -1,0 +1,7 @@
+[bulid]
+functions = "functions"
+[[redirects]]
+force = true # COMMENT: ensure that we always redirect
+from = "/api/*" 
+status = 200 
+to = ".netlify/functions/:splat"

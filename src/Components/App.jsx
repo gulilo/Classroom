@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { BrowserRouter as Router, Route, NavLink } from "react-router-dom";
 
 import Home from "./Home";
@@ -18,6 +18,16 @@ import { ApiProvider } from "../MockedContext";
 import TopMenuBar from "./TopMenuBar";
 
 function App() {
+const read = async ()=> {
+  const res = await fetch('/api/findStudent/278900127880446471')
+  console.log(res);
+  const bla = await res.json();
+  console.log(bla);
+};
+
+  useEffect(()=>{
+    read()
+  },[]);
   return (
     <ApiProvider>
       <Router>

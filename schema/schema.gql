@@ -1,0 +1,16 @@
+type Student {
+    firstName : String!
+    lastName : String!
+    group: [group] @relation
+}
+
+type group {
+    name : String!
+    students : [Student] @relation
+}
+
+type Query {
+    allStudents: [Student!]!
+    findStudentbyName(firstName: String): Student 
+    allGroups: [group!]!
+}
